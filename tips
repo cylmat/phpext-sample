@@ -1,0 +1,123 @@
+[DEV]
+https://nanobox.io/
+
+[Apache]
+AddDefaultCharset UTF-8
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteRule ^(.*)$ index.php?_url=/$1 [QSA,L]
+</IfModule>
+
+
+
+/*
+https://www.commentcamarche.net/contents/798-php-connexion-a-un-annuaire-ldap
+
+https://stephaneey.developpez.com/tutoriel/php/sockets/
+
+error_reporting(E_ALL);
+
+echo "<h2>Connexion TCP/IP</h2>\n";
+
+/* Lit le port du service WWW. *
+$service_port = getservbyname('www', 'tcp');
+
+/* Lit l'adresse IP du serveur de destination *
+$address = gethostbyname('www.example.com');
+
+/* Crée un socket TCP/IP. *
+$socket = socket_create(AF_INET, SOCK_STREAM, SOL_TCP);
+if ($socket === false) {
+    echo "socket_create() a échoué : raison :  " . socket_strerror(socket_last_error()) . "\n";
+} else {
+    echo "OK.\n";
+}
+
+echo "Essai de connexion à '$address' sur le port '$service_port'...";
+$result = socket_connect($socket, $address, $service_port);
+if ($socket === false) {
+    echo "socket_connect() a échoué : raison : ($result) " . socket_strerror(socket_last_error($socket)) . "\n";
+} else {
+    echo "OK.\n";
+}
+
+$in = "HEAD / HTTP/1.0\r\n\r\n";
+$in .= "Host: www.example.com\r\n";
+$in .= "Connection: Close\r\n\r\n";
+$out = '';
+
+echo "Envoi de la requête HTTP HEAD...";
+socket_write($socket, $in, strlen($in));
+echo "OK.\n";
+
+echo "Lire la réponse : \n\n";
+while ($out = socket_read($socket, 2048)) {
+    echo $out;
+}
+
+echo "Fermeture du socket...";
+socket_close($socket);
+echo "OK.\n\n";
+*/
+
+
+
+/*
+<html>
+<head>
+<link rel = "stylesheet" type = "text/css" href = "stylesheets/stylesheet.css">
+<title>LDAP</title>
+</head?
+<body>
+<h1> AJOUTER CONTACT</h1>
+<hr>
+<?php
+$cn = htmlspecialchars($_POST['prenom']);
+//$givenName = htmlspecialchars($_POST['firstname']);
+$nom = htmlspecialchars($_POST['nom']);
+$mobile = htmlspecialchars($_POST['mobile']);
+$telephone = htmlspecialchars($_POST['telephone']);
+ 
+echo "Contact ajouté: $cn " . '<br>';
+ 
+include("config.php");
+ 
+///Connexion au serveur LDAP
+$ds = ldap_connect($ldap_host)
+    or die("Impossible de se connecter au serveur LDAP.");
+    ldap_set_option($ds, LDAP_OPT_PROTOCOL_VERSION, 3);
+ 
+if ($ds) {
+//$r = ldap_bind($ds,$ldap_dn,$ldap_password);
+    //Connexion au serveur LDAP
+$ldapbind = ldap_bind($ds, $ldap_dn, $ldap_password);
+ 
+//Suis connecté ou pas ?
+// if ($ldapbind) {
+//        echo 'Connexion LDAP  réussie';
+//    } else {
+//        echo 'Connexion LDAP  échouée';
+//    }
+$info["cn"] = $cn;
+//$info["givenName"] = $givenName;
+$info["surname"] = $nom;
+$info["mobileTelephoneNumber"] = $mobile;
+//$info["objectClass"] = "top";
+$info["objectClass"] = "inetOrgPerson";
+$info["telephoneNumber"] = $telephone;
+ 
+$r = ldap_add($ds,"cn=$cn,ou=users,dc=ltc,dc=com",$info);
+$sr = ldap_search($ds,"dc=ltc,dc=com","cn=$cn");
+$info = ldap_get_entries($ds,$sr);
+echo "Le contact:<span class='result'> " . $info[0]["dn"] . "</span> à bien été ajouté. <br>";      
+}
+ldap_close($ds);
+?>
+<hr>
+<a href = "ldapadduser.html">AJOUTER UN AUTRE CONTACT</a></br>
+<a href = "index.php">ACCUEIL</a>
+</body>
+</html>
+*/

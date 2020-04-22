@@ -1,0 +1,22 @@
+{
+    "name": "root/html",
+    "description": "Trying differents php-pear-pecl extensions",
+    "require": {
+    },
+    "require-dev": {
+        "codeception/codeception": "^4.1",
+        "phalcon/devtools":"^4.0",
+        "phpunit/phpunit": "^8.5",
+        "phpspec/phpspec": "^6.1",
+        "phpspec/prophecy":"^1.1"
+    },
+    "config": {
+        "preferred-install": "auto",
+        "bin-dir": "bin"
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\":"app/"
+        }
+    }
+}
