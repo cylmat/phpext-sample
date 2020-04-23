@@ -11,7 +11,19 @@ ARG DEBIAN_FRONTEND=noninteractive
 
 # Install phalcon
 RUN curl -s https://packagecloud.io/install/repositories/phalcon/stable/script.deb.sh | bash \
-    && apt-get update && apt-get install -y php-pear php5.6-dev php7.3-phalcon php-ds php7.0-intl sqlite3 phpldapadmin
+    && apt-get update && apt-get install -y php5.6-dev php7.3-phalcon php7.0-intl
+
+# Extensions
+RUN apt-get update && apt-get install -y zip sqlite3
+
+# Php ext
+RUN apt-get install -y php-pear php-psr php7.3-sqlite3 php-curl php-ds php-mbstring php-xml php-zip php-redis
+
+RUN update-alternatives --set php /usr/bin/php7.3 
+#cli a2enmod proxy_fcgi setenvif &&  a2enconf php7.3-fpm
+
+# clean
+RUN apt-get clean; rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /usr/share/doc/*
 
 #pecl channel-update pecl.php.net
 #RUN pecl install ds
@@ -22,12 +34,3 @@ RUN curl -s https://packagecloud.io/install/repositories/phalcon/stable/script.d
 
 #conf
 #COPY overrides.conf /etc/php/7.3/fpm/pool.d/z-overrides.conf
-
-# Extensions
-RUN apt-get update && apt-get install -y php-psr php-net-ldap3 libldap2-dev libldap-common ldap-auth-client 
-RUN apt-get install -y php7.3-ldap php7.3-sqlite3 php-curl php-mbstring php-xml php-zip php-soap php7.3-soap php-redis
-
-RUN update-alternatives --set php /usr/bin/php7.3 
-#cli a2enmod proxy_fcgi setenvif &&  a2enconf php7.3-fpm
-
-#RUN apt-get clean; rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /usr/share/doc/*

@@ -2,21 +2,30 @@
     "name": "root/html",
     "description": "Trying differents php-pear-pecl extensions",
     "require": {
+        "php": "^7",
+        "slim/psr7": "^1.0",
+        "slim/slim": "^4.5",
+        "slim/php-view": "^2.2"
     },
     "require-dev": {
         "codeception/codeception": "^4.1",
-        "phalcon/devtools":"^4.0",
-        "phpunit/phpunit": "^8.5",
+        "kint-php/kint": "^3.3",
         "phpspec/phpspec": "^6.1",
-        "phpspec/prophecy":"^1.1"
+        "phpspec/prophecy": "^1.1",
+        "phpunit/phpunit": "^8.5"
     },
     "config": {
-        "preferred-install": "auto",
-        "bin-dir": "bin"
+        "preferred-install": "dist",
+        "bin-dir": "bin",
+        "sort-packages": true
     },
     "autoload": {
         "psr-4": {
-            "App\\":"app/"
+            "":"src/"
         }
+    },
+    "extra": {
+        "phalcon/cphalcon":"^4.0",
+        "phalcon/devtools":"^4.0"
     }
 }

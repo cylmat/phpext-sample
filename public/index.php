@@ -1,47 +1,51 @@
 <?php
-declare(strict_types=1);
-
-use Phalcon\Di\FactoryDefault;
 
 error_reporting(E_ALL);
+ini_set('display_errors','on');
 
-define('BASE_PATH', dirname(__DIR__));
-define('APP_PATH', BASE_PATH . '/app');
+use Psr\Http\Message\ResponseInterface as Response;
+use Psr\Http\Message\ServerRequestInterface as Request;
+use Slim\Factory\AppFactory;
+use Slim\Views\PhpRenderer;
 
-try {
-    /**
-     * The FactoryDefault Dependency Injector automatically registers
-     * the services that provide a full stack framework.
-     */
-    $di = new FactoryDefault();
+require __DIR__ . '/../vendor/autoload.php';
 
-    /**
-     * Read services
-     */
-    include APP_PATH . '/config/services.php';
+// app
+$app = AppFactory::create();
 
-    /**
-     * Handle routes
-     */
-    include APP_PATH . '/config/router.php';
+/* 
+ * Routers 
+ * ns/ctrl/Action/params
+ */
+$app->get('/', function (Request $request, Response $response, $args) {
+    $dir = __DIR__."/../src/index/templates";
+    $renderer = new PhpRenderer($dir);
+    return $renderer->render($response, "index.phtml", $args);
+});
 
-    /**
-     * Get config service for use in inline setup below
-     */
-    $config = $di->getConfig();
+$app->get('/{ns}[/{ctrl}[/{action}[/{params:[a-z0-9\/]+}]]]', function (Request $request, Response $response, $args) {
+    
+    $n = (($args['ns'] ?? ''));
+    $a = ($args['action'] ?? 'index');
+    $c = (($args['ctrl'] ?? 'Index'));
 
-    /**
-     * Include Autoloader
-     */
-    include APP_PATH . '/config/loader.php';
+    $ns = ucfirst($n) . '\\';
+    $ctrl = ucfirst($c) . 'Controller';
+    $action = $a . 'Action';
+    $params = explode('/',($args['params'] ?? ''));
+    $params = isset($args['params']) ? $params : null;
+    $class = "{$ns}Controllers\\{$ctrl}";
 
-    /**
-     * Handle the request
-     */
-    $application = new \Phalcon\Mvc\Application($di);
+    $class = new $class();
+    if($params) $class->$action(...$params);
+    else $class->$action();
 
-    echo $application->handle($_SERVER['REQUEST_URI'])->getContent();
-} catch (\Exception $e) {
-    echo $e->getMessage() . '<br>';
-    echo '<pre>' . $e->getTraceAsString() . '</pre>';
-}
+    $dir = __DIR__."/../src/{$n}/templates";
+    $renderer = new PhpRenderer($dir);
+    return $renderer->render($response, "{$a}.phtml", $args);
+    //$response->getBody()->write("Hello, 7");
+    //return $response;
+});
+
+// run
+$app->run();

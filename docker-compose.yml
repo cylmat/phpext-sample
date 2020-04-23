@@ -6,7 +6,7 @@ services:
         restart: always
         #container_name: nginx
         volumes:
-            - ${WEBSERVER}/${DIRECTORY}:/app
+            - ${WEBSERVER}/${DIRECTORY}:/appli
             - ${WEBSERVER}/${DIRECTORY}/.docker/conf/nginx:/etc/nginx/conf.d:ro
         depends_on: 
             - phpfpm
@@ -19,11 +19,11 @@ services:
         build: .docker/conf/fpm
         restart: always
         #container_name: phpfpm
-        working_dir: /app
+        working_dir: /appli
         ports: 
             - 9000:9000
         volumes:
-            - ${WEBSERVER}/${DIRECTORY}:/app
+            - ${WEBSERVER}/${DIRECTORY}:/appli
         networks: 
             - ext
        
