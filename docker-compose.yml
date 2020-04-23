@@ -11,7 +11,7 @@ services:
         depends_on: 
             - phpfpm
         ports:
-            - 80:80
+            - 89:80
         networks: 
             - ext
           
@@ -21,7 +21,7 @@ services:
         #container_name: phpfpm
         working_dir: /appli
         ports: 
-            - 9000:9000
+            - 9009:9000
         volumes:
             - ${WEBSERVER}/${DIRECTORY}:/appli
         networks: 
