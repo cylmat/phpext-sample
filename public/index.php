@@ -25,23 +25,32 @@ $index = <<<R
             body {
                 margin: 10px 0 0 0;
                 padding: 0;
-                width: 100%%;
+                width: 100%;
                 font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
                 text-align: center;
                 color: #333;
                 font-size: 18px;
             }
 
+            a {
+                text-decoration: none;
+            }
+
             h1 {
                 color: #719e40;
                 letter-spacing: -3px;
                 font-family: 'Lato', sans-serif;
-                font-size: 100px;
-                font-weight: 200;
+                font-size: 40px;
+                font-weight: 100;
                 margin-bottom: 0;
             }
 
             .menu {
+                color: #aaa;
+                text-transform: uppercase;
+            }
+
+            .submenu {
                 color: #aaa;
                 margin-bottom: 30px
             }
@@ -49,29 +58,31 @@ $index = <<<R
     </head>
     <body>
         <h1>Php Pear Pecl</h1>
-        <div class="menu">%s</div>
-        <div>%s</div>
+        <div class="menu">*MENU*</div>
+        <div class="submenu">*SUB*</div>
+        <div class="content">*CONTENT*</div>
     </body>
 </html>
 R;
 
 /**
- * Directories
+ * Top menu 
  */
-$src = new DirectoryIterator('../src');
+$src = new DirectoryIterator(ROOT . '/src');
 $dir = [];
 foreach($src as $sub) {
     $b = $sub->getBasename();
     if(strpbrk($b,'._')) continue;
     $dir[] = " <a href='/{$b}'>{$b}</a> ";
 }
-$index = sprintf($index,implode(' ',$dir),'%s');
+$index = str_replace('*MENU*',implode($dir),$index);
 
 /**
  * HOME
  */
 $app->get('/', function (Request $request, Response $response, $args) use ($index) {
-    $response->getBody()->write(sprintf($index,'',''));
+    $i = str_replace(['*SUB*','*CONTENT*'],['',''],$index);
+    $response->getBody()->write($i);
     return $response;
 });
 
@@ -81,9 +92,10 @@ $app->get('/', function (Request $request, Response $response, $args) use ($inde
  */
 $app->get('/{ns}[/{ctrl}[/{action}[/{params:[a-z0-9\/]+}]]]', function (Request $request, Response $response, $args) use ($index) {
     
+    // args
     $n = (($args['ns'] ?? ''));
-    $a = ($args['action'] ?? 'index');
     $c = (($args['ctrl'] ?? 'index'));
+    $a = ($args['action'] ?? 'index');
 
     $ns = ucfirst($n) . '\\';
     $ctrl = ucfirst($c) . '';
@@ -92,18 +104,32 @@ $app->get('/{ns}[/{ctrl}[/{action}[/{params:[a-z0-9\/]+}]]]', function (Request 
     $params = isset($args['params']) ? $params : null;
     $class = "{$ns}{$ctrl}";
 
+    // init class
+    ob_start();
     $class = new $class();
     if($params) $args=$class->$action(...$params);
     else $args=$class->$action();
+    $echoed = ob_get_contents();
+    ob_end_clean();
 
+    // view dir
     $dir = __DIR__."/../src/{$n}/";
     $renderer = new PhpRenderer($dir);
 
-    if(file_exists($dir . $a.'phtml')) {
+    // reflection for actions methods
+    $methods = (new ReflectionClass($class))->getMethods();
+    $sub = '';
+    foreach ($methods as $k => $m) {
+        $sub .= " <a href='/{$n}/{$c}/{$m->name}'>{$m->name}</a> ";
+    }
+
+    // load rendered
+    if (file_exists($dir . $a.'.phtml')) {
         return $renderer->render($response, "{$a}.phtml", $args);
     } else {
         $v = $args ? var_export($args, true) : '';
-        $response->getBody()->write(sprintf($index,'',$v));
+        $i = str_replace(['*SUB*','*CONTENT*'],[$sub,$echoed],$index);
+        $response->getBody()->write($i);
         return $response;
     }
 });
