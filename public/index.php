@@ -41,18 +41,14 @@ $index = <<<R
                 margin-bottom: 0;
             }
 
-            .desc, .menu {
-                color: #aaa;
-            }
-
             .menu {
+                color: #aaa;
                 margin-bottom: 30px
             }
         </style>
     </head>
     <body>
-        <h1>Slim</h1>
-        <div class="desc">a microframework for PHP</div>
+        <h1>Php Pear Pecl</h1>
         <div class="menu">%s</div>
         <div>%s</div>
     </body>

@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types = 1);
 
 namespace Iterator;
 
@@ -24,7 +24,7 @@ class Index
     public function directoryIterator()
     {
         $dir = new \DirectoryIterator(ROOT);
-        foreach($dir as $sub) {
+        foreach ($dir as $sub) {
             //echo $dir->getFilename().'<br/>';
         }
     }
@@ -36,7 +36,7 @@ class Index
     {
         $iter = new \ArrayIterator(['john','flush']);
         
-        foreach($iter as $i) {
+        foreach ($iter as $i) {
             s($i);
         }
     }
