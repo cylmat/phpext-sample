@@ -100,7 +100,7 @@ $app->get('/{ns}[/{ctrl}[/{action}[/{params:[a-z0-9\/]+}]]]', function (Request 
     if($params) $args=$class->$action(...$params);
     else $args=$class->$action();
 
-    $dir = __DIR__."/../src/{$n}";
+    $dir = __DIR__."/../src/{$n}/";
     $renderer = new PhpRenderer($dir);
 
     if(file_exists($dir . $a.'phtml')) {
