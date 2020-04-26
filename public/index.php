@@ -9,6 +9,7 @@ use Slim\Factory\AppFactory;
 use Slim\Views\PhpRenderer;
 
 require __DIR__ . '/../vendor/autoload.php';
+define('ROOT', __DIR__.'/..');
 
 // app
 $app = AppFactory::create();
@@ -18,7 +19,7 @@ $index = <<<R
 <html>
     <head>
         <meta charset="utf-8"/>
-        <title>Slim 4</title>
+        <title>Php-Pear-Pecl experience</title>
         <link href='//fonts.googleapis.com/css?family=Lato:300' rel='stylesheet' type='text/css'>
         <style>
             body {
@@ -105,7 +106,7 @@ $app->get('/{ns}[/{ctrl}[/{action}[/{params:[a-z0-9\/]+}]]]', function (Request 
     if(file_exists($dir . $a.'phtml')) {
         return $renderer->render($response, "{$a}.phtml", $args);
     } else {
-        $v = var_export($args, true);
+        $v = $args ? var_export($args, true) : '';
         $response->getBody()->write(sprintf($index,'',$v));
         return $response;
     }
