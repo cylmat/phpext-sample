@@ -13,38 +13,102 @@ require __DIR__ . '/../vendor/autoload.php';
 // app
 $app = AppFactory::create();
 
+$index = <<<R
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <title>Slim 4</title>
+        <link href='//fonts.googleapis.com/css?family=Lato:300' rel='stylesheet' type='text/css'>
+        <style>
+            body {
+                margin: 10px 0 0 0;
+                padding: 0;
+                width: 100%%;
+                font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+                text-align: center;
+                color: #333;
+                font-size: 18px;
+            }
+
+            h1 {
+                color: #719e40;
+                letter-spacing: -3px;
+                font-family: 'Lato', sans-serif;
+                font-size: 100px;
+                font-weight: 200;
+                margin-bottom: 0;
+            }
+
+            .desc, .menu {
+                color: #aaa;
+            }
+
+            .menu {
+                margin-bottom: 30px
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Slim</h1>
+        <div class="desc">a microframework for PHP</div>
+        <div class="menu">%s</div>
+        <div>%s</div>
+    </body>
+</html>
+R;
+
+/**
+ * Directories
+ */
+$src = new DirectoryIterator('../src');
+$dir = [];
+foreach($src as $sub) {
+    $b = $sub->getBasename();
+    if(strpbrk($b,'._')) continue;
+    $dir[] = " <a href='/{$b}'>{$b}</a> ";
+}
+$index = sprintf($index,implode(' ',$dir),'%s');
+
+/**
+ * HOME
+ */
+$app->get('/', function (Request $request, Response $response, $args) use ($index) {
+    $response->getBody()->write(sprintf($index,'',''));
+    return $response;
+});
+
 /* 
  * Routers 
  * ns/ctrl/Action/params
  */
-$app->get('/', function (Request $request, Response $response, $args) {
-    $dir = __DIR__."/../src/index/templates";
-    $renderer = new PhpRenderer($dir);
-    return $renderer->render($response, "index.phtml", $args);
-});
-
-$app->get('/{ns}[/{ctrl}[/{action}[/{params:[a-z0-9\/]+}]]]', function (Request $request, Response $response, $args) {
+$app->get('/{ns}[/{ctrl}[/{action}[/{params:[a-z0-9\/]+}]]]', function (Request $request, Response $response, $args) use ($index) {
     
     $n = (($args['ns'] ?? ''));
     $a = ($args['action'] ?? 'index');
-    $c = (($args['ctrl'] ?? 'Index'));
+    $c = (($args['ctrl'] ?? 'index'));
 
     $ns = ucfirst($n) . '\\';
-    $ctrl = ucfirst($c) . 'Controller';
-    $action = $a . 'Action';
+    $ctrl = ucfirst($c) . '';
+    $action = $a . '';
     $params = explode('/',($args['params'] ?? ''));
     $params = isset($args['params']) ? $params : null;
-    $class = "{$ns}Controllers\\{$ctrl}";
+    $class = "{$ns}{$ctrl}";
 
     $class = new $class();
-    if($params) $class->$action(...$params);
-    else $class->$action();
+    if($params) $args=$class->$action(...$params);
+    else $args=$class->$action();
 
-    $dir = __DIR__."/../src/{$n}/templates";
+    $dir = __DIR__."/../src/{$n}";
     $renderer = new PhpRenderer($dir);
-    return $renderer->render($response, "{$a}.phtml", $args);
-    //$response->getBody()->write("Hello, 7");
-    //return $response;
+
+    if(file_exists($dir . $a.'phtml')) {
+        return $renderer->render($response, "{$a}.phtml", $args);
+    } else {
+        $v = var_export($args, true);
+        $response->getBody()->write(sprintf($index,'',$v));
+        return $response;
+    }
 });
 
 // run

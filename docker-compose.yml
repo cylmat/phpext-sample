@@ -4,7 +4,6 @@ services:
     nginx:
         image: nginx:1.17
         restart: always
-        #container_name: nginx
         volumes:
             - ${WEBSERVER}/${DIRECTORY}:/appli
             - ${WEBSERVER}/${DIRECTORY}/.docker/conf/nginx:/etc/nginx/conf.d:ro
@@ -18,7 +17,6 @@ services:
     phpfpm: 
         build: .docker/conf/fpm
         restart: always
-        #container_name: phpfpm
         working_dir: /appli
         ports: 
             - 9009:9000
