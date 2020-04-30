@@ -1,0 +1,16 @@
+$dirs = new RecursiveIteratorIterator(new RecursiveDirectoryIterator(__DIR__));
+
+foreach ($dirs as $d) {
+        // SplFileInfo 
+        if(!strpos($d->getFilename(),'.')) continue;
+        echo $d->getFilename().'<br/>';
+    }
+
+    $dirs->rewind();
+    while ($dirs->valid()) {
+        // RecursiveIteratorIterator
+        if (!$dirs->isDot()) {
+            echo $dirs->getFilename().'<br/>';
+        }
+        $dirs->next();
+    } 
