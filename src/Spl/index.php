@@ -1,22 +1,14 @@
+<?php declare(strict_types = 1);
+
+namespace Spl;
+
+/*
+ * 
 https://www.php.net/manual/fr/spl.interfaces.php  
 Countable -> fct count()
 OuterIterator -> getInnerIterator()
 RecursiveIterator -> getChildren(), hasChildren()
 SeekableIterator -> seek(int pos) ... OutOfBounds
-
-
-https://www.php.net/manual/fr/reserved.interfaces.php
-Traversable
-Iterator
-IteratorAggregate
-Throwable
-ArrayAccess
-Serializable
-Closure
-Generator
-WeakReference
-
-
 
 https://www.php.net/manual/fr/spl.iterators.php
 AppendIterator
@@ -43,3 +35,11 @@ RecursiveIteratorIterator
 RecursiveRegexIterator
 RecursiveTreeIterator
 La classe RegexIterator
+ */
+class Index
+{
+    public function index()
+    {
+        return '';
+    }
+}

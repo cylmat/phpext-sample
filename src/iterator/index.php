@@ -10,6 +10,7 @@ class Index
     public function index()
     {
        // $this->recursiveFiles();
+       echo 'ert';
     }
 
     /**
@@ -42,12 +43,16 @@ class Index
      */
     public function recursivedirectory()
     {
-        $dirs = new \RecursiveDirectoryIterator(ROOT);
-        $c = $dirs->getChildren();
-
-        foreach ($c as $i) {
-            //echo $i->getFilename().'<br>';
-        }
+        $dirs = new \RecursiveIteratorIterator(new \RecursiveDirectoryIterator(ROOT.'/src'));
+        
+        $dirs->rewind();
+        while ($dirs->valid()) {
+            // RecursiveIteratorIterator
+            if (!$dirs->isDot()) {
+                echo $dirs->getFilename().'<br/>';
+            }
+            $dirs->next();
+        } 
     }
 
     public function recursivefiles()

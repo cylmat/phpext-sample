@@ -94,7 +94,7 @@ $app->get('/{ns}[/{ctrl}[/{action}[/{params:[a-z0-9\/]+}]]]', function (Request 
     
     // args
     $n = (($args['ns'] ?? ''));
-    $c = (($args['ctrl'] ?? 'index'));
+    $c = (($args['ctrl'] ?? 'Index'));
     $a = ($args['action'] ?? 'index');
 
     $ns = ucfirst($n) . '\\';
@@ -107,8 +107,8 @@ $app->get('/{ns}[/{ctrl}[/{action}[/{params:[a-z0-9\/]+}]]]', function (Request 
     // init class
     ob_start();
     $class = new $class();
-    if($params) $args=$class->$action(...$params);
-    else $args=$class->$action();
+    if($params) $args=$class->$action(...$params) ?? [];
+    else $args=$class->$action() ?? [];
     $echoed = ob_get_contents();
     ob_end_clean();
 
