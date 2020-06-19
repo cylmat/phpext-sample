@@ -8,11 +8,9 @@
         "slim/slim": "4.5"
     },
     "require-dev": {
-        "codeception/codeception": "4.1",
         "fzaninotto/faker": "1.9",
         "kint-php/kint": "3.3",
         "phpmd/phpmd": "2.8",
-        "phpspec/phpspec": "6.1",
         "phpunit/phpunit": "8.5",
         "slevomat/coding-standard": "6.3.8",
         "squizlabs/php_codesniffer": "3.5.5"
@@ -24,22 +22,24 @@
     },
     "autoload": {
         "psr-4": {
-            "":"src/"
+            "": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Test\\":"tests/"
+            "Test\\": "tests/"
         }
     },
     "scripts": {
-        "test": "phpunit",
+        "test": "phpunit --color=always",
         "check": "phpcs",
         "fix": "phpcbf",
         "md": "phpmd"
     },
     "extra": {
-        "phalcon/cphalcon":"4.0",
-        "phalcon/devtools":"4.0"
+        "codeception/codeception": "4.1",
+        "phalcon/cphalcon": "4.0",
+        "phalcon/devtools": "4.0",
+        "phpspec/phpspec": "6.1"
     }
 }

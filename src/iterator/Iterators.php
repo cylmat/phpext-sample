@@ -1,17 +1,45 @@
-<?php declare(strict_types = 1);
+<?php
+
+declare(strict_type=1);
 
 namespace Iterator;
 
-class Index
-{
-    /**
-     * 
-     */
-    public function index()
-    {
-        
-    }
+/*
+ * 
+https://www.php.net/manual/fr/spl.interfaces.php  
+Countable -> fct count()
+OuterIterator -> getInnerIterator()
+RecursiveIterator -> getChildren(), hasChildren()
+SeekableIterator -> seek(int pos) ... OutOfBounds
 
+https://www.php.net/manual/fr/spl.iterators.php
+AppendIterator
+ArrayIterator -> permet de réinitialiser et de modifier les valeurs et les clés lors de l'itération de tableaux et d'objets
+CachingIterator
+CallbackFilterIterator
+DirectoryIterator
+EmptyIterator
+FilesystemIterator
+FilterIterator
+GlobIterator
+InfiniteIterator
+IteratorIterator
+LimitIterator
+MultipleIterator
+NoRewindIterator
+ParentIterator
+RecursiveArrayIterator
+RecursiveCachingIterator
+RecursiveCallbackFilterIterator
+RecursiveDirectoryIterator
+RecursiveFilterIterator
+RecursiveIteratorIterator
+RecursiveRegexIterator
+RecursiveTreeIterator
+La classe RegexIterator
+ */
+class Iterators
+{
     /**
      * La classe DirectoryIterator fournit une interface simple pour lire le contenu d'un système de fichiers. 
      */
@@ -66,4 +94,3 @@ class Index
         }
     }
 }
-

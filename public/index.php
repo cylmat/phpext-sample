@@ -75,26 +75,22 @@ foreach($src as $sub) {
     if(strpbrk($b,'._')) continue;
     $dir[] = " <a href='/{$b}'>{$b}</a> ";
 }
-$index = str_replace('*MENU*',implode($dir),$index);
+$index = str_replace('*MENU*',implode($dir), $index);
 
 /**
  * HOME
  */
 $app->get('/', function (Request $request, Response $response, $args) use ($index) {
-    $i = str_replace(['*SUB*','*CONTENT*'],['',''],$index);
+    $i = str_replace(['*SUB*','*CONTENT*'],['',''], $index);
     $response->getBody()->write($i);
     return $response;
 });
 
-/* 
- * Routers 
- * ns/ctrl/Action/params
- */
-$app->get('/{ns}[/{ctrl}[/{action}[/{params:[a-z0-9\/]+}]]]', function (Request $request, Response $response, $args) use ($index) {
+$request = function (Request $request, Response $response, $args) use ($index) {
     
     // args
     $n = (($args['ns'] ?? ''));
-    $c = (($args['ctrl'] ?? 'Index'));
+    $c = (($args['ctrl'] ?? 'index'));
     $a = ($args['action'] ?? 'index');
 
     $ns = ucfirst($n) . '\\';
@@ -103,10 +99,18 @@ $app->get('/{ns}[/{ctrl}[/{action}[/{params:[a-z0-9\/]+}]]]', function (Request 
     $params = explode('/',($args['params'] ?? ''));
     $params = isset($args['params']) ? $params : null;
     $class = "{$ns}{$ctrl}";
+    $class = new $class();
+
+    /*
+     * No templates for RAW responses (like WSDL, xml, etc, ...)  
+     */
+    if (isset($params[0]) && ('raw'==$params[0])) {
+        if($params) $class->$action(...$params);
+        die();
+    }
 
     // init class
     ob_start();
-    $class = new $class();
     if($params) $args=$class->$action(...$params) ?? [];
     else $args=$class->$action() ?? [];
     $echoed = ob_get_contents();
@@ -126,13 +130,21 @@ $app->get('/{ns}[/{ctrl}[/{action}[/{params:[a-z0-9\/]+}]]]', function (Request 
     // load rendered
     if (file_exists($dir . $a.'.phtml')) {
         return $renderer->render($response, "{$a}.phtml", $args);
-    } else {
-        $v = $args ? var_export($args, true) : '';
-        $i = str_replace(['*SUB*','*CONTENT*'],[$sub,$echoed],$index);
+    } else { //print all echo text in place of CONTENT
+        $args ? var_export($args, true) : '';
+        $i = str_replace(['*SUB*','*CONTENT*'], [$sub,$echoed], $index);
         $response->getBody()->write($i);
         return $response;
     }
-});
+};
+
+/* 
+ * Routers 
+ * ns/ctrl/Action/params
+ */
+$app->get('/{ns}[/{ctrl}[/{action}[/{params:[a-z0-9\/]+}]]]', $request);
+
+$app->post('/{ns}[/{ctrl}[/{action}[/{params:[a-z0-9\/]+}]]]', $request);
 
 // run
 $app->run();
