@@ -2,7 +2,7 @@
 
 declare(strict_types = 1);
 
-namespace Spl;
+namespace YieldGen; # keyword
 
 class Index
 {
