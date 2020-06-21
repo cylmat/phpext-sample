@@ -9,6 +9,7 @@ class YieldGenTest extends \PHPUnit\Framework\TestCase
      * @var Index
      */
     protected $manager;
+    protected $taskRunner;
 
     /**
      * Sets up the fixture, for example, opens a network connection.
@@ -17,6 +18,7 @@ class YieldGenTest extends \PHPUnit\Framework\TestCase
     protected function setUp(): void
     {
         $this->manager = new \YieldGen\YieldManager;
+        $this->taskRunner = new \YieldGen\TaskRunner;
     }
 
     /**
@@ -28,10 +30,12 @@ class YieldGenTest extends \PHPUnit\Framework\TestCase
     public function testUseGen() 
     {
         $this->assertEquals($this->manager->use_gen(), ['first:0','second:1','third:2']);
+        $this->assertEquals($this->manager->use_new_gen(), '0:1:2:3:4:5:6:7:8:9:');
     }
 
-    public function testUseNewGen() 
+    public function testTaskRunner() 
     {
-        $this->assertEquals($this->manager->use_new_gen(), '0:1:2:3:4:5:6:7:8:9:');
+        $tasks = $this->taskRunner->run();
+        $this->assertTrue(true);
     }
 }
