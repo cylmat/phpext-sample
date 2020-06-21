@@ -37,9 +37,7 @@
         "md": "phpmd"
     },
     "extra": {
-        "codeception/codeception": "4.1",
         "phalcon/cphalcon": "4.0",
-        "phalcon/devtools": "4.0",
-        "phpspec/phpspec": "6.1"
+        "phalcon/devtools": "4.0"
     }
 }

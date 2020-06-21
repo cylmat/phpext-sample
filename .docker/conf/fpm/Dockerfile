@@ -7,13 +7,17 @@ ARG DEBIAN_FRONTEND=noninteractive
 
 # Install
 # be careful of cache
-RUN apt-get update && ENV=_docker_cache_81636195849153
+RUN apt-get update && ENV=_docker_cache_81636145839153
 RUN apt-get install -y curl sqlite3 php7.3-dev wget zip
 
 # Php ext
-RUN apt-get install -y php-curl php-ds php-pear php-psr 
-RUN apt-get install -y php7.3-sqlite3 php-mbstring php7.3-soap
-RUN apt-get install -y php-xml php-zip
+RUN apt-get install -y php-curl php-ds php-mbstring php-redis php-pear 
+RUN apt-get install -y php-sqlite3 php-soap php-psr php-xml php-zip
+
+# Phalcon #php7.3-phalcon
+RUN apt-get install -y php-phalcon 
+#RUN curl -s https://packagecloud.io/install/repositories/phalcon/stable/script.deb.sh | \
+#bash && apt-get update && apt-get install -y php-pear php5.6-dev php7.3-phalcon php-ds php7.0-intl sqlite3 phpldapadmin
 
 # php.ini
 RUN sed -i 's/;extension=soap/extension=soap/' /etc/php/7.3/fpm/php.ini
@@ -24,6 +28,8 @@ RUN pecl channel-update pecl.php.net
 
 # php.ini
 #sed ;extension=xsl /etc/php/7.3/fpm/php.ini
+
+#SWOOLE : take much time
 #RUN echo "extension=swoole.so" >> /etc/php/7.3/fpm/php.ini
 
 # clean
