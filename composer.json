@@ -32,6 +32,7 @@
     },
     "scripts": {
         "test": "phpunit --color=always",
+        "cover": "phpdbg -qrr vendor/phpunit/phpunit/phpunit --color=always --coverage-text",
         "check": "phpcs",
         "fix": "phpcbf",
         "md": "phpmd"

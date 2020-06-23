@@ -3,6 +3,7 @@
 error_reporting(E_ALL);
 ini_set('display_errors','on');
 
+use PDepend\Metrics\Analyzer\CodeRankAnalyzer\MethodStrategy;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Slim\Factory\AppFactory;
@@ -123,7 +124,11 @@ $request = function (Request $request, Response $response, $args) use ($index) {
     // reflection for actions methods
     $methods = (new ReflectionClass($class))->getMethods();
     $sub = '';
+    
     foreach ($methods as $k => $m) {
+        if ('index'==$m->name) continue; //skip printing 'index'
+        if ('__construct'==$m->name) continue; //skip printing 'index'
+        //var_dump($m);
         $sub .= " <a href='/{$n}/{$c}/{$m->name}'>{$m->name}</a> ";
     }
 

@@ -16,7 +16,8 @@ class IteratorsTest extends \PHPUnit\Framework\TestCase
      */
     protected function setUp(): void
     {
-        $this->object = new \Iterator\Index;
+        $this->i = new \Iterator\Iterators;
+        $this->r = new \Iterator\RecursiveIterators;
     }
 
     /**
@@ -28,62 +29,13 @@ class IteratorsTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * @covers Iterator\Index::index
-     * @todo   Implement testIndex().
-     */
-    public function testIndex()
-    {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-            'This test has not been implemented yet.'
-        );
-    }
-
-    /**
      * @covers Iterator\Index::directory
      * @todo   Implement testDirectory().
      */
     public function testDirectory()
     {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-            'This test has not been implemented yet.'
-        );
+        $this->i->arrayIterator();
+        $this->expectOutputString('johnflush');
     }
 
-    /**
-     * @covers Iterator\Index::iterator
-     * @todo   Implement testIterator().
-     */
-    public function testIterator()
-    {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-            'This test has not been implemented yet.'
-        );
-    }
-
-    /**
-     * @covers Iterator\Index::recursivedirectory
-     * @todo   Implement testRecursivedirectory().
-     */
-    public function testRecursivedirectory()
-    {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-            'This test has not been implemented yet.'
-        );
-    }
-
-    /**
-     * @covers Iterator\Index::recursivefiles
-     * @todo   Implement testRecursivefiles().
-     */
-    public function testRecursivefiles()
-    {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-            'This test has not been implemented yet.'
-        );
-    }
 }

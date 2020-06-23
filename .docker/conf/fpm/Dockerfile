@@ -14,17 +14,22 @@ RUN apt-get install -y curl sqlite3 php7.3-dev wget zip
 RUN apt-get install -y php-curl php-ds php-mbstring php-redis php-pear 
 RUN apt-get install -y php-sqlite3 php-soap php-psr php-xml php-zip
 
-# Phalcon #php7.3-phalcon
-RUN apt-get install -y php-phalcon
-#RUN curl -s https://packagecloud.io/install/repositories/phalcon/stable/script.deb.sh | \
-#bash && apt-get update && apt-get install -y php-pear php5.6-dev php7.3-phalcon php-ds php7.0-intl sqlite3 phpldapadmin
-
 # php.ini
 RUN sed -i 's/;extension=soap/extension=soap/' /etc/php/7.3/fpm/php.ini
 
 # Pecl ext
 RUN pecl channel-update pecl.php.net
 #RUN printf "yes\n" | pecl install swoole
+
+# coverage
+RUN apt-get install -y php-xdebug php7.3-phpdbg
+RUN pecl install pcov
+RUN echo "\nextension=pcov.so" >> /etc/php/7.3/fpm/php.ini
+
+# Phalcon #php7.3-phalcon
+RUN apt-get install -y php-phalcon
+#RUN curl -s https://packagecloud.io/install/repositories/phalcon/stable/script.deb.sh | \
+#bash && apt-get update && apt-get install -y php-pear php5.6-dev php7.3-phalcon php-ds php7.0-intl sqlite3 phpldapadmin
 
 # php.ini
 #sed ;extension=xsl /etc/php/7.3/fpm/php.ini
