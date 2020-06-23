@@ -31,9 +31,9 @@ RegexIterator
  */
 class Iterators
 {
-    public function arrayIterator()
+    public function arrayIterator(array $array=['john','flush'])
     {
-        $iter = new \ArrayIterator(['john','flush']);
+        $iter = new \ArrayIterator($array);
         $r=[];
         foreach ($iter as $content) {
             echo $content;

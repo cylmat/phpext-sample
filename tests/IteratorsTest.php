@@ -34,8 +34,8 @@ class IteratorsTest extends \PHPUnit\Framework\TestCase
      */
     public function testDirectory()
     {
-        $this->i->arrayIterator();
-        $this->expectOutputString('johnflush');
+        $this->i->arrayIterator(['michel','flush']);
+        $this->expectOutputString('michelflush');
     }
 
 }
