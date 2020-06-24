@@ -16,8 +16,7 @@ class IteratorsTest extends \PHPUnit\Framework\TestCase
      */
     protected function setUp(): void
     {
-        $this->i = new \Iterator\Iterators;
-        $this->r = new \Iterator\RecursiveIterators;
+        $this->i = new \Iterator\Index;
     }
 
     /**
@@ -28,14 +27,21 @@ class IteratorsTest extends \PHPUnit\Framework\TestCase
     {
     }
 
+    
+    public function testArray()
+    {
+        $this->i->array(['michel','flush']);
+        $this->expectOutputRegex('/michel/');
+    }
+
     /**
      * @covers Iterator\Index::directory
      * @todo   Implement testDirectory().
      */
     public function testDirectory()
     {
-        $this->i->arrayIterator(['michel','flush']);
-        $this->expectOutputString('michelflush');
+        $this->i->directory();
+        $this->expectOutputRegex('/Iterator/');
     }
 
 }
