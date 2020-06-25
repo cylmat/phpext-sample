@@ -10,12 +10,38 @@ class Index
     public function index(){}
 
 
-    public function array(array $array=['john','flush'])
+
+    /************************************* classiques */
+
+    public function arrays(array $array=['john','flush'])
     {
-        $iter = new \ArrayIterator($array);
+        $iter = new MyArrayIterator($array);
         $r=[];
         foreach ($iter as $content) {
             echo $content.'<br/>';
+        }
+    }
+
+    /**
+     * interface
+     */
+    public function aggregate()
+    {
+        $iterA = new MyIterAggregate;
+        foreach ($iterA as $value) {
+             echo $value.'';
+        }
+
+        echo ($iterA->getIterator())->current();
+    }
+
+    public function iterIter()
+    {
+        $ii = new MyIterIter(new \ArrayIterator(['deli', 'satir']));
+        $ii->rewind();
+        while ($ii->valid()) {
+            echo $ii->current();
+            $ii->next();
         }
     }
 
@@ -27,35 +53,28 @@ class Index
         }
     }
 
-    public function iterIter()
-    {
-        $ii = new MyIterIter(new \ArrayIterator(['deli', 'satir', 'plus']));
-        $ii->rewind();
-        while ($ii->valid()) {
-            $ii->next();
-        }
-    }
-
-    public function aggregate()
-    {
-        $iterA = new MyIterAggregate;
-        foreach ($iterA as $value) {
-        // echo $value.'
-        }
-    }
-
     public function logFilter()
     {
-        $ipFilter = new MyLogFilterIterator(new \ArrayIterator([10=>'10.21.510.6', 15=>'10.21.510.9', 25=>'110.21.510.2']));
-        foreach ($ipFilter as $ip)
-        {
+        $arr_iter = new \ArrayIterator([10=>'10.21.510.6', 15=>'10.21.510.9', 25=>'110.21.510.2']);
+        $ipFilter = new MyLogFilterIterator($arr_iter);
+        foreach ($ipFilter as $ip) {
             echo $ip.' ';
         }
     }
 
 
-    /********************************************************************* */
 
+
+
+
+
+
+
+
+
+    /****************************** recursive *************************************** */
+
+    
 /**
      * La classe RecursiveDirectoryIterator fournit un moyen d'itérer récursivement sur des dossiers d'un système de fichiers. 
      */

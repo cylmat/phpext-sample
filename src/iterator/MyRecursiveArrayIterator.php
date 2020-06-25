@@ -1,5 +1,6 @@
 <?php
 
+namespace Iterator;
 
 // INFINITY
 class MyRecursiveArrayIterator implements \Iterator

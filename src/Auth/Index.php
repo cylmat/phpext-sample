@@ -2,7 +2,7 @@
 
 declare(strict_types = 1);
 
-namespace Iconv;
+namespace Auth;
 
 class Index
 {
@@ -13,6 +13,4 @@ class Index
     {
       
     }
-
 }
-

@@ -20,15 +20,6 @@ class RecursiveIterators {}
 
 
 
- /*
-  *  iterator_apply ( Traversable $iterator , callable $function [, array $args = NULL ] ) : int
-  *  iterator_count ( Traversable $iterator ) : int
-  *  iterator_to_array ( Traversable $iterator [, bool $use_keys = TRUE ] ) : array
-  */
-
-
-
-
                                             /********* Recursive **************
 /*
  ALL recursive implements RecursiveIterator
@@ -61,7 +52,7 @@ while ($iter_r->valid()) {
     $iter_r->next();
 }
 
-$dr_iter = new \MyRecursiveArrayIterator($arr23);
+$dr_iter = new MyRecursiveArrayIterator($arr23);
 foreach ($dr_iter as $i) {
     var_dump($i);
 }

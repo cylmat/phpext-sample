@@ -27,11 +27,26 @@ class IteratorsTest extends \PHPUnit\Framework\TestCase
     {
     }
 
-    
-    public function testArray()
+
+
+    /************************************classiques  */
+    public function testArrays()
     {
-        $this->i->array(['michel','flush']);
+        $this->i->arrays(['michel','flush']);
         $this->expectOutputRegex('/michel/');
+    }
+
+    
+    public function testAggregate()
+    {
+        $this->i->aggregate();
+        $this->expectOutputRegex('/012340/');
+    }
+
+    public function testIterIter()
+    {
+        $this->i->iterIter();
+        $this->expectOutputRegex('/deliplussatirplus/');
     }
 
     /**
@@ -43,5 +58,19 @@ class IteratorsTest extends \PHPUnit\Framework\TestCase
         $this->i->directory();
         $this->expectOutputRegex('/Iterator/');
     }
+
+    public function testLogFilter()
+    {
+        $this->i->logFilter();
+        $this->expectOutputRegex('/10.21.510.6 10.21.510.9 /');
+    }
+
+    
+
+
+
+
+
+    /******************************recursives */
 
 }

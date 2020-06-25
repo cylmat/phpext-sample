@@ -35,6 +35,12 @@ RegexIterator
 class Iterators {}
 
 
+ /*
+  *  iterator_apply ( Traversable $iterator , callable $function [, array $args = NULL ] ) : int
+  *  iterator_count ( Traversable $iterator ) : int
+  *  iterator_to_array ( Traversable $iterator [, bool $use_keys = TRUE ] ) : array
+  */
+
 
 
 
@@ -49,7 +55,6 @@ class Iterators {}
 */
 class MyArrayIterator extends \ArrayIterator
 {
-
 }
 
 /*
@@ -60,14 +65,15 @@ class MyArrayIterator extends \ArrayIterator
  */
 class MyIterAggregate implements \IteratorAggregate #Traversable
 {
-    private function generate($val) #Generator
+    public function getIterator() #: Traversable
+    {
+        return ($this->_generate(5));
+    }
+    
+    private function _generate($val) #Generator
     {
         for($i=0;$i<$val;$i++)
         yield $i;
-    }
-    public function getIterator() #: Traversable
-    {
-        return ($this->generate(5));
     }
 }
 
