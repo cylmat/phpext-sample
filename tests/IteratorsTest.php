@@ -72,5 +72,47 @@ class IteratorsTest extends \PHPUnit\Framework\TestCase
 
 
     /******************************recursives */
+    public function testRecursiveArray()
+    {
+        $this->i->recursiveArray();
+        $this->expectOutputRegex('/912354/');
+    }
 
+    public function testRecursiveDirectory()
+    {
+        $this->i->recursiveDirectory();
+        $this->expectOutputRegex('/MyIterator.php/');
+    }
+
+    public function testRecursiveDirectory_iterators()
+    {
+        $this->i->recursiveDirectory_iterators();
+        $this->expectOutputRegex('/MyIterator.php/');
+        $this->expectOutputRegex('/[^notvalid]/');
+    }
+
+    public function testrecursiveIterator()
+    {
+        $this->i->recursiveIterator();
+        $this->expectOutputRegex('/0-1-2-0-1-2-3-4-5-6-4-5-6-/');
+    }
+
+    public function testRecursiveFiles()
+    {
+        $this->i->recursiveFiles();
+        $this->expectOutputRegex('/MyIterator.php/');
+    }
+
+    public function testRecursiveRegex()
+    {
+        $this->i->recursiveRegex();
+        $this->expectOutputRegex('/.php/');
+    }
+
+    public function testRecursiveTree()
+    {
+        $this->i->recursiveTree();
+        $this->expectOutputRegex('/\|-912354\|/');
+    }
+    
 }
