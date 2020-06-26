@@ -1,16 +1,16 @@
 <?php
 
-error_reporting(E_ALL);
-ini_set('display_errors','on');
-
 use PDepend\Metrics\Analyzer\CodeRankAnalyzer\MethodStrategy;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Slim\Factory\AppFactory;
 use Slim\Views\PhpRenderer;
 
-require __DIR__ . '/../vendor/autoload.php';
-define('ROOT', __DIR__.'/..');
+require __DIR__ . '/bootstrap.php';
+
+error_reporting(E_ALL);
+ini_set('display_errors','on');
+
 
 // app
 $app = AppFactory::create();
