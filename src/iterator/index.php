@@ -2,14 +2,52 @@
 
 namespace Iterator;
 
-new Iterators;
+defined('ROOT') or define('ROOT', __DIR__.'/../..');
+
+/*
+https://www.php.net/manual/fr/spl.interfaces.php
+Countable -> fct count()
+OuterIterator -> getInnerIterator()
+RecursiveIterator -> getChildren(), hasChildren()
+SeekableIterator -> seek(int pos) ... OutOfBounds
+
+https://www.php.net/manual/fr/spl.iterators.php
+AppendIterator
+ArrayIterator -> permet de réinitialiser et de modifier les valeurs et les clés lors de l'itération de tableaux et d'objets
+CachingIterator
+CallbackFilterIterator
+DirectoryIterator
+EmptyIterator
+FilesystemIterator
+FilterIterator
+GlobIterator
+InfiniteIterator
+IteratorIterator
+LimitIterator
+MultipleIterator
+NoRewindIterator
+ParentIterator
+RegexIterator
+ */
+
+
+
+
+ /*
+  *  iterator_apply ( Traversable $iterator , callable $function [, array $args = NULL ] ) : int
+  *  iterator_count ( Traversable $iterator ) : int
+  *  iterator_to_array ( Traversable $iterator [, bool $use_keys = TRUE ] ) : array
+  */
+
+
+
 
 class Index
 {
   
     /************************************* classiques */
 
-    public function arrays(array $array=['john','flush'])
+    public function arrays(array $array = ['john','flush'])
     {
         $iter = new MyArrayIterator($array);
         $r=[];
@@ -25,17 +63,17 @@ class Index
     {
         $iterA = new MyIterAggregate;
         foreach ($iterA as $value) {
-             echo $value.'';
+            echo $value.'';
         }
 
-        echo ($iterA->getIterator())->current();
+        echo($iterA->getIterator())->current();
     }
 
     public function directory()
     {
         $dir = new \DirectoryIterator(ROOT.'/src');
         foreach ($dir as $sub) {
-           echo $dir->getFilename().'<br/>';
+            echo $dir->getFilename().'<br/>';
         }
     }
 
@@ -53,11 +91,11 @@ class Index
     public function filesystem()
     {
         /*
-        * DirectoryIterator (path): 
+        * DirectoryIterator (path):
         *  - SplFileInfo : isDot, isDir, getFilename, getPathname...
         *  - seek(), valid, next, rewind, current() : DirectoryIterator
         */
-        $dirs = new \DirectoryIterator(__DIR__); 
+        $dirs = new \DirectoryIterator(__DIR__);
         foreach ($dirs as $file) {
             //echo $file->getFilename().'
         }
@@ -79,8 +117,7 @@ class Index
         foreach ($sys as $path => $filesystem) {
             //echo $filesystem->getFilename().':'.$filesystem->getCTime().'';
         }
-
-    } 
+    }
 
     public function logFilter()
     {
@@ -102,32 +139,32 @@ class Index
 
 
     /****************************** recursive *************************************** */
-/*
-    https://www.php.net/manual/fr/spl.iterators.php
-    RecursiveArrayIterator
-    RecursiveCachingIterator
-    RecursiveCallbackFilterIterator
-    RecursiveDirectoryIterator
-    RecursiveFilterIterator
-    RecursiveIteratorIterator
-    RecursiveRegexIterator
-    RecursiveTreeIterator
-    La classe RegexIterator
- */
-/*
- ALL recursive implements RecursiveIterator
- Only RecursiveIteratorIterator and TreeIterator implements OuterIterator !
-*/
+    /*
+        https://www.php.net/manual/fr/spl.iterators.php
+        RecursiveArrayIterator
+        RecursiveCachingIterator
+        RecursiveCallbackFilterIterator
+        RecursiveDirectoryIterator
+        RecursiveFilterIterator
+        RecursiveIteratorIterator
+        RecursiveRegexIterator
+        RecursiveTreeIterator
+        La classe RegexIterator
+     */
+    /*
+     ALL recursive implements RecursiveIterator
+     Only RecursiveIteratorIterator and TreeIterator implements OuterIterator !
+    */
 
     /*
         * RecursiveArrayIterator
-        *  ArrayIterator::__construct ([ mixed $array = array() [, int $flags = 0 ]] ) 
-        * 
-        * 
+        *  ArrayIterator::__construct ([ mixed $array = array() [, int $flags = 0 ]] )
+        *
+        *
         *  if find a getChildren, call it
         */
     public function recursiveArray()
-    {    
+    {
         $arr = [5789,56234,55654,5353,5326,5998,597865];
         $arr2 = [94635,912354,9766,975,9654,95659,98646];
         $arr23 = [94635,912354,9766,$arr,9654,95659,98646];
@@ -155,20 +192,20 @@ class Index
     public function recursiveDirectory()
     {
         /*
-        * RecursiveDirectoryIterator (path):  
+        * RecursiveDirectoryIterator (path):
         *  - FilesystemIterator (path, FLAG)
         */
-        $dirs = new \RecursiveDirectoryIterator(__DIR__); 
+        $dirs = new \RecursiveDirectoryIterator(__DIR__);
         foreach ($dirs as $path => $splinfo) {
             echo $splinfo->getFilename().'<br/>';
             //var_dump(get_class_methods($splinfo));
-        }   
+        }
     }
     
-/**
-     * La classe RecursiveDirectoryIterator fournit un moyen d'itérer récursivement sur des dossiers d'un système de fichiers. 
-     */
-    public function recursiveDirectory_iterators()
+    /**
+         * La classe RecursiveDirectoryIterator fournit un moyen d'itérer récursivement sur des dossiers d'un système de fichiers.
+         */
+    public function recursiveDirectoryIterators()
     {
         $dirs = new \RecursiveIteratorIterator(new \RecursiveDirectoryIterator(ROOT.'/src'));
         
@@ -179,7 +216,7 @@ class Index
                 echo $dirs->getFilename().'<br/>';
             }
             $dirs->next();
-        } 
+        }
     }
 
     public function recursiveIterator()
@@ -188,7 +225,7 @@ class Index
         $arr23 = [94635,912354,9766,$arr,9654,95659,98646];
 
         //doesn't work: An instance of RecursiveIterator or IteratorAggregate creating it is required
-        #$iter = new \ArrayIterator(new \ArrayIterator($arr23)); 
+        #$iter = new \ArrayIterator(new \ArrayIterator($arr23));
         $iter = new \RecursiveArrayIterator(new \ArrayIterator($arr23));
 
         $its = new \RecursiveIteratorIterator($iter);
@@ -198,7 +235,7 @@ class Index
         /**
          * RecursiveIteratorIterator
          *  - __construct ( Traversable $iterator )
-         * 
+         *
          * AUTOMATIC TRAVERSING CHILDREN!
          */
         $iter_i = new \RecursiveIteratorIterator($iter, \RecursiveIteratorIterator::LEAVES_ONLY);
@@ -224,13 +261,13 @@ class Index
         }
     }
 
-    function recursiveRegex()
+    public function recursiveRegex()
     {
         $path = new \RecursiveDirectoryIterator(ROOT.'/src/Iterator');
         $Iterator = new \RecursiveIteratorIterator($path);
         $Regex = new \RegexIterator($Iterator, '/^.+\.php$/i', \RecursiveRegexIterator::GET_MATCH);
 
-        foreach($Regex as $k => $splinfo) {
+        foreach ($Regex as $k => $splinfo) {
             echo $splinfo[0].'<br/>';
             break;
         }
@@ -257,5 +294,3 @@ class Index
         }
     }
 }
-
-

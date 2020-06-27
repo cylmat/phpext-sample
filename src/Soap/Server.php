@@ -1,13 +1,11 @@
-<?php 
-
-declare(strict_types = 1);
+<?php declare(strict_types = 1);
 
 namespace Soap;
 
 /**
  * ref: http://www.w3.org/2001/12/soap-envelope
  *      http://www.w3.org/2001/12/soap-encoding
- * 
+ *
  * SOAP
  *  Envelope
  *  Header
@@ -18,12 +16,12 @@ class Server
 {
     public function handle()
     {
-        $server = new \SoapServer(NULL, [
-            'location' => \Soap\ServerManager::URI,  
-            'uri' => \Soap\ServerManager::URI,  
+        $server = new \SoapServer(null, [
+            'location' => \Soap\ServerManager::URI,
+            'uri' => \Soap\ServerManager::URI,
             'soap_version' => SOAP_1_2
         ]);
-        $server->setClass('\Soap\ServerManager'); 
+        $server->setClass('\Soap\ServerManager');
         $server->handle();
     }
 }

@@ -90,9 +90,9 @@ class IteratorsTest extends \PHPUnit\Framework\TestCase
         $this->expectOutputRegex('/MyIterator.php/');
     }
 
-    public function testRecursiveDirectory_iterators()
+    public function testRecursiveDirectoryIterators()
     {
-        $this->i->recursiveDirectory_iterators();
+        $this->i->recursiveDirectoryIterators();
         $this->expectOutputRegex('/MyIterator.php/');
         $this->expectOutputRegex('/[^notvalid]/');
     }

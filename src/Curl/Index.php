@@ -1,6 +1,4 @@
-<?php 
-
-declare(strict_types = 1);
+<?php declare(strict_types = 1);
 
 namespace Curl;
 
@@ -10,9 +8,8 @@ namespace Curl;
 
 class Index
 {
-    function curl()
+    public function curl()
     {
-        
     }
 }
 
@@ -92,5 +89,5 @@ $out = curl_exec($ch);
 curl_close($ch);
 // echo response output
 echo $out;
-``` 
+```
  */

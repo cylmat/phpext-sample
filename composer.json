@@ -8,6 +8,7 @@
         "slim/slim": "4.5"
     },
     "require-dev": {
+        "friendsofphp/php-cs-fixer": "2.16",
         "fzaninotto/faker": "1.9",
         "kint-php/kint": "3.3",
         "nunomaduro/phpinsights": "1.14",
@@ -37,7 +38,8 @@
         "cover_dbg": "phpdbg -qrr vendor/phpunit/phpunit/phpunit --color=always -vvv --coverage-text - --coverage-html public/cover",
         "check": "phpcs",
         "fix": "phpcbf",
-        "md": "phpmd"
+        "md": "phpmd",
+        "cs-fixer": "php-cs-fixer fix src"
     },
     "extra": {
         "phalcon/cphalcon": "4.0",

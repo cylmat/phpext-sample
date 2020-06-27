@@ -1,19 +1,19 @@
-<?php 
-
-declare(strict_types = 1);
+<?php declare(strict_types = 1);
 
 namespace Spl;
 
 class Index
 {
-    public function index(){}
+    public function index()
+    {
+    }
 
     public function arrayObject()
     {
         $array = [2,5,9,6];
         $obj = new \ArrayObject($array, 0, 'ArrayIterator');
         $obj->asort();
-        $obj->exchangeArray(array_merge($array,['plus'=>'inside']));
+        $obj->exchangeArray(array_merge($array, ['plus'=>'inside']));
         $obj->append('fois');
         $obj->offsetSet('quatre', 'gamma');
         $iter = $obj->getIterator();
@@ -30,7 +30,7 @@ class Index
 
         $outer = new Outer($iter);
         foreach ($outer as $k) {
-        // var_dump($k);
+            // var_dump($k);
         }
     }
 }

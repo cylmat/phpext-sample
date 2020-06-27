@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types = 1);
 
 namespace Iterator;
 
@@ -13,7 +13,7 @@ class MyRecursiveArrayIterator implements \Iterator
     }
     public function current()
     {
-        if ($this->iterator->hasChildren()) { 
+        if ($this->iterator->hasChildren()) {
             $this->parent = $this->iterator;
             $this->iterator = $this->iterator->getChildren();
         }
@@ -21,11 +21,13 @@ class MyRecursiveArrayIterator implements \Iterator
     }
     public function valid()
     {
-        if (!$this->iterator->valid() && null===$this->parent) return false; #both parent and iterator are null
+        if (!$this->iterator->valid() && null===$this->parent) {
+            return false;
+        } #both parent and iterator are null
         if (!$this->iterator->valid()) { #back to parent
-           $this->iterator = $this->parent;
-           $this->iterator->next();
-           $this->parent = null;
+            $this->iterator = $this->parent;
+            $this->iterator->next();
+            $this->parent = null;
         }
         return $this->iterator->valid();
     }
