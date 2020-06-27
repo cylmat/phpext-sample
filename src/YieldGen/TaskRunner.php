@@ -45,6 +45,7 @@ class TaskRunner
         for($i=0; $i<3; $i++) 
         {
             $test = yield 'alpha'.$i;
+            echo 'alpha'.$i;
         }
     }
 

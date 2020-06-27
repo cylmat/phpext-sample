@@ -17,8 +17,7 @@ class YieldGenTest extends \PHPUnit\Framework\TestCase
      */
     protected function setUp(): void
     {
-        $this->manager = new \YieldGen\YieldManager;
-        $this->taskRunner = new \YieldGen\TaskRunner;
+        $this->i = new \YieldGen\Index;
     }
 
     /**
@@ -29,13 +28,25 @@ class YieldGenTest extends \PHPUnit\Framework\TestCase
 
     public function testUseGen() 
     {
-        $this->assertEquals($this->manager->use_gen(), ['first:0','second:1','third:2']);
-        $this->assertEquals($this->manager->use_new_gen(), '0:1:2:3:4:5:6:7:8:9:');
+        $this->i->yielding();
+        $this->expectOutputRegex('/first:0/');
+        //$this->assertEquals($this->manager->use_gen(), ['first:0','second:1','third:2']);
+        //$this->assertEquals($this->manager->use_new_gen(), '0:1:2:3:4:5:6:7:8:9:');
+    }
+
+    public function testUseGen2() 
+    {
+        $this->i->yielding2();
+        $this->expectOutputRegex('/0:1:2:3:4:5/');
+        //$this->assertEquals($this->manager->use_gen(), ['first:0','second:1','third:2']);
+        //$this->assertEquals($this->manager->use_new_gen(), '0:1:2:3:4:5:6:7:8:9:');
     }
 
     public function testTaskRunner() 
     {
-        $tasks = $this->taskRunner->run();
-        $this->assertTrue(true);
+        $this->i->tasks();
+        $this->expectOutputRegex('/alpha1/');
+        //$tasks = $this->taskRunner->run();
+        //$this->assertTrue(true);
     }
 }

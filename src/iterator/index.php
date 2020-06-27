@@ -7,9 +7,6 @@ new Iterators;
 class Index
 {
   
-
-
-
     /************************************* classiques */
 
     public function arrays(array $array=['john','flush'])

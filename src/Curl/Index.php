@@ -10,12 +10,9 @@ namespace Curl;
 
 class Index
 {
-    /**
-     * 
-     */
-    public function index()
+    function curl()
     {
-      
+        
     }
 }
 

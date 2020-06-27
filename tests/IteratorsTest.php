@@ -52,7 +52,7 @@ class IteratorsTest extends \PHPUnit\Framework\TestCase
     public function testFilesystem()
     {
         $this->i->filesystem();
-        $this->expectOutputRegex('/Iterator\/Index.php/');
+        $this->expectOutputRegex('/Index\.php/');
     }
 
     /**

@@ -1,39 +1,35 @@
 <?php
 
-declare(strict_types=1);
-
-namespace Iconv;
-
-/*
-*/
-class Iconv
-{
-    public function test()
+function mb_conv()
     {
         //$binarydata = \pack("nvc*", 0x1234, 0x5678, 65, 66);
-        return;
 
         //How to use :
         echo "Get string from numeric DEC value\n";
         var_dump(mb_chr(50319, 'UCS-4BE'));
         var_dump(mb_chr(271));
+
         echo "\nGet string from numeric HEX value\n";
         var_dump(mb_chr(0xC48F, 'UCS-4BE'));
         var_dump(mb_chr(0x010F));
+
         echo "\nGet numeric value of character as DEC string\n";
         var_dump(mb_ord('ď', 'UCS-4BE'));
         var_dump(mb_ord('ď'));
+
         echo "\nGet numeric value of character as HEX string\n";
         var_dump(dechex(mb_ord('ď', 'UCS-4BE')));
         var_dump(dechex(mb_ord('ď')));
+
         echo "\nEncode / decode to DEC based HTML entities\n";
         var_dump(mb_htmlentities('tchüß', false));
         var_dump(mb_html_entity_decode('tch&#252;&#223;'));
+
         echo "\nEncode / decode to HEX based HTML entities\n";
         var_dump(mb_htmlentities('tchüß'));
         var_dump(mb_html_entity_decode('tch&#xFC;&#xDF;'));
     }
-}
+
 
 if (!function_exists('mb_internal_encoding')) {
     function mb_internal_encoding($from_encoding = NULL, $encoding = NULL) {
