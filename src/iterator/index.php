@@ -6,7 +6,7 @@ new Iterators;
 
 class Index
 {
-    public function index(){}
+  
 
 
 
@@ -76,7 +76,7 @@ class Index
         }
         $sys = new \FilesystemIterator(__DIR__, \FilesystemIterator::KEY_AS_FILENAME | \FilesystemIterator::CURRENT_AS_PATHNAME);
         foreach ($sys as $file => $path) {
-            // echo $file.':'.$path.'<br/>';
+            echo $file.':'.$path.'<br/>';
         }
         $sys = new \FilesystemIterator(__DIR__, \FilesystemIterator::CURRENT_AS_SELF);
         foreach ($sys as $path => $filesystem) {

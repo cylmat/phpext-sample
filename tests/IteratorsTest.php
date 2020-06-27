@@ -49,6 +49,12 @@ class IteratorsTest extends \PHPUnit\Framework\TestCase
         $this->expectOutputRegex('/deliplussatirplus/');
     }
 
+    public function testFilesystem()
+    {
+        $this->i->filesystem();
+        $this->expectOutputRegex('/Iterator\/Index.php/');
+    }
+
     /**
      * @covers Iterator\Index::directory
      * @todo   Implement testDirectory().

@@ -10,6 +10,7 @@
     "require-dev": {
         "fzaninotto/faker": "1.9",
         "kint-php/kint": "3.3",
+        "nunomaduro/phpinsights": "1.14",
         "phpmd/phpmd": "2.8",
         "phpunit/phpunit": "8.5",
         "slevomat/coding-standard": "6.3.8",
@@ -32,8 +33,8 @@
     },
     "scripts": {
         "test": "phpunit --color=always",
-        "cover": "phpunit --color=always --coverage-html -",
-        "cover_dbg": "phpdbg -qrr vendor/phpunit/phpunit/phpunit --color=always --coverage-text",
+        "cover": "phpunit --color=always -vvv --coverage-text - --coverage-html public/cover",
+        "cover_dbg": "phpdbg -qrr vendor/phpunit/phpunit/phpunit --color=always -vvv --coverage-text - --coverage-html public/cover",
         "check": "phpcs",
         "fix": "phpcbf",
         "md": "phpmd"

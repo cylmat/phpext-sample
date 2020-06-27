@@ -21,7 +21,8 @@
 
     <filter>
         <whitelist processUncoveredFilesFromWhitelist="true">
-            <directory suffix=".php">src</directory>
+            <!-- NE SELECTIONNE QUE LES CLASSES Index.php-->
+            <directory suffix="Index.php">src</directory>
         </whitelist>
     </filter>
 

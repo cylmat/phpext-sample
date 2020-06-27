@@ -2,7 +2,7 @@
 
 declare (strict_types = 1);
 
-namespace Iterator;
+namespace Spl;
 
 
  /**
@@ -14,7 +14,8 @@ namespace Iterator;
 class Outer implements \OuterIterator
 {
     private $iterator;
-    public function __construct(Iterator $i)
+
+    public function __construct(\Iterator $i)
     {
         $this->iterator = $i;
     }
@@ -38,12 +39,8 @@ class Outer implements \OuterIterator
      {
         return $this->iterator->valid();
      }
-      public function getInnerIterator (  ) : Iterator
+      public function getInnerIterator (  ) : \Iterator
       {
         return $this->iterator;
       }
-}
-$outer = new Outer($iter);
-foreach ($outer as $k) {
-   // var_dump($k);
 }

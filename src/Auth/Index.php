@@ -6,13 +6,7 @@ namespace Auth;
 
 class Index
 {
-    /**
-     * 
-     */
-    public function index()
-    {
-        $this->authAction();
-    }
+    
 
         /**
      *          basic
@@ -33,7 +27,7 @@ class Index
       * Si header  Authentication Required
       * url de nouveau appelée avec PHP_AUTH_USER, PHP_AUTH_PW et AUTH_TYPE
       */
-    public function authAction()
+    public function basic()
     {
         //echo password_hash('pass', PASSWORD_DEFAULT);
         if (!isset($_SERVER['PHP_AUTH_USER']) || #pas authentifié
@@ -42,11 +36,13 @@ class Index
             (isset($_SESSION['delai']) && time() > $_SESSION['delai']+10) #too much delay 10s
             ) {
                
+            // @codeCoverageIgnoreStart
             header('WWW-Authenticate: Basic realm="Auth');
             header('HTTP/1.1 401 Unauthorized', true, 401);
             unset($_SESSION);
             session_destroy();
             die('401');
+            // @codeCoverageIgnoreEnd
         }
         //set time decconection after 5 secondes
         $_SESSION['delai'] = isset($_SESSION['delai']) ? $_SESSION['delai'] : time();
@@ -63,18 +59,20 @@ class Index
      * ref: https://fr.wikipedia.org/wiki/Authentification_HTTP
      * https://www.sitepoint.com/understanding-http-digest-access-authentication/
      */
-    public function digestAction(&$digestObject=null)
+    public function digest()
     {
         #session_start();
-        $digest = $digestObject ? $digestObject : new Digest;
+        $digest = new Digest;
 
         $user = ['user' => 'mypass'];
-        $header_401 = function()use($digest){
+        $header_401 = function() use ($digest){
+            // @codeCoverageIgnoreStart
             $h = $digest->getDigestHeader();
             header($h);
-            header('HTTP/1.1 401 Unauthorized', 401);
+            header('HTTP/1.1 401 Unauthorized', true, 401);
             unset($_SESSION);
             session_destroy();
+            // @codeCoverageIgnoreEnd
         };
         //PHP_AUTH_DIGEST server response 
         //username="azerrty", realm="Soap", nonce="c29hcDVlZjViMTRmZTJlODExLjg3Mzg2OTAz", uri="/soap/server/digest", 
@@ -83,19 +81,23 @@ class Index
         if (!isset($_SERVER['PHP_AUTH_DIGEST']) ||
             (isset($_SESSION['delai']) && time() > $_SESSION['delai']+10)
             ) {
+            // @codeCoverageIgnoreStart
             $header_401();
             die('Veuillez vous authentifier');
+            // @codeCoverageIgnoreEnd
         }
         $response_parts = $digest->digest_parse($_SERVER['PHP_AUTH_DIGEST']);
-
         $valid = $digest->digest_validate($user, $response_parts);
+
         if(!$valid) {
+            // @codeCoverageIgnoreStart
             $header_401();
             die('Mauvais nom d\'utilisateur ou mot de passe');
+            // @codeCoverageIgnoreEnd
         }
-        //set time decconection after 5 secondes
+        //set time deconnection after 5 secondes
         $_SESSION['delai'] = isset($_SESSION['delai']) ? $_SESSION['delai'] : time();
-       // var_dump('<pre>', $_SESSION['delai'], $_SERVER, '</pre>');  #PHP_MD5, PHP_SHA256
+       
         echo 'digest ok';
     }
 }

@@ -110,12 +110,17 @@ $request = function (Request $request, Response $response, $args) use ($index) {
         die();
     }
 
-    // init class
-    ob_start();
-    if($params) $args=$class->$action(...$params) ?? [];
-    else $args=$class->$action() ?? [];
-    $echoed = ob_get_contents();
-    ob_end_clean();
+    if (method_exists($class, $action)) {
+        // init class
+        ob_start();
+        if($params) $args=$class->$action(...$params) ?? [];
+        else $args=$class->$action() ?? [];
+        $echoed = ob_get_contents();
+        ob_end_clean();
+    } else {
+        $args = [];
+        $echoed = '';
+    }
 
     // view dir
     $dir = __DIR__."/../src/{$n}/";
