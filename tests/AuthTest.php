@@ -39,8 +39,19 @@ class AuthTest extends \PHPUnit\Framework\TestCase
     public function testDigest() 
     {
         $digest = new Digest;
+        $v = $digest->getDigestHeader();
+        
+        $fake_response = '64049b9bfd4c431da1f14564281e72b2';
+        
+        //$user = ['user' => 'mypass'];
+        $_SERVER['REQUEST_METHOD'] = 'GET';
+        $_SERVER['PHP_AUTH_DIGEST'] = 'username="user", realm="Auth", nonce="c29hcDVlZjViMTRmZTJlODExLjg3Mzg2OTAz", uri="/soap/server/digest",'.
+            'algorithm=MD5, response="'.$fake_response.'", opaque="c740969b60b76f28afb8af7cb5e4c0de", '.
+            'qop=auth, nc=xxxxxxx, cnonce="xxxxxxxx';
+        
+        $response_parts = $digest->digest_parse($_SERVER['PHP_AUTH_DIGEST']);
+        $valid = $digest->digest_validate(['user' => 'mypass'], $response_parts);
 
-        $_SERVER['PHP_AUTH_DIGEST'] = $digest->getDigestHeader();
         $_SESSION['delai'] = time();
 
         $this->index->digestAction($digest);

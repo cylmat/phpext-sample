@@ -76,12 +76,12 @@ class Index
             unset($_SESSION);
             session_destroy();
         };
-        //PHP_AUTH_DIGEST
-        //"username="azerrty", realm="Soap", nonce="c29hcDVlZjViMTRmZTJlODExLjg3Mzg2OTAz", uri="/soap/server/digest", 
+        //PHP_AUTH_DIGEST server response 
+        //username="azerrty", realm="Soap", nonce="c29hcDVlZjViMTRmZTJlODExLjg3Mzg2OTAz", uri="/soap/server/digest", 
         //algorithm=MD5, response="32d5c7869b4a8096b7ed7b6db7f6091b", opaque="c740969b60b76f28afb8af7cb5e4c0de", 
-        //qop=auth, nc=00000001, cnonce="949453b9e0c8bca6"" 
+        //qop=auth, nc=00000001, cnonce="949453b9e0c8bca6"
         if (!isset($_SERVER['PHP_AUTH_DIGEST']) ||
-            (isset($_SESSION['delai']) && time() > $_SESSION['delai']+15)
+            (isset($_SESSION['delai']) && time() > $_SESSION['delai']+10)
             ) {
             $header_401();
             die('Veuillez vous authentifier');

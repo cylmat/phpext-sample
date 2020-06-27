@@ -6,8 +6,7 @@ namespace Auth;
 
 class Digest
 {
-
-    
+    private $h;
 
     public function getDigestHeader()
     {
@@ -27,9 +26,10 @@ class Digest
     {
         #deuxieme reponse
         $response_parts = explode(', ', $response);
+       
         array_map(function($value) use(&$response_parts) {
             $v=explode('=',$value);
-            $response_parts[$v[0]]=trim($v[1],'"');
+            $response_parts[$v[0]]=trim($v[1],'" ');
         }, $response_parts);
         $response_parts = array_diff_key($response_parts,range(0,15)); //enleve les cle num
         
@@ -63,6 +63,7 @@ class Digest
         $A1 = $data['username'] . ':' . $data['realm'] . ':' . $user[$data['username']]; //user:real:pass
         $A2 = $_SERVER['REQUEST_METHOD'].':'.$data['uri'];
         $valid_response = md5(md5($A1).':'.$data['nonce'].':'.$data['nc'].':'.$data['cnonce'].':'.$data['qop'].':'.md5($A2));
+
         if($valid_response === $data['response']) {
             return true;
         }
