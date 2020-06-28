@@ -4,9 +4,7 @@ namespace Spl;
 
 class Index
 {
-    public function index()
-    {
-    }
+    
 
     public function arrayObject()
     {
@@ -20,17 +18,18 @@ class Index
         $copy = $obj->getArrayCopy();
 
         foreach ($obj as $k => $val) {
-            //echo $k.':'.$val.'
+            echo $k.':'.$val.'-';
         }
     }
 
-    public function outer()
+    public function outerIterator()
     {
         $iter = new \ArrayIterator([9,5,1,4,7]);
 
         $outer = new Outer($iter);
         foreach ($outer as $k) {
             // var_dump($k);
+            echo $k;
         }
     }
 }

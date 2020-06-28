@@ -2,7 +2,7 @@
     "name": "root/html",
     "description": "Trying differents php-pear-pecl extensions",
     "require": {
-        "php": "^7",
+        "php": "^7.2",
         "slim/php-view": "2.2",
         "slim/psr7": "1.0",
         "slim/slim": "4.5"
