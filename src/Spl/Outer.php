@@ -1,4 +1,6 @@
-<?php declare(strict_types = 1);
+<?php
+
+declare(strict_types=1);
 
 namespace Spl;
 
@@ -24,19 +26,19 @@ class Outer implements \OuterIterator
     {
         return $this->iterator->key();
     }
-    public function next() : void
+    public function next(): void
     {
         $this->iterator->next();
     }
-    public function rewind() : void
+    public function rewind(): void
     {
         $this->iterator->rewind();
     }
-    public function valid() : bool
+    public function valid(): bool
     {
         return $this->iterator->valid();
     }
-    public function getInnerIterator() : \Iterator
+    public function getInnerIterator(): \Iterator
     {
         return $this->iterator;
     }

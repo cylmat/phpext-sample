@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Curl;
 
 class Curl
@@ -8,42 +10,42 @@ class Curl
 
     #ref: https://curl.haxx.se/libcurl/c/curl_easy_setopt.html
 
-    function request()
+    public function request()
     {
-         # create a cURL handle
-         $ch = curl_init();
-         # set the URL (this could also be passed to curl_init() if desired)
-         curl_setopt($ch, CURLOPT_URL, self::URL);
-         # set the HTTP method to POST
-         //curl_setopt($ch, CURLOPT_POST, true);
-         curl_setopt($ch, CURLOPT_HTTPGET, true);
-         # setting this option to an empty string enables cookie handling
-         # but does not load cookies from a file
-         curl_setopt($ch, CURLOPT_COOKIEFILE, "");
-         # set the values to be sent
-         /*curl_setopt($ch, CURLOPT_POSTFIELDS, array(
-            "username"=>"usr",
-            "password"=>"pss"
-         ));*/
+        # create a cURL handle
+        $ch = curl_init();
+        # set the URL (this could also be passed to curl_init() if desired)
+        curl_setopt($ch, CURLOPT_URL, self::URL);
+        # set the HTTP method to POST
+        //curl_setopt($ch, CURLOPT_POST, true);
+        curl_setopt($ch, CURLOPT_HTTPGET, true);
+        # setting this option to an empty string enables cookie handling
+        # but does not load cookies from a file
+        curl_setopt($ch, CURLOPT_COOKIEFILE, "");
+        # set the values to be sent
+        /*curl_setopt($ch, CURLOPT_POSTFIELDS, array(
+           "username"=>"usr",
+           "password"=>"pss"
+        ));*/
  
-         # return the response body
-         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-         # send the request
-         $result = curl_exec($ch);
-         echo($result);
+        # return the response body
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        # send the request
+        $result = curl_exec($ch);
+        echo($result);
          
-         # we are not calling curl_init()
-         # simply change the URL
-         curl_setopt($ch, CURLOPT_URL, self::URL);
-         # change the method back to GET
-         curl_setopt($ch, CURLOPT_HTTPGET, true);
-         # send the request
-         $result = curl_exec($ch);
-         # finished with cURL
-         curl_close($ch);
+        # we are not calling curl_init()
+        # simply change the URL
+        curl_setopt($ch, CURLOPT_URL, self::URL);
+        # change the method back to GET
+        curl_setopt($ch, CURLOPT_HTTPGET, true);
+        # send the request
+        $result = curl_exec($ch);
+        # finished with cURL
+        curl_close($ch);
     }
 
-    function api()
+    public function api()
     {
         $ch = curl_init();
         curl_setopt_array($ch, array(
@@ -54,7 +56,7 @@ class Curl
             //CURLOPT_POSTFIELDS => ['field_contents']
         ));
         $result = curl_exec($ch);
-        curl_close ($ch);
+        curl_close($ch);
         echo $result;
 
         #request

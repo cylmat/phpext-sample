@@ -1,24 +1,24 @@
-<?php declare(strict_types = 1);
+<?php
+
+declare(strict_types=1);
 
 namespace Spl;
 
 class Index
 {
-    
-
     public function arrayObject()
     {
         $array = [2,5,9,6];
         $obj = new \ArrayObject($array, 0, 'ArrayIterator');
         $obj->asort();
-        $obj->exchangeArray(array_merge($array, ['plus'=>'inside']));
+        $obj->exchangeArray(array_merge($array, ['plus' => 'inside']));
         $obj->append('fois');
         $obj->offsetSet('quatre', 'gamma');
         $iter = $obj->getIterator();
         $copy = $obj->getArrayCopy();
 
         foreach ($obj as $k => $val) {
-            echo $k.':'.$val.'-';
+            echo $k . ':' . $val . '-';
         }
     }
 

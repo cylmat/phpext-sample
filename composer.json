@@ -37,11 +37,15 @@
         "cover": "phpunit --color=always -vvv --coverage-text - --coverage-html public/cover",
         "cover_dbg": "phpdbg -qrr vendor/phpunit/phpunit/phpunit --color=always -vvv --coverage-text - --coverage-html public/cover",
         "check": "phpcs",
-        "fix": "phpcbf",
-        "md": "phpmd",
-        "cs-fixer": "php-cs-fixer fix src"
+        "cs": "phpcs",
+        "fix": "phpcbf -v",
+        "insights": "phpinsights",
+        "md": "phpmd src text cleancode, codesize, controversial, design, naming, unusedcode",
+        "php-cs-fixer": "php-cs-fixer fix src"
     },
     "extra": {
+        "md": "cleancode: class import-else and return.., codesize: too much methods, controversial: camelCase",
+        "md2": "design: var_dump-exit, naming: short name, unusedcode",
         "phalcon/cphalcon": "4.0",
         "phalcon/devtools": "4.0"
     }

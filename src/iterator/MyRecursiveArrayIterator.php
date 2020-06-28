@@ -1,12 +1,14 @@
-<?php declare(strict_types = 1);
+<?php
+
+declare(strict_types=1);
 
 namespace Iterator;
 
 // INFINITY
 class MyRecursiveArrayIterator implements \Iterator
 {
-    protected $parent=null;
-    protected $iterator=null;
+    protected $parent = null;
+    protected $iterator = null;
     public function __construct(array $iterator)
     {
         $this->iterator = new \RecursiveArrayIterator($iterator);
@@ -21,7 +23,7 @@ class MyRecursiveArrayIterator implements \Iterator
     }
     public function valid()
     {
-        if (!$this->iterator->valid() && null===$this->parent) {
+        if (!$this->iterator->valid() && null === $this->parent) {
             return false;
         } #both parent and iterator are null
         if (!$this->iterator->valid()) { #back to parent

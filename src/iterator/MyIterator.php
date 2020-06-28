@@ -1,4 +1,6 @@
-<?php declare(strict_types = 1);
+<?php
+
+declare(strict_types=1);
 
 namespace Iterator;
 
@@ -11,11 +13,11 @@ class MyIterator implements \Iterator #Traversable
 {
     protected $zero = 'propriete';
     protected $un = 'access';
-    protected $semaphore='3';
+    protected $semaphore = '3';
     protected $quatre = 'extrait';
     protected $cinq = 'partie';
     protected $différence = 887;
-    private $_pointer='zero';
+    private $_pointer = 'zero';
     private $_keys = [];
 
     public function __construct()
@@ -48,15 +50,15 @@ class MyIterator implements \Iterator #Traversable
     {
         return $this->pointer;
     }
-    public function next() : void
+    public function next(): void
     {
         $this->_pointer = next($this->_keys);
     }
-    public function rewind() : void
+    public function rewind(): void
     {
         $this->_pointer = 'zero';
     }
-    public function valid() : bool
+    public function valid(): bool
     {
         return property_exists($this, $this->_pointer);
     }

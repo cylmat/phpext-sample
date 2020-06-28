@@ -1,10 +1,12 @@
-<?php declare(strict_types = 1);
+<?php
+
+declare(strict_types=1);
 
 namespace Auth;
 
 class Index
 {
-        /**
+    /**
      *          basic
      * ref: https://developer.mozilla.org/en-US/docs/Web/HTTP/Authentication#Basic_authentication_scheme
      * https://username:password@www.example.com/
@@ -26,11 +28,12 @@ class Index
     public function basic()
     {
         //echo password_hash('pass', PASSWORD_DEFAULT);
-        if (!isset($_SERVER['PHP_AUTH_USER']) || #pas authentifié
-            ('user'!=$_SERVER['PHP_AUTH_USER'] || #wrong user & pass
+        if (
+            !isset($_SERVER['PHP_AUTH_USER']) || #pas authentifié
+            ('user' != $_SERVER['PHP_AUTH_USER'] || #wrong user & pass
                 !password_verify($_SERVER['PHP_AUTH_PW'], '$2y$10$59GRA7AQ7Cc7FBjMohpRdeZ6TE3Il2C5q1L5.gU/RZrKQ56tpkK3K')) ||
-            (isset($_SESSION['delai']) && time() > $_SESSION['delai']+10) #too much delay 10s
-            ) {
+            (isset($_SESSION['delai']) && time() > $_SESSION['delai'] + 10) #too much delay 10s
+        ) {
             // @codeCoverageIgnoreStart
             header('WWW-Authenticate: Basic realm="Auth');
             header('HTTP/1.1 401 Unauthorized', true, 401);
@@ -57,7 +60,7 @@ class Index
     public function digest()
     {
         #session_start();
-        $digest = new Digest;
+        $digest = new Digest();
 
         $user = ['user' => 'mypass'];
         $header_401 = function () use ($digest) {
@@ -73,9 +76,10 @@ class Index
         //username="azerrty", realm="Soap", nonce="c29hcDVlZjViMTRmZTJlODExLjg3Mzg2OTAz", uri="/soap/server/digest",
         //algorithm=MD5, response="32d5c7869b4a8096b7ed7b6db7f6091b", opaque="c740969b60b76f28afb8af7cb5e4c0de",
         //qop=auth, nc=00000001, cnonce="949453b9e0c8bca6"
-        if (!isset($_SERVER['PHP_AUTH_DIGEST']) ||
-            (isset($_SESSION['delai']) && time() > $_SESSION['delai']+10)
-            ) {
+        if (
+            !isset($_SERVER['PHP_AUTH_DIGEST']) ||
+            (isset($_SESSION['delai']) && time() > $_SESSION['delai'] + 10)
+        ) {
             // @codeCoverageIgnoreStart
             $header_401();
             die('Veuillez vous authentifier');

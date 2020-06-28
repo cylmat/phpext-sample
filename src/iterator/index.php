@@ -1,8 +1,10 @@
-<?php declare(strict_types = 1);
+<?php
+
+declare(strict_types=1);
 
 namespace Iterator;
 
-defined('ROOT') or define('ROOT', __DIR__.'/../..');
+defined('ROOT') or define('ROOT', __DIR__ . '/../..');
 
 /*
 https://www.php.net/manual/fr/spl.interfaces.php
@@ -50,9 +52,9 @@ class Index
     public function arrays(array $array = ['john','flush'])
     {
         $iter = new MyArrayIterator($array);
-        $r=[];
+        $r = [];
         foreach ($iter as $content) {
-            echo $content.'<br/>';
+            echo $content . '<br/>';
         }
     }
 
@@ -61,9 +63,9 @@ class Index
      */
     public function aggregate()
     {
-        $iterA = new MyIterAggregate;
+        $iterA = new MyIterAggregate();
         foreach ($iterA as $value) {
-            echo $value.'';
+            echo $value . '';
         }
 
         echo($iterA->getIterator())->current();
@@ -71,9 +73,9 @@ class Index
 
     public function directory()
     {
-        $dir = new \DirectoryIterator(ROOT.'/src');
+        $dir = new \DirectoryIterator(ROOT . '/src');
         foreach ($dir as $sub) {
-            echo $dir->getFilename().'<br/>';
+            echo $dir->getFilename() . '<br/>';
         }
     }
 
@@ -111,7 +113,7 @@ class Index
         }
         $sys = new \FilesystemIterator(__DIR__, \FilesystemIterator::KEY_AS_FILENAME | \FilesystemIterator::CURRENT_AS_PATHNAME);
         foreach ($sys as $file => $path) {
-            echo $file.':'.$path.'<br/>';
+            echo $file . ':' . $path . '<br/>';
         }
         $sys = new \FilesystemIterator(__DIR__, \FilesystemIterator::CURRENT_AS_SELF);
         foreach ($sys as $path => $filesystem) {
@@ -121,10 +123,10 @@ class Index
 
     public function logFilter()
     {
-        $arr_iter = new \ArrayIterator([10=>'10.21.510.6', 15=>'10.21.510.9', 25=>'110.21.510.2']);
+        $arr_iter = new \ArrayIterator([10 => '10.21.510.6', 15 => '10.21.510.9', 25 => '110.21.510.2']);
         $ipFilter = new MyLogFilterIterator($arr_iter);
         foreach ($ipFilter as $ip) {
-            echo $ip.' ';
+            echo $ip . ' ';
         }
     }
 
@@ -185,7 +187,7 @@ class Index
 
         $dr_iter = new MyRecursiveArrayIterator($arr23);
         foreach ($dr_iter as $i) {
-            echo($i.'<br/>');
+            echo($i . '<br/>');
         }
     }
 
@@ -197,7 +199,7 @@ class Index
         */
         $dirs = new \RecursiveDirectoryIterator(__DIR__);
         foreach ($dirs as $path => $splinfo) {
-            echo $splinfo->getFilename().'<br/>';
+            echo $splinfo->getFilename() . '<br/>';
             //var_dump(get_class_methods($splinfo));
         }
     }
@@ -207,13 +209,13 @@ class Index
          */
     public function recursiveDirectoryIterators()
     {
-        $dirs = new \RecursiveIteratorIterator(new \RecursiveDirectoryIterator(ROOT.'/src'));
+        $dirs = new \RecursiveIteratorIterator(new \RecursiveDirectoryIterator(ROOT . '/src'));
         
         $dirs->rewind();
         while ($dirs->valid()) {
             // RecursiveIteratorIterator
             if (!$dirs->isDot()) {
-                echo $dirs->getFilename().'<br/>';
+                echo $dirs->getFilename() . '<br/>';
             }
             $dirs->next();
         }
@@ -230,7 +232,7 @@ class Index
 
         $its = new \RecursiveIteratorIterator($iter);
         foreach ($its as $k => $it) {
-            echo($k.'-');
+            echo($k . '-');
         }
         /**
          * RecursiveIteratorIterator
@@ -250,10 +252,10 @@ class Index
      */
     public function recursiveFiles()
     {
-        $path = ROOT.'/src/Iterator';
+        $path = ROOT . '/src/Iterator';
         $rdi = new \RecursiveDirectoryIterator($path, \RecursiveDirectoryIterator::KEY_AS_PATHNAME);
         foreach ($rdi as $file => $info) {
-            echo $info->getFilename().'<br>';
+            echo $info->getFilename() . '<br>';
         }
         $d = new \RecursiveIteratorIterator($rdi, \RecursiveIteratorIterator::SELF_FIRST);
         foreach ($d as $file => $info) {
@@ -263,12 +265,12 @@ class Index
 
     public function recursiveRegex()
     {
-        $path = new \RecursiveDirectoryIterator(ROOT.'/src/Iterator');
+        $path = new \RecursiveDirectoryIterator(ROOT . '/src/Iterator');
         $Iterator = new \RecursiveIteratorIterator($path);
         $Regex = new \RegexIterator($Iterator, '/^.+\.php$/i', \RecursiveRegexIterator::GET_MATCH);
 
         foreach ($Regex as $k => $splinfo) {
-            echo $splinfo[0].'<br/>';
+            echo $splinfo[0] . '<br/>';
             break;
         }
     }

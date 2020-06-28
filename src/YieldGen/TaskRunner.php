@@ -1,4 +1,6 @@
-<?php declare(strict_types = 1);
+<?php
+
+declare(strict_types=1);
 
 namespace YieldGen;
 
@@ -8,7 +10,7 @@ class TaskRunner
     
     public function __construct()
     {
-        $this->tasks = new \SplQueue;
+        $this->tasks = new \SplQueue();
 
         $this->addTask($this->task1());
         $this->addTask($this->task2());
@@ -22,7 +24,7 @@ class TaskRunner
     
     public function run(): void
     {
-        $total=[];
+        $total = [];
         while (!$this->tasks->isEmpty()) {
             //prend le dernier
             $task = $this->tasks->dequeue();
@@ -41,23 +43,23 @@ class TaskRunner
 
     private function task1(): \Generator
     {
-        for ($i=0; $i<3; $i++) {
-            $test = yield 'alpha'.$i;
-            echo 'alpha'.$i;
+        for ($i = 0; $i < 3; $i++) {
+            $test = yield 'alpha' . $i;
+            echo 'alpha' . $i;
         }
     }
 
     private function task2(): \Generator
     {
-        for ($i=99; $i<103; $i++) {
-            $superTop = yield 'blob'.$i;
+        for ($i = 99; $i < 103; $i++) {
+            $superTop = yield 'blob' . $i;
         }
     }
 
     private function task3(): \Generator
     {
-        for ($i=6; $i<9; $i++) {
-            $superTop = yield 'carton'.$i;
+        for ($i = 6; $i < 9; $i++) {
+            $superTop = yield 'carton' . $i;
         }
     }
 }

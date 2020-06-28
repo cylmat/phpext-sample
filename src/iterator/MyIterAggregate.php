@@ -1,4 +1,6 @@
-<?php declare(strict_types = 1);
+<?php
+
+declare(strict_types=1);
 
 namespace Iterator;
 
@@ -12,12 +14,12 @@ class MyIterAggregate implements \IteratorAggregate #Traversable
 {
     public function getIterator() #: Traversable
     {
-        return ($this->_generate(5));
+        return ($this->generate(5));
     }
     
-    private function _generate($val) #Generator
+    private function generate($val) #Generator
     {
-        for ($i=0; $i<$val; $i++) {
+        for ($i = 0; $i < $val; $i++) {
             yield $i;
         }
     }

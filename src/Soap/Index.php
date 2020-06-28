@@ -1,4 +1,6 @@
-<?php declare(strict_types = 1);
+<?php
+
+declare(strict_types=1);
 
 namespace Soap;
 
@@ -8,11 +10,11 @@ class Index
     {
         $params = (func_get_args());
         echo 'Call SoapClient<br/>';
-        (new Client)->call($params);
+        (new Client())->call($params);
     }
 
     public function server()
     {
-        (new Server)->handle();
+        (new Server())->handle();
     }
 }

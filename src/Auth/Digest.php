@@ -1,4 +1,6 @@
-<?php declare(strict_types = 1);
+<?php
+
+declare(strict_types=1);
 
 namespace Auth;
 
@@ -10,9 +12,9 @@ class Digest
     {
         if (!isset($this->h)) {
             $this->h = 'WWW-Authenticate: Digest realm="Soap",' .
-                'domain="/soap/server/digest",'.
-                'nonce='.base64_encode(uniqId('soap', true)).','  .
-                'opaque="'.md5('Soap') . '",' . #retournée telle quelle
+                'domain="/soap/server/digest",' .
+                'nonce=' . base64_encode(uniqId('soap', true)) . ','  .
+                'opaque="' . md5('Soap') . '",' . #retournée telle quelle
                 'algorithm="MD5",' .
                 'qop="auth"';
         }
@@ -26,8 +28,8 @@ class Digest
         $response_parts = explode(', ', $response);
        
         array_map(function ($value) use (&$response_parts) {
-            $v=explode('=', $value);
-            $response_parts[$v[0]]=trim($v[1], '" ');
+            $v = explode('=', $value);
+            $response_parts[$v[0]] = trim($v[1], '" ');
         }, $response_parts);
         $response_parts = array_diff_key($response_parts, range(0, 15)); //enleve les cle num
         
@@ -59,8 +61,8 @@ class Digest
     {
         //$A1 = md5($data['username'] . ':' . $data['realm'] . ':' . $users[$data['username']]); //user:real:pass
         $A1 = $data['username'] . ':' . $data['realm'] . ':' . $user[$data['username']]; //user:real:pass
-        $A2 = $_SERVER['REQUEST_METHOD'].':'.$data['uri'];
-        $valid_response = md5(md5($A1).':'.$data['nonce'].':'.$data['nc'].':'.$data['cnonce'].':'.$data['qop'].':'.md5($A2));
+        $A2 = $_SERVER['REQUEST_METHOD'] . ':' . $data['uri'];
+        $valid_response = md5(md5($A1) . ':' . $data['nonce'] . ':' . $data['nc'] . ':' . $data['cnonce'] . ':' . $data['qop'] . ':' . md5($A2));
 
         if ($valid_response === $data['response']) {
             return true;

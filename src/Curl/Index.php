@@ -1,4 +1,6 @@
-<?php declare(strict_types = 1);
+<?php
+
+declare(strict_types=1);
 
 namespace Curl;
 
@@ -10,8 +12,7 @@ class Index
 {
     public function send()
     {
-        (new Curl)->request();
-        (new Curl)->api();
+        (new Curl())->request();
+        (new Curl())->api();
     }
 }
-
