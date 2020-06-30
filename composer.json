@@ -41,7 +41,8 @@
         "fix": "phpcbf -v",
         "insights": "phpinsights",
         "md": "phpmd src text cleancode, codesize, controversial, design, naming, unusedcode",
-        "php-cs-fixer": "php-cs-fixer fix src"
+        "php-cs-fixer": "php-cs-fixer fix src",
+        "socket-run": "$(php -f 'src/Socket/run_server.php') &"
     },
     "extra": {
         "md": "cleancode: class import-else and return.., codesize: too much methods, controversial: camelCase",

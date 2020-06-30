@@ -8,7 +8,7 @@ ARG DEBIAN_FRONTEND=noninteractive
 # Install
 # be careful of cache
 RUN apt-get update && ENV=_docker_cache_44636145899253
-RUN apt-get install -y curl sqlite3 php7.3-dev wget zip
+RUN apt-get install -y curl sqlite3 php7.3-dev vim wget zip
 
 # Php ext
 RUN apt-get install -y php-curl php-ds php-mbstring php-redis php-pear 
@@ -16,10 +16,12 @@ RUN apt-get install -y php-sqlite3 php-soap php-psr php-xml php-zip
 
 # php.ini
 RUN sed -i 's/;extension=soap/extension=soap/' /etc/php/7.3/fpm/php.ini
+RUN sed -i 's/pm.max_children = 5/pm.max_children = 25/' /etc/php/7.3/fpm/pool.d/www.conf
 
 # Pecl ext
 RUN pecl channel-update pecl.php.net
 #RUN printf "yes\n" | pecl install swoole
+
 
 # coverage
 RUN apt-get install -y php-xdebug php7.3-phpdbg

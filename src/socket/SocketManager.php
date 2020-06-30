@@ -1,31 +1,34 @@
 <?php
 
-/*
- * This file is part of SocketManager.
- *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- */
+declare(strict_types = 1);
 
 namespace Socket;
-set_time_limit(0);
 
 class SocketManager
 {
     const SERVER_ADDRESS = '127.0.0.1';
-    const SERVER_PORT = '1234';
+    const SERVER_PORT = 1234;
+
     /**
      * resource
      */
     private $socket; 
+
     /**
      * string
      */
     private $log=''; 
+
     public function getConnection()
     {
         return $this->socket;
     }
+
+    public function getLog(): string
+    {
+        return $this->log;
+    }
+
     /**
      * socket_create — Crée un socket
      *  socket_create ( int $domain , int $type , int $protocol ) : resource
@@ -58,16 +61,18 @@ class SocketManager
         echo 's: yes connected!'.PHP_EOL;
         return true;
     }
+
     /*
      * socket_accept — Accepte une connexion sur un socket
      *  socket_accept ( resource $socket ) : resource
      * 
-     *  Une fois que le socket socket a été créé avec la fonction socket_create(), lié à un nom avec la fonction socket_bind(), 
+     *  Une fois que le socket a été créé avec la fonction socket_create(), lié à un nom avec la fonction socket_bind(), 
      * et mis en attente de connexion avec la fonction socket_listen(), socket_accept() va accepter les connexions sur ce socket. 
      * Une fois qu'une connexion est faite, une nouvelle ressource de socket est retournée. Elle peut être utilisée pour les communications. 
      * S'il y a plusieurs connexions en attente, la première sera utilisée. S'il n'y a pas de connexion en attente, socket_accept() 
      * se bloquera jusqu'à ce qu'une connexion se présente. Si socket a été rendue non-bloquante, grâce à socket_set_blocking() ou 
      * socket_set_nonblock(), FALSE sera retourné.
+     * 
     * La ressource de socket retournée par socket_accept() ne doit pas être utilisée pour accepter de nouvelles connexions. 
     * Le socket original socket, qui est en attente, reste ouvert et peut être réutilisé. 
      */
@@ -75,6 +80,7 @@ class SocketManager
     {
         if (!socket_listen($this->socket)) {
             $this->logError($this->socket);
+            throw new \Exception($this->log);
             return false;
         }
         echo 's: listen'.PHP_EOL;
@@ -83,6 +89,7 @@ class SocketManager
         while(true) {
             if (($socket_accept = socket_accept($this->socket)) === false) {
                 $this->logError($this->socket);
+                throw new \Exception($this->log);
                 return false;
             } 
             echo 's: accept'.PHP_EOL;
@@ -90,11 +97,11 @@ class SocketManager
                 $buf = $this->read($socket_accept);
                 echo 's: read "'.$buf.'" '.PHP_EOL;
                 
-                if(''==$buf) {
-                    
+                if(!$buf) {
+                    echo 'server: nothing'.PHP_EOL;
                 }
                 if('quit' == $buf) {
-                    //echo 's: QUIT LISTENING'.PHP_EOL;
+                    echo 's: QUIT LISTENING'.PHP_EOL;
                     break;
                 }
             }
@@ -103,23 +110,27 @@ class SocketManager
         }
         return true;
     }
+
     public function createClient(): bool
     {
         echo PHP_EOL;
         $this->socket = socket_create(AF_INET, SOCK_STREAM, SOL_TCP);
         if (false === $this->socket) {
             $this->logError($this->socket);
+            throw new \Exception($this->log);
             echo 'c: not created!'.PHP_EOL;
             return false;
         }
         if (!socket_connect($this->socket, self::SERVER_ADDRESS, self::SERVER_PORT)) {
             $this->logError($this->socket);
+            throw new \Exception($this->log);
             echo 'c: not connected!'.PHP_EOL;
             return false;
         }
         echo 'c: connected!'.PHP_EOL;
         return true;
     }
+
     /**
      * socket_read — Lit des données d'un socket
      *  socket_read ( resource $socket , int $length [, int $type = PHP_BINARY_READ ] ) : string
@@ -134,6 +145,7 @@ class SocketManager
         }
         return trim($msg);
     }
+
     /**
      * socket_send — Envoie des données à un socket connecté
      *  socket_send ( resource $socket , string $buf , int $len , int $flags ) : int
@@ -168,6 +180,7 @@ class SocketManager
         echo 'writing '.$msg.PHP_EOL;
         return true;
     }
+
     public function isValid(): bool
     {
         if (!$this->socket) {
@@ -175,6 +188,7 @@ class SocketManager
         }
         return true;
     }
+
     public function close(): bool
     {
         if (!$this->socket) {
@@ -185,6 +199,7 @@ class SocketManager
         $this->socket = null;
         return true;
     }
+
     private function logError($rh): void
     {
         if (is_string($rh)) {
@@ -194,9 +209,5 @@ class SocketManager
         }
         //throw new \Exception($this->log);
         echo $this->log.PHP_EOL; 
-    }
-    public function getLog(): string
-    {
-        return $this->log;
     }
 }
