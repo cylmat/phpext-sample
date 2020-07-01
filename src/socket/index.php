@@ -17,7 +17,7 @@ class Index
      */
     function client_native()
     {
-        include 'launch_client.php';
+        include 'simple_client.php';
         client_native();
     }
 }
