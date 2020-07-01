@@ -5,10 +5,18 @@ declare(strict_types = 1);
 #NO NAMESPACE
 #RUN FROM include()
 
+defined('SERVER_ADDRESS') or define('SERVER_ADDRESS', '127.0.0.1'); 
+defined('SERVER_PORT') or define('SERVER_PORT', 4444);
 
+set_error_handler(function(int $errno, string $errstr, string $errfile, int $errline, array $errcontext) { 
+    switch($errno) {
+        case E_WARNING: echo 'WARNING: ' . $errstr . PHP_EOL;
+    }
+});
 
-define('SERVER_ADDRESS', '127.0.0.1'); 
-define('SERVER_PORT', 4444);
+if (!isset($_SERVER['HTTP_HOST'])) {
+    client_native();
+}
 
 /**
  * CLIENT
@@ -26,31 +34,36 @@ function client_native()
 
     $result = socket_connect($socket, SERVER_ADDRESS, SERVER_PORT) or die("Unable to connect"); 
     echo 'Connect to socket..'.PHP_EOL;
-    
-    echo 'Writing "alpha"..'.PHP_EOL;
+
+    echo 'Writing "HEAD" then "alpha"..'.PHP_EOL;
 
     $in = "HEAD / HTTP/1.1\r\nalpha\r\n"; 
     // ."Host: 127.0.0.1\r\n" // ."Connection: Close\r\n" 
+
     socket_write($socket, $in, strlen($in)); 
 
+    // listen to socket
     $time = time();
-    while ($out = socket_read($socket, 4096)) {
+    $out = socket_read($socket, 4096);
         echo 'Read.. '.$out.PHP_EOL;
-        if (time() > $time+5) {
+        /*if (time() > $time+5) {
             echo 'Timeout.. ';
-            break; //max 5s
-        }
-    }
+    //        break; //max 5s
+        }*/
 
     for($i=0; $i<2; $i++) {
         sleep(2);
         echo 'Writing "beta '.$i.'".. '.PHP_EOL;
         // $in = "HEAD / HTTP/1.1\r\nalpha\r\nquit\r\n"; // ."Host: 127.0.0.1\r\n" // ."Connection: Close\r\n" 
-        $in = "beta $i \r\n"; // ."Host: 127.0.0.1\r\n" // ."Connection: Close\r\n" 
+        $in = "beta $i\r\n"; // ."Host: 127.0.0.1\r\n" // ."Connection: Close\r\n" 
         socket_write($socket, $in, strlen($in)); 
+
+        $out = socket_read($socket, 4096);
+        echo 'Read.. '.$out.PHP_EOL;
     }
 
-    echo 'Close connection..'.PHP_EOL;
+    echo 'Close connection, write "quit"..'.PHP_EOL;
+    
     // $in = "HEAD / HTTP/1.1\r\nalpha\r\nquit\r\n"; // ."Host: 127.0.0.1\r\n" // ."Connection: Close\r\n" 
 
     $in = "quit\r\n"; // ."Host: 127.0.0.1\r\n" // ."Connection: Close\r\n" 

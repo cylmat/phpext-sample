@@ -6,14 +6,12 @@ declare(strict_types = 1);
 #RUN FROM php -f script
 
 
-
-
 define('SERVER_ADDRESS', '127.0.0.1'); 
 define('SERVER_PORT', 4444);
 
 set_time_limit(3000); #5mn
 
-run_server();
+server_native();
 
 /**
  * SERVER
@@ -23,7 +21,7 @@ run_server();
  *  close acceptation
  * close server
  */
-function run_server()
+function server_native()
 {
     ob_implicit_flush();
     
@@ -40,19 +38,22 @@ function run_server()
     do { 
         $msgsock = socket_accept($sock); 
         echo 'CONNECTION ACCEPTED '.PHP_EOL;
+        socket_set_nonblock ( $sock );
 
         $msg = 'HI! '.PHP_EOL;
         socket_write($msgsock, $msg, strlen($msg));
     
         do {
-            $buf = socket_read($msgsock, 2048, PHP_NORMAL_READ); //echo 's: read "'.$buf.'"'.PHP_EOL;
+            $buf = socket_read($msgsock, 2048, PHP_NORMAL_READ); 
+            echo 'READ "'.$buf.'"'.PHP_EOL;
+
             if (!$buf = trim($buf)) {
-                //echo 's: trim'.PHP_EOL; 
-                //continue;
+                echo 'TRIM '.PHP_EOL; 
+                continue;
             }
             if (trim($buf) == 'quit') {
                 echo 'QUITTED '.PHP_EOL; 
-                break;
+                break 2;
             }
             if (trim($buf) == 'shutdown') {
                 socket_close($msgsock);
@@ -60,7 +61,7 @@ function run_server()
                 break 2;
             }
             echo "WRITE \"---S:Received {$buf}---\" TO CLIENT ".PHP_EOL;
-            $talkback = "---S:Received {$buf}---".PHP_EOL;
+            $talkback = "---S:Received {$buf}---";
             socket_write($msgsock, $talkback, strlen($talkback));
             
         } while (true);
