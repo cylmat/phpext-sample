@@ -27,48 +27,45 @@ if (!isset($_SERVER['HTTP_HOST'])) {
  * (ask server to close connection)
  * close
  */
-function client_native()
+
+
+function client_native() 
 {
     $socket = socket_create(AF_INET, SOCK_STREAM, SOL_TCP) or die("Impossible de creer le socket"); 
     echo 'Create client..'.PHP_EOL;
 
-    $result = socket_connect($socket, SERVER_ADDRESS, SERVER_PORT) or die("Unable to connect"); 
+    socket_connect($socket, SERVER_ADDRESS, SERVER_PORT) or die("Unable to connect"); 
     echo 'Connect to socket..'.PHP_EOL;
 
-    echo 'Writing "HEAD" then "alpha"..'.PHP_EOL;
+    // Print to server
+    $print_to_socket = function(string $data) use (&$socket) {
+        echo 'Write: "'.$data.'"..'.PHP_EOL;
+        $data .= "\r\n";
+        socket_write($socket, $data, strlen($data)); 
+    };
 
-    $in = "HEAD / HTTP/1.1\r\nalpha\r\n"; 
-    // ."Host: 127.0.0.1\r\n" // ."Connection: Close\r\n" 
+    //read
+    $read_from_socket = function() use (&$socket) {
+        $out = socket_read($socket, 4096);
+        echo 'Read: "' . $out . '"..' . PHP_EOL;
+    };
+   
+    $print_to_socket("HEAD / HTTP/1.1"); //first call
 
-    socket_write($socket, $in, strlen($in)); 
-
-    // listen to socket
-    $time = time();
-    $out = socket_read($socket, 4096);
-        echo 'Read.. '.$out.PHP_EOL;
-        /*if (time() > $time+5) {
-            echo 'Timeout.. ';
-    //        break; //max 5s
-        }*/
+    // print then listen to socket
+    $print_to_socket("alpha");
+    $read_from_socket();
 
     for($i=0; $i<2; $i++) {
         sleep(2);
-        echo 'Writing "beta '.$i.'".. '.PHP_EOL;
-        // $in = "HEAD / HTTP/1.1\r\nalpha\r\nquit\r\n"; // ."Host: 127.0.0.1\r\n" // ."Connection: Close\r\n" 
-        $in = "beta $i\r\n"; // ."Host: 127.0.0.1\r\n" // ."Connection: Close\r\n" 
-        socket_write($socket, $in, strlen($in)); 
-
-        $out = socket_read($socket, 4096);
-        echo 'Read.. '.$out.PHP_EOL;
+        $print_to_socket("beta $i");
+        $read_from_socket();
     }
 
-    echo 'Close connection, write "quit"..'.PHP_EOL;
-    
-    // $in = "HEAD / HTTP/1.1\r\nalpha\r\nquit\r\n"; // ."Host: 127.0.0.1\r\n" // ."Connection: Close\r\n" 
+    echo 'Close connection..'.PHP_EOL;
+    $print_to_socket("quit");
 
-    $in = "quit\r\n"; // ."Host: 127.0.0.1\r\n" // ."Connection: Close\r\n" 
-    socket_write($socket, $in, strlen($in)); 
-
+    //close
     socket_close($socket);
 }
 
