@@ -17,8 +17,7 @@ class Index
      */
     function simple_client()
     {
-        include 'simple_client.php';
-        simple_client();
+        //ok
     }
 }
 

@@ -29,28 +29,10 @@ class SocketTest extends \PHPUnit\Framework\TestCase
      */
     protected function tearDown(): void {}
 
-    /**
-     * @depends testServer
-     */
+    
     public function testClient() 
     {
-        echo 'c';
-    }
-
-    public function testServer() 
-    {
-        echo 's';
-    }
-
-    public function tryLaunchServerAndCatchResponse()
-    {
-        $sock = socket_create(AF_INET, SOCK_STREAM, 0);
-        if(!socket_bind($sock, 'localhost', 0)) throw new RuntimeException('Couldnt bind');
-        socket_listen($sock);
-
-        $client = socket_accept($sock);
-        $input = socket_read($client, 1024);
-
-        echo $input;
+        $this->index->simple_client();
+        $this->assertTrue(true);
     }
 }
