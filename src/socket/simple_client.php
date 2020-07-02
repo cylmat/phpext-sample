@@ -15,7 +15,8 @@ set_error_handler(function(int $errno, string $errstr, string $errfile, int $err
 });
 
 if (!isset($_SERVER['HTTP_HOST'])) {
-    client_native();
+    simple_client();
+    simple_client(true);
 }
 
 /**
@@ -29,13 +30,23 @@ if (!isset($_SERVER['HTTP_HOST'])) {
  */
 
 
-function client_native() 
+function simple_client($last_client=false) 
 {
-    $socket = socket_create(AF_INET, SOCK_STREAM, SOL_TCP) or die("Impossible de creer le socket"); 
-    echo 'Create client..'.PHP_EOL;
+    $socket = socket_create(AF_INET, SOCK_STREAM, SOL_TCP); 
+    if ($socket === false) {
+        echo "socket_create() a échoué: " . socket_strerror(socket_last_error()) . "\n";
+        die("Impossible de creer le socket");
+    } else {
+        echo 'Create client..'.PHP_EOL;
+    }
 
-    socket_connect($socket, SERVER_ADDRESS, SERVER_PORT) or die("Unable to connect"); 
-    echo 'Connect to socket..'.PHP_EOL;
+    socket_connect($socket, SERVER_ADDRESS, SERVER_PORT); 
+    if ($socket === false) {
+        echo "socket_connect() a échoué: " . socket_strerror(socket_last_error($socket)) . "\n";
+        die("Unable to connect");
+    } else {
+        echo 'Connect to socket..'.PHP_EOL;
+    }
 
     // Print to server
     $print_to_socket = function(string $data) use (&$socket) {
@@ -46,7 +57,7 @@ function client_native()
 
     //read
     $read_from_socket = function() use (&$socket) {
-        $out = socket_read($socket, 4096);
+        $out = socket_read($socket, 2048);
         echo 'Read: "' . $out . '"..' . PHP_EOL;
     };
    
@@ -62,62 +73,15 @@ function client_native()
         $read_from_socket();
     }
 
-    echo 'Close connection..'.PHP_EOL;
-    $print_to_socket("quit");
+    echo 'Closing connection..'.PHP_EOL;
+
+    if($last_client) {
+        $print_to_socket("shutdown");
+    } else {
+        $print_to_socket("quit");
+    }
 
     //close
     socket_close($socket);
 }
 
-
-
-
-/*
- *
-
-https://stephaneey.developpez.com/tutoriel/php/sockets/
-
-error_reporting(E_ALL);
-
-echo "<h2>Connexion TCP/IP</h2>\n";
-
-/* Lit le port du service WWW. *
-$service_port = getservbyname('www', 'tcp');
-
-/* Lit l'adresse IP du serveur de destination *
-$address = gethostbyname('www.example.com');
-
-/* Crée un socket TCP/IP. *
-$socket = socket_create(AF_INET, SOCK_STREAM, SOL_TCP);
-if ($socket === false) {
-    echo "socket_create() a échoué : raison :  " . socket_strerror(socket_last_error()) . "\n";
-} else {
-    echo "OK.\n";
-}
-
-echo "Essai de connexion à '$address' sur le port '$service_port'...";
-$result = socket_connect($socket, $address, $service_port);
-if ($socket === false) {
-    echo "socket_connect() a échoué : raison : ($result) " . socket_strerror(socket_last_error($socket)) . "\n";
-} else {
-    echo "OK.\n";
-}
-
-$in = "HEAD / HTTP/1.0\r\n\r\n";
-$in .= "Host: www.example.com\r\n";
-$in .= "Connection: Close\r\n\r\n";
-$out = '';
-
-echo "Envoi de la requête HTTP HEAD...";
-socket_write($socket, $in, strlen($in));
-echo "OK.\n";
-
-echo "Lire la réponse : \n\n";
-while ($out = socket_read($socket, 2048)) {
-    echo $out;
-}
-
-echo "Fermeture du socket...";
-socket_close($socket);
-echo "OK.\n\n";
-*/

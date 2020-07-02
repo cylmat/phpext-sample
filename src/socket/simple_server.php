@@ -11,7 +11,12 @@ define('SERVER_PORT', 4444);
 
 set_time_limit(3000); #5mn
 
-server_native();
+//toute fonction qui envoie des données au navigateur verra ses données envoyées immédiatement
+ob_implicit_flush(); 
+
+//only from CLI
+echo PHP_EOL;
+simple_server();
 
 /**
  * SERVER
@@ -21,52 +26,58 @@ server_native();
  *  close acceptation
  * close server
  */
-function server_native()
-{
-    ob_implicit_flush();
-    
-    echo PHP_EOL;
-    $sock = socket_create(AF_INET, SOCK_STREAM, SOL_TCP) or die('IMPOSSIBLE DE CREER LE SERVEUR'); 
-    echo 'CREATE SERVER '.PHP_EOL;
+function simple_server()
+{   
+    $socket = socket_create(AF_INET, SOCK_STREAM, SOL_TCP) or die('IMPOSSIBLE DE CREER LE SERVEUR'); 
+    echo "CREATE SERVER ".PHP_EOL;
 
-    socket_bind($sock, SERVER_ADDRESS, SERVER_PORT) or die("IMPOSSIBLE DE SE CONNECTER AU SERVEUR"); 
+    socket_bind($socket, SERVER_ADDRESS, SERVER_PORT) or die("IMPOSSIBLE DE SE CONNECTER AU SERVEUR"); 
     echo 'CONNECTED TO SERVER '.PHP_EOL;
 
-    socket_listen($sock, 5); 
+    socket_listen($socket, 5); 
     echo 'LISTENING '.PHP_EOL;
 
+    $print_to_socket = function($socket, string $msg) {
+        $msg = $msg . ' ' . PHP_EOL;
+        socket_write($socket, $msg, strlen($msg));
+    };
+
+    $read_from_socket = function($socket) {
+        $buf = trim(socket_read($socket, 2048, PHP_NORMAL_READ)); 
+        echo 'READ "' . $buf . '"' . PHP_EOL;
+        return $buf; 
+    };
+
+    // Wait for client
     do { 
-        $msgsock = socket_accept($sock); 
+        $msgsock = socket_accept($socket); 
         echo 'CONNECTION ACCEPTED '.PHP_EOL;
-        socket_set_nonblock ( $sock );
+        socket_set_block ( $socket ); //wait for other clients
 
-        $msg = 'HI! '.PHP_EOL;
-        socket_write($msgsock, $msg, strlen($msg));
+        $print_to_socket($msgsock, "Hi!");
     
+        // Listen to read data
         do {
-            $buf = socket_read($msgsock, 2048, PHP_NORMAL_READ); 
-            echo 'READ "'.$buf.'"'.PHP_EOL;
+            $buffer = $read_from_socket($msgsock);
 
-            if (!$buf = trim($buf)) {
-                echo 'TRIM '.PHP_EOL; 
+            if (!$buffer) {
                 continue;
             }
-            if (trim($buf) == 'quit') {
+            if ($buffer == 'quit') {
                 echo 'QUITTED '.PHP_EOL; 
-                break 2;
+                socket_close($msgsock); //close acceptation
+                break;
             }
-            if (trim($buf) == 'shutdown') {
-                socket_close($msgsock);
+            if ($buffer == 'shutdown') {
                 echo 'SHUTDW '.PHP_EOL; 
+                socket_close($msgsock); //close acceptation
                 break 2;
             }
-            echo "WRITE \"---S:Received {$buf}---\" TO CLIENT ".PHP_EOL;
-            $talkback = "---S:Received {$buf}---";
-            socket_write($msgsock, $talkback, strlen($talkback));
+            $talkback = "---S:Received {$buffer}---";
+            $print_to_socket($msgsock, $talkback);
             
         } while (true);
-        socket_close($msgsock);
 
     } while (true);
-    socket_close($sock);
+    socket_close($socket); //totally close socket
 }
