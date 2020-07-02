@@ -29,6 +29,24 @@ class SocketManager
         return $this->log;
     }
 
+    public function isValid(): bool
+    {
+        if (!$this->socket) {
+            return false;
+        }
+        return true;
+    }
+
+    /**
+     * RUN
+     */
+    public function runServer()
+    {
+        $this->createServer();
+        $this->serverListen();
+    }
+
+
     /**
      * socket_create — Crée un socket
      *  socket_create ( int $domain , int $type , int $protocol ) : resource
@@ -138,6 +156,7 @@ class SocketManager
     public function read($socket_listened): ?string
     {
         // TODO: write logic here
+        echo 'Read..'.PHP_EOL;
         if (false === (@$msg = socket_read($socket_listened, 4096,  PHP_NORMAL_READ))) {
             //$this->logError($this->socket);
             //echo 'Error read'.PHP_EOL;
@@ -167,6 +186,7 @@ class SocketManager
      */
     public function write(string $msg): bool
     {
+        echo 'Write..'.PHP_EOL;
         if (!$this->isValid()) {
             echo 'not write valid'.PHP_EOL;
             return false;
@@ -181,14 +201,6 @@ class SocketManager
         return true;
     }
 
-    public function isValid(): bool
-    {
-        if (!$this->socket) {
-            return false;
-        }
-        return true;
-    }
-
     public function close(): bool
     {
         if (!$this->socket) {
@@ -200,7 +212,7 @@ class SocketManager
         return true;
     }
 
-    private function logError($rh): void
+    protected function logError($rh): void
     {
         if (is_string($rh)) {
             $this->log = $rh;

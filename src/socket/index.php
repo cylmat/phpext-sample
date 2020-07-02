@@ -15,10 +15,10 @@ class Index
      * (ask server to close connection)
      * close
      */
-    function client_native()
+    function simple_client()
     {
         include 'simple_client.php';
-        client_native();
+        simple_client();
     }
 }
 
