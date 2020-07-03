@@ -8,13 +8,7 @@ class Index
 {
     public function index()
     {
-        $params = (func_get_args());
-        echo 'Call SoapClient<br/>';
-        (new Client())->call($params);
-    }
-
-    public function server()
-    {
-        (new Server())->handle();
+        //echo 'Call SoapClient<br/>';
+        (new Client())->call(["Salut!"]);
     }
 }

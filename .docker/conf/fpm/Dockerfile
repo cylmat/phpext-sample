@@ -7,12 +7,12 @@ ARG DEBIAN_FRONTEND=noninteractive
 
 # Install
 # be careful of cache
-RUN apt-get update && ENV=_docker_cache_44636145899253
+RUN apt-get update && ENV=_docker_id_to_update_446361d45899253
 RUN apt-get install -y curl sqlite3 php7.3-dev vim wget zip
 
 # Php ext
 RUN apt-get install -y php-curl php-ds php-mbstring php-redis php-pear 
-RUN apt-get install -y php-sqlite3 php-soap php-psr php-xml php-zip
+RUN apt-get install -y php-sqlite3 php7.3-soap php-psr php-xml php-zip
 
 # php.ini
 RUN sed -i 's/;extension=soap/extension=soap/' /etc/php/7.3/fpm/php.ini
@@ -27,6 +27,7 @@ RUN pecl channel-update pecl.php.net
 RUN apt-get install -y php-xdebug php7.3-phpdbg
 RUN pecl install pcov
 RUN echo "\nextension=pcov.so" >> /etc/php/7.3/fpm/php.ini
+RUN echo "\nextension=pcov.so" >> /etc/php/7.3/cli/php.ini
 
 # Phalcon #php7.3-phalcon
 RUN apt-get install -y php-phalcon

@@ -14,15 +14,24 @@ namespace Soap;
  *  Body
  *  (Fault)
  */
+
 class Server
 {
     public function handle()
     {
-        $server = new \SoapServer(null, [
-            'location' => \Soap\ServerManager::URI,
-            'uri' => \Soap\ServerManager::URI,
-            'soap_version' => SOAP_1_2
-        ]);
+        try { 
+            $server = new \SoapServer(null, [
+                'location' => \Soap\ServerManager::$URI,
+                'uri' => \Soap\ServerManager::$URI,
+                'soap_version' => SOAP_1_1
+            ]);
+        } catch(\SOAPFault $f) { 
+            echo $f->getMessage();
+        } catch (\Exception $e) { 
+            echo $e->getMessage(); 
+        }
+        
+        header("Content-Type: text/xml");
         $server->setClass('\Soap\ServerManager');
         $server->handle();
     }

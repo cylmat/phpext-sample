@@ -6,7 +6,12 @@ namespace Soap;
 
 class ServerManager
 {
-    const URI = 'http://192.168.99.100:89/soap/index/server/raw';
+    static $URI = 'http://localhost:8000'; #'http://192.168.99.100:89/soap/index/server'
+
+    public static function setURI(string $URI): void
+    {
+        self::$URI = $URI;
+    }
 
     public function getMessage(string $strNom): string
     {
