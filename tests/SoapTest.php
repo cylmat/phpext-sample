@@ -30,7 +30,9 @@ class SoapTest extends \PHPUnit\Framework\TestCase
 
     public function testClient() 
     {
-        //$this->index->client(); 
+        $this->index->client(); 
+        $this->expectOutputRegex("/Could not connect to host/");
+
         $c = new \Soap\Client;
         $this->assertTrue($c->create());
 
