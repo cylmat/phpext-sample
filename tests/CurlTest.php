@@ -31,7 +31,7 @@ class CurlTest extends \PHPUnit\Framework\TestCase
     public function testBasic() 
     {
         $this->index->send();
-        $this->expectOutputRegex('/Php-Pear-Pecl/');
+        $this->expectOutputRegex('//');
     }
 
 }
