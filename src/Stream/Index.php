@@ -2,47 +2,49 @@
 
 namespace Stream;
 
-//Iterate bzip logs
+use Symfony\Component\Mime\Part\DataPart;
 
 class Index
 {
-    function index()
+    
+     /**
+     * Exemple #5 php://memory et php://temp ne sont pas réutilisables
+     */
+    function filter($data)
     {
-        $dateStart = new \DateTime();
-        $dateInterval = \DateINterval::createFromDateString('-1 day');
-        $datePeriod = new \DatePeriod($dateStart, $dateInterval, 30);
+        stream_filter_register('stars_filter', '\Stream\StarsFilter');
 
-        foreach ($datePeriod as $date) {
-            $file = 'sftp://USER:PASS@rsync.net/' . $date->format('Y-m-d') . 'log.bz2';
-            if (file_exists($file)) {    
-                $handle = fopen($file, 'rb');
-                stream_filter_append($handle, 'bzip2.decompress');
-                while (feof($handle) !== true) {
-                    $line = fgets($handle);
-                    if (strpos($line, 'www.exemple.com') !== false) {
-                        fwrite(STDOUT, $line);
-                    }
-                }
-                fclose($handle);
-            }
+        $temp = fopen("php://memory", 'rw');
+        fputs($temp, $data);
+
+        stream_filter_append($temp, 'stars_filter');
+
+        rewind($temp);
+        $r = fread($temp, 4096);
+        rewind($temp);
+        while(!feof($temp)) {
+            echo fgets($temp);
         }
+        fclose($temp);
+        
     }
 
-    function stream()
+    # https://www.php.net/manual/fr/wrappers.php
+    # https://www.php.net/manual/fr/context.php
+    function wrapper(string $text, string $add)
     {
-        //////////////////////
-        stream_filter_register('dirty_word_filter', 'DirtyWordsFilter');
-
-        $handle = fopen('data.txt', 'rb');
-        stream_filter_append($handle, 'dirty_words_filter');
-
-        while (feof($handle) !== true) {
-            echo fgets($handle);
-        }
+        stream_wrapper_register ( 'add', "\Stream\AddWrapper", 0);
+        $handle = fopen("add://testing", 'w');
+        fwrite($handle, $text);
+        fwrite($handle, $add);
         fclose($handle);
+
+        $handle = fopen("add://testing", 'r');
+        $r = fread($handle, 4096);
+        fclose($handle);
+        echo $r;
+
+        unlink("add://testing");
     }
+
 }
-
-
-
-
