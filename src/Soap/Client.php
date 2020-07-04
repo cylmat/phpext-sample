@@ -6,21 +6,37 @@ namespace Soap;
 
 class Client
 {
+    private $client;
+
+    public function create(): bool
+    {
+        try {
+            $this->client = new \SoapClient(null, array(
+                'location' => \Soap\ServerManager::$URI,
+                'uri'      => \Soap\ServerManager::$URI,
+                'trace'    => 1,
+                "soap_version" => SOAP_1_2
+            ));
+            return true;
+        } catch(\Exception $e) { 
+            echo $e->getMessage(); 
+        }
+        return false;
+    }
+
+    public function setClient($client)
+    {
+        $this->client = $client;
+    }
+
     public function call(array $param)
     {
-        $client = new \SoapClient(null, array(
-            'location' => \Soap\ServerManager::$URI,
-            'uri'      => \Soap\ServerManager::$URI,
-            'trace'    => 1,
-            "soap_version" => SOAP_1_2
-         ));
-        
         try {
             //$return = $client->__soapCall("getMessage", ["world"]);
-            echo $client->getMessage(implode(',', $param));
+            echo $this->client->getMessage(implode(',', $param));
         } catch (\SoapFault $f) {
             var_dump($f->getMessage());
-            var_dump($client->__getLastResponse());
+            var_dump($this->client->__getLastResponse());
         }
     }
 }

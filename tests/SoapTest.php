@@ -30,7 +30,19 @@ class SoapTest extends \PHPUnit\Framework\TestCase
 
     public function testClient() 
     {
-        $this->index->index(); 
-        $this->expectOutputRegex('/Here is your message: Salut!/');   
+        //$this->index->client(); 
+        $c = new \Soap\Client;
+        $this->assertTrue($c->create());
+
+        $soapClient = $this->getMockBuilder('\Soap\Client')
+            ->setMethods(['getMessage'])
+            ->getMock();
+
+        $soapClient->expects($this->exactly(1))
+            ->method('getMessage')
+            ->with($this->stringContains('hi'));
+
+        $c->setClient($soapClient);
+        $c->call(['hi']);
     }
 }

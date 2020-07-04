@@ -6,9 +6,11 @@ namespace Soap;
 
 class Index
 {
-    public function index()
+    public function client()
     {
         //echo 'Call SoapClient<br/>';
-        (new Client())->call(["Salut!"]);
+        $c = new Client();
+        $c->create();
+        $c->call(["Salut!"]);
     }
 }

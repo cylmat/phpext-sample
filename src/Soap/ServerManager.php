@@ -6,7 +6,7 @@ namespace Soap;
 
 class ServerManager
 {
-    static $URI = 'http://localhost:8000'; #'http://192.168.99.100:89/soap/index/server'
+    static $URI = 'http://192.168.99.100:89'; #'http://192.168.99.100:89/soap/index/server'
 
     public static function setURI(string $URI): void
     {

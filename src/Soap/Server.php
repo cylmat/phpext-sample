@@ -17,10 +17,12 @@ namespace Soap;
 
 class Server
 {
-    public function handle()
+    private $server;
+
+    public function create()
     {
         try { 
-            $server = new \SoapServer(null, [
+            $this->server = new \SoapServer(null, [
                 'location' => \Soap\ServerManager::$URI,
                 'uri' => \Soap\ServerManager::$URI,
                 'soap_version' => SOAP_1_1
@@ -31,8 +33,12 @@ class Server
             echo $e->getMessage(); 
         }
         
+    }
+
+    public function handle()
+    {
         header("Content-Type: text/xml");
-        $server->setClass('\Soap\ServerManager');
-        $server->handle();
+        $this->server->setClass('\Soap\ServerManager');
+        $this->server->handle();
     }
 }
