@@ -2,4 +2,4 @@
 /cache/
 /public/cover
 .php*
-__*
+*.cache
