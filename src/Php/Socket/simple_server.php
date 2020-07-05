@@ -5,7 +5,6 @@ declare(strict_types = 1);
 #NO NAMESPACE
 #RUN FROM php -f script
 
-
 define('SERVER_ADDRESS', '127.0.0.1'); 
 define('SERVER_PORT', 4444);
 

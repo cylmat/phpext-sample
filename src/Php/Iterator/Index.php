@@ -73,7 +73,7 @@ class Index
 
     public function directory()
     {
-        $dir = new \DirectoryIterator(ROOT . '/src');
+        $dir = new \DirectoryIterator(__DIR__.'/../');
         foreach ($dir as $sub) {
             echo $dir->getFilename() . '<br/>';
         }
@@ -252,7 +252,7 @@ class Index
      */
     public function recursiveFiles()
     {
-        $path = ROOT . '/src/Iterator';
+        $path = __DIR__;
         $rdi = new \RecursiveDirectoryIterator($path, \RecursiveDirectoryIterator::KEY_AS_PATHNAME);
         foreach ($rdi as $file => $info) {
             echo $info->getFilename() . '<br>';
@@ -265,7 +265,7 @@ class Index
 
     public function recursiveRegex()
     {
-        $path = new \RecursiveDirectoryIterator(ROOT . '/src/Iterator');
+        $path = new \RecursiveDirectoryIterator(__DIR__);
         $Iterator = new \RecursiveIteratorIterator($path);
         $Regex = new \RegexIterator($Iterator, '/^.+\.php$/i', \RecursiveRegexIterator::GET_MATCH);
 

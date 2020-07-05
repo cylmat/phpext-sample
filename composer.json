@@ -2,10 +2,6 @@
     "name": "root/html",
     "description": "Trying differents php-pear-pecl extensions",
     "require": {
-        "php": "^7.2",
-        "slim/php-view": "2.2",
-        "slim/psr7": "1.0",
-        "slim/slim": "4.5"
     },
     "require-dev": {
         "friendsofphp/php-cs-fixer": "2.16",
@@ -24,12 +20,12 @@
     },
     "autoload": {
         "psr-4": {
-            "": "src/"
+            "": ["src/", "src/Php/"]
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Test\\": "tests/"
+            "PU\\": "tests/PhpUnit/"
         }
     },
     "scripts": {
