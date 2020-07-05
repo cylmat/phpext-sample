@@ -35,4 +35,11 @@ class SocketTest extends \PHPUnit\Framework\TestCase
         $this->index->simple_client();
         $this->assertTrue(true);
     }
+
+    public function testAdvencedUsage()
+    {
+        $this->markTestIncomplete(
+            'Advenced usage'
+        );
+    }
 }
