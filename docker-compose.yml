@@ -15,7 +15,8 @@ services:
             - ext
           
     phpfpm: 
-        build: .docker/conf/fpm
+        image: phpexttry:latest
+        #build: .docker/conf/fpm
         restart: always
         working_dir: /appli
         ports: 
