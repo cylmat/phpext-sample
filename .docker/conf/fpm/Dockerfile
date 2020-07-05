@@ -22,7 +22,6 @@ RUN sed -i 's/pm.max_children = 5/pm.max_children = 25/' /etc/php/7.3/fpm/pool.d
 RUN pecl channel-update pecl.php.net
 #RUN printf "yes\n" | pecl install swoole
 
-
 # coverage
 RUN apt-get install -y php-xdebug php7.3-phpdbg
 RUN pecl install pcov

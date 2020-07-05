@@ -1,0 +1,15 @@
+FROM php:fpm
+
+RUN apt-get update && apt-get install -y git wget zip libzip4 libzip-dev bzip2 lbzip2 apt-utils g++
+RUN apt-get install -y gnupg gnupg2 zlib1g-dev libicu-dev libxml2-dev
+WORKDIR /var/www/html 
+
+#php ext
+RUN docker-php-ext-configure intl 
+RUN docker-php-ext-install zip bcmath pdo pdo_mysql intl session soap
+RUN docker-php-ext-install sockets  tokenizer gettext iconv posix
+
+#composer
+ENV COMPOSER_ALLOW_SUPERUSER=1
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin
+RUN mv /usr/local/bin/composer.phar /usr/local/bin/composer && composer --version
