@@ -1,5 +1,6 @@
 FROM phpdockerio/php73-fpm:latest
 # Ubuntu 18.04 (Bionic Beaver)
+
 WORKDIR "/appli"
 
 # Fix debconf warnings upon build
@@ -7,12 +8,12 @@ ARG DEBIAN_FRONTEND=noninteractive
 
 # Install
 # be careful of cache
-RUN apt-get update && ENV=_docker_id_to_update_446361d45899253
+RUN apt-get update && ENV=_docker_id_to_update_44636ed45899
 RUN apt-get install -y curl sqlite3 php7.3-dev vim wget zip
 
 # Php ext
-RUN apt-get install -y php-curl php-ds php-mbstring php-redis php-pear 
-RUN apt-get install -y php-sqlite3 php7.3-soap php-psr php-xml php-zip
+RUN apt-get install -y php-curl php-ds php-mbstring php-redis php-pear php7.3-mysql
+RUN apt-get install -y php7.3-sqlite3 php7.3-soap php-psr php-xml php-zip
 
 # php.ini
 RUN sed -i 's/;extension=soap/extension=soap/' /etc/php/7.3/fpm/php.ini

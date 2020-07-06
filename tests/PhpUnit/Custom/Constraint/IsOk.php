@@ -17,7 +17,7 @@ final class IsOk extends Constraint
      */
     public function toString(): string
     {
-        return 'string is "c\'est ok"';
+        return 'string is "it\'s ok"';
     }
     /**
      * Evaluates the constraint for parameter $other. Returns true if the
@@ -27,7 +27,7 @@ final class IsOk extends Constraint
      */
     protected function matches($other): bool
     {
-        return $other === "c'est ok" ? true : false;
+        return $other === "it's ok" ? true : false;
     }
     /**
      * Returns the description of the failure

@@ -2,6 +2,8 @@
 
 declare(strict_types=1);
 
+namespace PU;
+
 use PHPUnit\Framework\TestCase;
 
 class PrototypeTest extends TestCase
