@@ -40,4 +40,10 @@ class StreamTest extends TestCase
         $this->index->wrapper("once upon a ", "time");
         $this->expectOutputRegex("/AddStream: once upon a AddStream: time/");
     }
+
+    public function testWrapper2() 
+    {
+        $this->index->wrapperTwo(450,251);
+        $this->expectOutputRegex("/701/");
+    }
 }

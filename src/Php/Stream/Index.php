@@ -47,4 +47,19 @@ class Index
         unlink("add://testing");
     }
 
+    function wrapperTwo(int $one, int $two)
+    {
+        stream_wrapper_register('var', '\Stream\VarStream') or die("Failed to register protocol");
+
+        $fp = fopen("var://testing_point", 'r+');
+        fwrite($fp, (string)$one);
+        fwrite($fp, (string)$two);
+        echo fgets($fp);
+        fclose($fp);
+        $fp = fopen("var://testing_point", 'r+');
+        echo fgets($fp);
+        
+        fclose($fp);
+    }
+
 }
