@@ -1,5 +1,4 @@
 /vendor/
 /cache/
 /public/cover
-.php*
 *.cache

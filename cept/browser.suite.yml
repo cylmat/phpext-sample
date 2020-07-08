@@ -1,0 +1,21 @@
+# Codeception Test Suite Configuration
+#
+# Suite for acceptance tests.
+# Perform tests in browser using the WebDriver or PhpBrowser.
+# If you need both WebDriver and PHPBrowser tests - create a separate suite.
+
+actor: BrowserTester
+
+modules:
+    enabled:
+        - PhpBrowser:
+            url: https://codeception.com
+        - \Helper\Browser
+    step_decorators: ~     
+
+settings:
+    shuffle: true
+    
+#groups:
+    # add 2 tests to db group
+#    db: [cept/browser]

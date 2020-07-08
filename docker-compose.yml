@@ -26,7 +26,45 @@ services:
             #- ${WEBSERVER}/${DIRECTORY}/.docker/conf/fpm/php.ini:/etc/php/7.3/fpm/php.ini
         networks: 
             - ext
+    
+    # mariadb: 
+    #     image: mariadb
+    #     container_name: mariadb
+    #     ports: 
+    #         - 3306:3306
+    #     restart: always
+    #     environment:
+    #         MYSQL_ROOT_PASSWORD: example
+        # volumes: 
+        #     - /WEBSERVER/packages/data:/var/lib/mysql
+    
+    # adminer:
+    #     image: adminer
+    #     container_name: mariadb-adminer
+    #     restart: always
+    #     ports:
+    #         - 8080:8080
+    #     - type: volume
+    #     source: mydata
+    #     target: /data
+    #     volume:
+    #       nocopy: true
+    #   - type: bind
+    #     source: ./static
+    #     target: /opt/app/static
        
 networks: 
     ext:
         driver: bridge
+
+#################
+# https://min.io
+#################
+#     image: minio/minio
+#     ports:
+#         - 9999:9000
+
+######################
+# https://nanobox.io
+# https://devilbox.org
+######################

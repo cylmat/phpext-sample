@@ -1,9 +1,9 @@
 paths:
-    tests: cest
-    output: cest/_output
-    data: tescestts/_data
-    support: cest/_support
-    envs: cest/_envs
+    tests: cept
+    output: cept/_more/_output
+    data: cept/_more/_data
+    support: cept/_more/_support
+    envs: cept/_more/_envs
 
 actor_suffix: Tester
 
