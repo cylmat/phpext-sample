@@ -1,8 +1,8 @@
 paths:
     tests: cept
+    support: cept/support
     output: cept/_more/_output
     data: cept/_more/_data
-    support: cept/_more/_support
     envs: cept/_more/_envs
 
 actor_suffix: Tester

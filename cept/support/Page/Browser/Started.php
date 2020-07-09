@@ -1,5 +1,7 @@
 <?php
 
+namespace Page\Browser;
+
 class Started
 {
     // include url of current page
@@ -8,13 +10,13 @@ class Started
     public $header = 'h1#getting-started';
 
     /**
-     * @var \AcceptdriverTester;
+     * @var \BrowserTester;
      */
-    protected $acceptdriverTester;
+    protected $browserTester;
 
-    public function __construct(\AcceptdriverTester $I)
+    public function __construct(\BrowserTester $I)
     {
-        $this->acceptdriverTester = $I;
+        $this->browserTester = $I;
     }
 
     /**
@@ -35,7 +37,7 @@ class Started
 
     public function checkSyntax()
     {
-        $I = $this->acceptdriverTester;
+        $I = $this->browserTester;
         $I->see("Syntax"); #different with PhpBrowser (exists on html source)
         $I->seeElement($this->header);
         $I->dontSee("Bad text in this page");

@@ -15,6 +15,9 @@ modules:
 
 settings:
     shuffle: true
+
+step_decorators:  
+    - \Codeception\Step\TryTo 
     
 #groups:
     # add 2 tests to db group

@@ -19,7 +19,15 @@ class BrowserTester extends \Codeception\Actor
 {
     use _generated\BrowserTesterActions;
 
+    use \Codeception\Lib\Actor\Shared\Friend; 
+
     /**
      * Define custom actions here
      */
+    function _customActor_seeThatInTitle($title)
+    {
+        $I = $this;
+        
+        $I->seeInTitle($title);
+    }
 }

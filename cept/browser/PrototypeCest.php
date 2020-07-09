@@ -1,4 +1,6 @@
 <?php
+
+
  
 /*
 wantToTest($text)  
@@ -51,10 +53,7 @@ class PrototypeCest
     {
         $I->amOnPage('/');
 
-        /**
-         * in: cept\_support\AcceptdriverTester.php
-         */
-        $I->_customActor_seeThatInTitle('database testing');
+        
     }
 
    
@@ -66,36 +65,63 @@ class PrototypeCest
     }*/
 
     /**
-     * ref: https://codeception.com/docs/03-AcceptanceTests
+     * ref: https://codeception.com/docs/03-BrowserTests
      */
-    public function tryAccessLinks(AcceptdriverTester $I)
+    public function tryAccessLinks(BrowserTester $I)
     {
         $I->see('testing');
         #$I->pause();
+
         ### SCREENSHOT ###
+
         #$I->makeHtmlSnapshot();
-        #$I->makeScreenshot(); #webdriver only
+
         ### LINKS ###
+
         #[id,name,css,xpath,link,class] => 'text displayed'
         #link(text), button(value,name,text), image(alt)
-        // label displayed, not in html
-        $I->click(["link" => "QUICK START"]); #link in the home page, button in uppercase 
-        $I->click(["link" => "CODECEPTION_"]); #click on logo
-        $I->click("/html/body/div[2]/div/div/div/div/a[1]"); #link in the home page button in uppercase 
-        $I->click(["link" => "quickstart"]); #click on the top menu link
-        $I->click("QuickStart"); #click on element on HTML source
+
+        ### BROWSER ###
+        $I->click(["link" => "Quick Start"]); #link in the home page, button in uppercase 
+        $I->tryToclick(["link" => "Codeception"]); #click on logo DOESNT WORK <a href>IMAGE + text</a>
+        
+        $I->click(["link" => "QuickStart"]); #click on the top menu link
         $I->click("A Complete Getting Started Guide");
+
+        ### COOKIES ###
+
+        $I->setCookie('auth', '123345');
+        $I->grabCookie('auth');
+        $I->seeCookie('auth');
+        
+        ### -WEBDRIVER- ONLY ###
+
+        #$I->makeScreenshot(); 
+        #$I->click("/html/body/div[2]/div/div/div/div/a[1]"); #link in the home page button in uppercase 
+
+        // label displayed, not in html
+        #$I->click(["link" => "quickstart"]); #click on the top menu link
+        #$I->click(["link" => "QUICK START"]); #link displayed in the home page, button in uppercase 
+        #$I->click(["link" => "CODECEPTION_"]); #click on logo
     }
     
     /**
-     * ref: https://codeception.com/docs/03-AcceptanceTests
+     * ref: https://codeception.com/docs/03-BrowserTests
      */
-    public function tryAccessSee(AcceptdriverTester $I, \Page\Acceptdriver\Started $startedPage, \Step\Acceptdriver\Admin $I_from_step)
+    public function tryAccessSee(BrowserTester $I, \Page\Browser\Started $startedPage, \Step\Browser\Admin $I_from_step)
     {
+        /**
+        * Custom actor in BrowserTester
+         * in: cept\_support\BrowserTester.php
+         */
+        $I->_customActor_seeThatInTitle('database testing');
+
         $I->lookForwardTo('Test seeing');
         $I->amOnPage('docs/02-GettingStarted');
+        $I->seeInTitle('02-GettingStarted');
 
         ### SEE ###
+        
         $I->see("Syntax"); #different with PhpBrowser (exists on html source)
         $I->seeElement("#getting-started");
         $I->dontSee("Bad text in this page");
@@ -107,60 +133,68 @@ class PrototypeCest
         $startedPage->checkSyntax(); #put all this validations into a pageobject
 
         /**
-         * Custom generate:Step
+         * Custom generate:Stepobject
          */
         $I_from_step->validate();
         $I->seeInCurrentUrl('docs/02-GettingStarted');
         $text = $I->grabTextFrom('h1#getting-started');
-        $api_key = $I->grabValueFrom('input[name=api]');
+        $api_key = $I->grabValueFrom('input[name=query]');
         //codecept_debug($I->customhelper_getCurrentUrl()); #with codecept --debug
 
         #CONDITIONAL
         #$I->canSeeInCurrentUrl('error/but/will/continue'); #maybe or not
 
         #SILENCE
-        #step_decorators:  
-        #    - \Codeception\Step\TryTo 
-        # in acceptance.suite.yml then "bin/codecept build"
+
+        /*
+        in Browser.suite.yml then "bin/codecept build"
+        
+        step_decorators:  
+            - \Codeception\Step\TryTo 
+         */
         $I->tryToClick('X', '.alert_popup_if_exists'); 
+###        $I->seeInTitle('02-GettingStarted'); #error! because tryToClick?
+
         #$I->seeCheckboxIsChecked('#agree');
-        $I->seeInField('query', '');
-        $I->seeLink('The Codeception Syntax');
+#        $I->seeInField(['name' => 'query'], '');
+        $I->see('The Codeception Syntax');
         $I->see("Getting Started"); #different with PhpBrowser (exists on html source)
-        $I->seeInTitle('Codeception');
         $I->dontSeeInTitle('Login');
-        #$I->wait(1);
-        $I->waitForElement(['css' => 'h1#getting-started'], 5);
-        $I->waitForElement("h1#getting-started", 5); #WebDriver only
-        $I->seeElement("h1#getting-started"); #WebDriver only, visible for user
+       
         $I->seeCurrentUrlEquals('/docs/02-GettingStarted');
         $I->seeCurrentUrlMatches('/(\d+)-Getting/');
         $I->seeInCurrentUrl('02-');
         $user_id = $I->grabFromCurrentUrl('/(\d+)-Getting/');
 
         /**
-         * Loaded in acceptancedriver.suite.yml 
-         *      - \Helper\Acceptdriver
-         * in: cept\_support\Helper\Acceptdriver.php
+         * Loaded in Browserdriver.suite.yml 
+         *      - \Helper\Browser
+         * 
+         * in: cept\_support\Helper\Browser.php
          *      return $this->getModule('WebDriver')->_getCurrentUri();
          */
-        $url = $I->customhelper_getCurrentUrl(); #$this->assertNotEmpty($url);
+        $url = $I->customhelper_validCurrentUrl(); 
+
+        ### WEBDRIVER ###
+
+         #$I->wait(1);
+         #$I->waitForElement(['css' => 'h1#getting-started'], 5);
+         #$I->waitForElement("h1#getting-started", 5); #WebDriver only
+         #$I->seeElement("h1#getting-started"); #WebDriver only, visible for user
     }
    
 
     /**
      * add use \Codeception\Lib\Actor\Shared\Friend; 
-     * in cept\_support\AcceptdriverTester.php
+     * in cept\_support\BrowserTester.php
      */
-    public function tryAccessMultipleWindows(AcceptdriverTester $I)
+    public function tryAccessMultipleWindows(BrowserTester $I)
     {
-        ### COOKIES ###
-        $I->setCookie('auth', '123345');
-        $I->grabCookie('auth');
-        $I->seeCookie('auth');
+        return;
+        ### MULTISESSION ###
         
         $client = $I->haveFriend('client');
-        $client->does(function(AcceptdriverTester $I) {
+        $client->does(function(BrowserTester $I) {
             $I->amOnPage('/docs/02-GettingStarted#Debugging');
             $I->fillField('query', 'data');
             #$I->click('Send');
@@ -170,14 +204,15 @@ class PrototypeCest
  
   
     /**
-     * ref: https://codeception.com/docs/03-AcceptanceTests
+     * ref: https://codeception.com/docs/03-BrowserTests
      */
-    public function tryAccessForms(AcceptdriverTester $I)
+    public function tryAccessForms(BrowserTester $I)
     {
         $I->amOnPage("/docs/02-GettingStarted");
 
         ### FORMS ###
-        $I->fillField('query', 'data'); // we can use input name or id
+
+    #    $I->fillField('query', 'data'); // we can use input name or id
         #$I->selectOption('name','option');
         #$I->fillField('password', new \Codeception\Step\Argument\PasswordArgument('thisissecret'));
         #$I->click('Update');
@@ -199,12 +234,12 @@ class PrototypeCest
         // , 'submitButton');
     }
 
-    public function _failed(\AcceptanceTester $I)
+    public function _failed(\BrowserTester $I)
     {
         // will be executed on test failure
     }
     
-    public function _passed(\AcceptanceTester $I)
+    public function _passed(\BrowserTester $I)
     {
         // will be executed when test is successful
     }
