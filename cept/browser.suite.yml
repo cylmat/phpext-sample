@@ -7,11 +7,23 @@
 actor: BrowserTester
 
 modules:
+    step_decorators: ~  
     enabled:
         - PhpBrowser:
             url: https://codeception.com
         - \Helper\Browser
-    step_decorators: ~     
+            #depends:
+            #        PhpBrowser
+        # - WebDriver:
+        #     url: https://codeception.com
+        #     browser: phantomjs
+        #     host: sel
+        #     port: 4444
+        #     capabilities: 
+        #         acceptSslCerts: true
+        #         trustAllSSLCertificates: true
+        #         javascriptEnabled: true
+        #         phantomjs.page.customHeaders.Authorization:  "Basic c3VwcG9ydC50bWFpZDokdVAzNGEyVyFuPg==" #base64_encode('user:pass')
 
 settings:
     shuffle: true

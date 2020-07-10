@@ -1,5 +1,9 @@
 FROM php:7.3-fpm
 
+#####################################################################
+# !!! DEBIAN PACKAGES ARE BLOCKED IN THIS OFFICIAL PHP DOCKER IMAGE #
+#####################################################################
+
 WORKDIR /appli
 
 RUN apt-get update  && ENV=_docker_id_to_update_44636ed45899

@@ -27,6 +27,15 @@ services:
         networks: 
             - ext
     
+    selenium:
+        image: nkovacs/selenium-standalone-phantomjs
+        restart: always
+        ports:
+            - 4444:4444
+            - 5900:5900
+        networks: 
+            - ext
+    
     # mariadb: 
     #     image: mariadb
     #     container_name: mariadb

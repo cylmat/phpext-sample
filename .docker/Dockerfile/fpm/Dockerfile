@@ -1,5 +1,5 @@
 FROM phpdockerio/php73-fpm:latest
-# Ubuntu 18.04 (Bionic Beaver)
+# Ubuntu 18.04 LTS (Bionic Beaver)
 
 WORKDIR "/appli"
 
@@ -30,6 +30,9 @@ RUN echo "\nextension=pcov.so" >> /etc/php/7.3/cli/php.ini
 # Phalcon 
 #RUN curl -s https://packagecloud.io/install/repositories/phalcon/stable/script.deb.sh | bash 
 #RUN apt-get install -y php7.3-phalcon
+# RUN apt-get update && apt-get -y --no-install-recommends install  php7.3-mysql php-redis
+# RUN curl -s https://packagecloud.io/install/repositories/phalcon/stable/script.deb.sh | bash && \
+#         apt-get update && apt-get install -y php-pear php5.6-dev php7.3-phalcon
 
 #SWOOLE : take much time
 #RUN printf "yes\n" | pecl install swoole

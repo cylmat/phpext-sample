@@ -1,68 +1,15 @@
 <?php
 
-
- 
-/*
-wantToTest($text)  
-wantTo($text) 
-execute($callable) 
-expectTo($prediction) 
-expect($prediction)
-amGoingTo($argumentation) 
-am($role) 
-lookForwardTo($achieveValue) 
-comment($description) 
-pause()
- amOnPage() 
- fillField('Username','davert') 
- click('Login') 
- see('Hello, davert') 
- dontSee() 
- $I->seeElement('.notice')  
- seeNumberOfElements(['css' => 'button.link'], 5)
- seeInCurrentUrl('/user/miles') 
- seeCheckboxIsChecked('#agree') 
- seeInField('user[name]', 'Miles') 
- seeLink('Login');
- CONDIT° NO FAIL(config) 
-    canSeeInCurrentUrl('/user/miles') 
-    canSeeCheckboxIsChecked('#agree') 
-    cantSeeInField('user[name]', 'Miles')
-    (config:\Codeception\Step\TryTo)    
-    
-    $I->tryToClick('x', '.alert');  
-    $I->tryToSeeElement('.alert')
- seeInTitle() 
- seeCurrentUrlEquals() 
- seeCurrentUrlMatches() 
- seeInCurrentUrl() 
- $user_id = $I->grabFromCurrentUrl('~^/user/(\d+)/~');
- - WebDriver
- wait(3) 
-$I->loadSessionSnapshot('login') 
-saveSessionSnapshot('login')  Codeception\Lib\Interfaces\SessionSnapshot
- Helper Webdriver: _initializeSession  _closeSession  _restart  _capabilities 
-     */
+/**
+ * phpbrowser api: https://codeception.com/docs/modules/PhpBrowser
+ * webdriver: https://codeception.com/docs/modules/WebDriver
+ */
 class PrototypeCest
 {
-    /**
-     * phpbrowser api: https://codeception.com/docs/modules/PhpBrowser
-     * webdriver: https://codeception.com/docs/modules/WebDriver
-     */
     public function _before(BrowserTester $I)
     {
         $I->amOnPage('/');
-
-        
     }
-
-   
-
-    /*protected function _inject(\Helper\SignUp $signUp, \Helper\NavBar $navBar)
-    {
-        $this->signUp = $signUp;
-        $this->navBar = $navBar;
-    }*/
 
     /**
      * ref: https://codeception.com/docs/03-BrowserTests
@@ -71,9 +18,6 @@ class PrototypeCest
     {
         $I->see('testing');
         #$I->pause();
-
-        ### SCREENSHOT ###
-
         #$I->makeHtmlSnapshot();
 
         ### LINKS ###
@@ -81,7 +25,6 @@ class PrototypeCest
         #[id,name,css,xpath,link,class] => 'text displayed'
         #link(text), button(value,name,text), image(alt)
 
-        ### BROWSER ###
         $I->click(["link" => "Quick Start"]); #link in the home page, button in uppercase 
         $I->tryToclick(["link" => "Codeception"]); #click on logo DOESNT WORK <a href>IMAGE + text</a>
         
@@ -116,6 +59,19 @@ class PrototypeCest
          */
         $I->_customActor_seeThatInTitle('database testing');
 
+        ### COMMENTS ###
+
+        /*
+            wantToTest($text)  
+            wantTo($text) 
+            execute($callable) 
+            expectTo($prediction) 
+            expect($prediction)
+            amGoingTo($argumentation) 
+            am($role) 
+            lookForwardTo($achieveValue) 
+            comment($description) 
+        */
         $I->lookForwardTo('Test seeing');
         $I->amOnPage('docs/02-GettingStarted');
         $I->seeInTitle('02-GettingStarted');
@@ -177,10 +133,13 @@ class PrototypeCest
 
         ### WEBDRIVER ###
 
-         #$I->wait(1);
-         #$I->waitForElement(['css' => 'h1#getting-started'], 5);
-         #$I->waitForElement("h1#getting-started", 5); #WebDriver only
-         #$I->seeElement("h1#getting-started"); #WebDriver only, visible for user
+        #$I->saveSessionSnapshot('login');  //Codeception\Lib\Interfaces\SessionSnapshot
+        #$I->loadSessionSnapshot('login'); 
+
+        #$I->wait(1);
+        #$I->waitForElement(['css' => 'h1#getting-started'], 5);
+        #$I->waitForElement("h1#getting-started", 5); #WebDriver only
+        #$I->seeElement("h1#getting-started"); #WebDriver only, visible for user
     }
    
 

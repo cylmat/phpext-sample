@@ -1,39 +1,3 @@
-<?php
-
-DOCKER------------
-sel:
-        image: nkovacs/selenium-standalone-phantomjs
-        restart: always
-        ports:
-            - 4444:4444
-            - 5900:5900
-        networks: 
-            - web
-
-PHP------------
-$capabilities = array(
-            WebDriverCapabilityType::BROWSER_NAME => WebDriverBrowserType::PHANTOMJS, #WebDriverBrowserType::PHANTOMJS,
-            WebDriverCapabilityType::ACCEPT_SSL_CERTS=> true,
-            WebDriverCapabilityType::JAVASCRIPT_ENABLED=>true,
-            'phantomjs.page.customHeaders.Authorization' => "Basic " . base64_encode('user:pass')
-        );
-            
-        $this->webDriver = RemoteWebDriver::create('sel:4444/wd/hub', $capabilities); 
-
-CODECEPTION------------------
-    enabled:
-        - \Helper\Acceptance
-        - WebDriver:
-            url: 'https://imagesdefense.fr' #user:pass
-            browser: phantomjs
-            host: sel
-            port: 4444
-            capabilities: 
-              #  acceptSslCerts: true
-                trustAllSSLCertificates: true
-                javascriptEnabled: true
-                phantomjs.page.customHeaders.Authorization:  "Basic c3VwcG9ydC50bWFpZDokdVAzNGEyVyFuPg==" #base64_encode('user:pass')
-
 
 
 <?php

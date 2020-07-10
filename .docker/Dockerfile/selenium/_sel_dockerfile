@@ -1,33 +1,6 @@
-```
-sel:
-        image: nkovacs/selenium-standalone-phantomjs
-        #image: selenium/node-phantomjs:3.7
-        restart: always
-        ports:
-            - 4444:4444
-            - 5900:5900
-        networks: 
-            - web
-```
 
 
-```
-#
-# PhantomJs
-#
-FROM nkovacs/selenium-standalone-phantomjs
-#ENV OPENSSL_CONF=/etc/ssl/
-#export OPENSSL_CONF=/etc/ssl/
-#WORKDIR /usr/local/bin
-WORKDIR /tmp
-RUN wget https://bitbucket.org/ariya/phantomjs/downloads/phantomjs-1.9.7-linux-x86_64.tar.bz2
-RUN bzip2 -dk phantomjs-1.9.7-linux-x86_64.tar.bz2
-RUN tar -xf phantomjs-1.9.7-linux-x86_64.tar
-RUN sudo mv /usr/local/bin/phantomjs /usr/local/bin/bak_phantomjs
-RUN sudo cp phantomjs-1.9.7-linux-x86_64/bin/phantomjs /usr/local/bin
-WORKDIR /
-RUN phantomjs --version
-```
+
 
 
 
@@ -53,7 +26,23 @@ RUN bzip2 -dk phantomjs-1.9.7-linux-x86_64.tar.bz2
 RUN tar -xf phantomjs-1.9.7-linux-x86_64.tar
 RUN cp phantomjs-1.9.7-linux-x86_64/bin/phantomjs /usr/local/bin
 
+RUN phantomjs --version```
+#
+# PhantomJsfor downgrade to version 1.9.7
+#
+FROM nkovacs/selenium-standalone-phantomjs
+#ENV OPENSSL_CONF=/etc/ssl/
+#export OPENSSL_CONF=/etc/ssl/
+#WORKDIR /usr/local/bin
+WORKDIR /tmp
+RUN wget https://bitbucket.org/ariya/phantomjs/downloads/phantomjs-1.9.7-linux-x86_64.tar.bz2
+RUN bzip2 -dk phantomjs-1.9.7-linux-x86_64.tar.bz2
+RUN tar -xf phantomjs-1.9.7-linux-x86_64.tar
+RUN sudo mv /usr/local/bin/phantomjs /usr/local/bin/bak_phantomjs
+RUN sudo cp phantomjs-1.9.7-linux-x86_64/bin/phantomjs /usr/local/bin
+WORKDIR /
 RUN phantomjs --version
+```
 
 
 
