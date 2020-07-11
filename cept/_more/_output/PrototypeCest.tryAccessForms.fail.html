@@ -1,17 +1,15 @@
-<!doctype html>
-<html lang="en">
-<head>
+<!DOCTYPE html><html lang="en"><head>
     <title>
         
-        02-GettingStarted - Codeception - Documentation
+        Codeception - PHP Testing framework - PHP unit testing, PHP e2e testing, database testing
         
     </title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
 
     <!-- CSS -->
-    <link href='https://fonts.googleapis.com/css?family=Roboto+Mono:400,500,700' rel='stylesheet' type='text/css'>
-    <link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Mono:400,500,700" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Lato&amp;display=swap" rel="stylesheet">
         <link href="//netdna.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
 
     <link rel="stylesheet" href="/css/codeception.css">
@@ -19,7 +17,7 @@
     <link rel="stylesheet" href="/css/algolia.css">
     <link rel="stylesheet" type="text/css" media="screen" href="/css/syntax.css">
     <!-- SCRIPTS -->
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script id="twitter-wjs" src="//platform.twitter.com/widgets.js"></script><script type="text/javascript" async="" src="https://ssl.google-analytics.com/ga.js"></script><script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script src="//netdna.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <script src="/js/jquery.toc.min.js"></script>
     <script src="/js/contributors.js"></script>
@@ -31,14 +29,14 @@
     <link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/favicons/favicon-16x16.png">
-    <link rel="shortcut icon" href="/favicons/favicon.ico"/>
+    <link rel="shortcut icon" href="/favicons/favicon.ico">
     <link rel="manifest" href="/favicons/site.webmanifest">
     <link rel="mask-icon" href="/favicons/safari-pinned-tab.svg" color="#236BFD">
-    <meta name="msapplication-config" content="/favicons/browserconfig.xml" />
+    <meta name="msapplication-config" content="/favicons/browserconfig.xml">
     <meta name="msapplication-TileColor" content="#da532c">
     <meta name="theme-color" content="#236BFD">
     <link rel="author" href="https://plus.google.com/+Codeception">
-</head>
+<script charset="utf-8" src="https://platform.twitter.com/js/button.1378e6a69a23712ca26755ee3c4084b4.js"></script><script charset="utf-8" src="https://platform.twitter.com/js/horizon_tweet.278dff0e94964f51fb3a8a312fe19019.js"></script></head>
 
 <body>
     
@@ -68,7 +66,7 @@
                 </button>
                 <a href="/" class="navbar-brand main-logo">
                   <svg width="81" height="60" style="vertical-align: middle" viewBox="0 0 81 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M35.6058 29.2295L22.5186 19.676L34.8582 40.2759L80.9997 2.21027L35.6058 29.2295ZM29.9915 54.4923C16.4012 54.4923 5.38429 43.4968 5.38429 29.9331C5.38429 16.3696 16.4012 5.37379 29.9915 5.37379C36.0092 5.37379 41.5198 7.53284 45.7954 11.1129L49.2448 7.00516C44.0311 2.63716 37.3154 0 29.9915 0C13.4539 0 0 13.428 0 29.9331C0 46.4384 13.4539 59.8664 29.9915 59.8664C38.5677 59.8664 46.3089 56.2494 51.7802 50.4701L47.8767 46.7908C43.3907 51.5302 37.0395 54.4923 29.9915 54.4923ZM29.9915 47.3736C20.3405 47.3736 12.517 39.5654 12.517 29.9332C12.517 20.301 20.3405 12.4925 29.9915 12.4925C34.2649 12.4925 38.176 14.0285 41.2122 16.5709L43.8017 13.4869C40.0621 10.3536 35.2448 8.46205 29.9915 8.46205C18.1291 8.46205 8.47842 18.0939 8.47842 29.9332C8.47842 41.7722 18.1291 51.404 29.9915 51.404C36.1431 51.404 41.696 48.8095 45.6204 44.6642L42.6838 41.8966C39.4983 45.2619 34.9967 47.3736 29.9915 47.3736Z" fill="#236BFD"/>
+<path d="M35.6058 29.2295L22.5186 19.676L34.8582 40.2759L80.9997 2.21027L35.6058 29.2295ZM29.9915 54.4923C16.4012 54.4923 5.38429 43.4968 5.38429 29.9331C5.38429 16.3696 16.4012 5.37379 29.9915 5.37379C36.0092 5.37379 41.5198 7.53284 45.7954 11.1129L49.2448 7.00516C44.0311 2.63716 37.3154 0 29.9915 0C13.4539 0 0 13.428 0 29.9331C0 46.4384 13.4539 59.8664 29.9915 59.8664C38.5677 59.8664 46.3089 56.2494 51.7802 50.4701L47.8767 46.7908C43.3907 51.5302 37.0395 54.4923 29.9915 54.4923ZM29.9915 47.3736C20.3405 47.3736 12.517 39.5654 12.517 29.9332C12.517 20.301 20.3405 12.4925 29.9915 12.4925C34.2649 12.4925 38.176 14.0285 41.2122 16.5709L43.8017 13.4869C40.0621 10.3536 35.2448 8.46205 29.9915 8.46205C18.1291 8.46205 8.47842 18.0939 8.47842 29.9332C8.47842 41.7722 18.1291 51.404 29.9915 51.404C36.1431 51.404 41.696 48.8095 45.6204 44.6642L42.6838 41.8966C39.4983 45.2619 34.9967 47.3736 29.9915 47.3736Z" fill="#236BFD"></path>
 </svg>CODECEPTION_</a>
             </div>
 
@@ -192,19 +190,19 @@
 
                     <li class="hidden-xs">
                         <a href="https://twitter.com/codeception" class="social-link">
-                          <svg height="512pt" viewBox="0 0 512 512" width="512pt" xmlns="http://www.w3.org/2000/svg"><path d="M256 0C114.637 0 0 114.637 0 256s114.637 256 256 256 256-114.637 256-256S397.363 0 256 0zm116.887 199.602c.113 2.52.168 5.05.168 7.593 0 77.645-59.102 167.18-167.184 167.184h.004-.004c-33.184 0-64.062-9.727-90.066-26.395 4.597.543 9.277.813 14.015.813 27.532 0 52.868-9.39 72.98-25.152-25.722-.477-47.41-17.465-54.894-40.813a58.481 58.481 0 0011.043 1.063c5.363 0 10.559-.723 15.496-2.07-26.886-5.384-47.14-29.145-47.14-57.598 0-.266 0-.504.007-.75a58.354 58.354 0 0026.614 7.347c-15.778-10.527-26.149-28.523-26.149-48.91a58.597 58.597 0 017.957-29.535c28.977 35.555 72.282 58.937 121.118 61.394a58.708 58.708 0 01-1.528-13.398c0-32.437 26.317-58.754 58.766-58.754 16.902 0 32.168 7.145 42.89 18.567a117.855 117.855 0 0037.313-14.262c-4.395 13.715-13.707 25.222-25.84 32.5 11.887-1.422 23.215-4.574 33.742-9.254a119.412 119.412 0 01-29.308 30.43zm0 0"/></svg>
+                          <svg height="512pt" viewBox="0 0 512 512" width="512pt" xmlns="http://www.w3.org/2000/svg"><path d="M256 0C114.637 0 0 114.637 0 256s114.637 256 256 256 256-114.637 256-256S397.363 0 256 0zm116.887 199.602c.113 2.52.168 5.05.168 7.593 0 77.645-59.102 167.18-167.184 167.184h.004-.004c-33.184 0-64.062-9.727-90.066-26.395 4.597.543 9.277.813 14.015.813 27.532 0 52.868-9.39 72.98-25.152-25.722-.477-47.41-17.465-54.894-40.813a58.481 58.481 0 0011.043 1.063c5.363 0 10.559-.723 15.496-2.07-26.886-5.384-47.14-29.145-47.14-57.598 0-.266 0-.504.007-.75a58.354 58.354 0 0026.614 7.347c-15.778-10.527-26.149-28.523-26.149-48.91a58.597 58.597 0 017.957-29.535c28.977 35.555 72.282 58.937 121.118 61.394a58.708 58.708 0 01-1.528-13.398c0-32.437 26.317-58.754 58.766-58.754 16.902 0 32.168 7.145 42.89 18.567a117.855 117.855 0 0037.313-14.262c-4.395 13.715-13.707 25.222-25.84 32.5 11.887-1.422 23.215-4.574 33.742-9.254a119.412 119.412 0 01-29.308 30.43zm0 0"></path></svg>
                         </a>
                     </li>
 
-                    <li  class="hidden-xs">
+                    <li class="hidden-xs">
                         <a href="https://github.com/codeception/codeception" class="social-link">
-                          <svg xmlns="http://www.w3.org/2000/svg" width="438.549" height="438.549" viewBox="0 0 438.549 438.549"><path d="M409.132 114.573c-19.608-33.596-46.205-60.194-79.798-79.8-33.598-19.607-70.277-29.408-110.063-29.408-39.781 0-76.472 9.804-110.063 29.408-33.596 19.605-60.192 46.204-79.8 79.8C9.803 148.168 0 184.854 0 224.63c0 47.78 13.94 90.745 41.827 128.906 27.884 38.164 63.906 64.572 108.063 79.227 5.14.954 8.945.283 11.419-1.996 2.475-2.282 3.711-5.14 3.711-8.562 0-.571-.049-5.708-.144-15.417a2549.81 2549.81 0 01-.144-25.406l-6.567 1.136c-4.187.767-9.469 1.092-15.846 1-6.374-.089-12.991-.757-19.842-1.999-6.854-1.231-13.229-4.086-19.13-8.559-5.898-4.473-10.085-10.328-12.56-17.556l-2.855-6.57c-1.903-4.374-4.899-9.233-8.992-14.559-4.093-5.331-8.232-8.945-12.419-10.848l-1.999-1.431c-1.332-.951-2.568-2.098-3.711-3.429-1.142-1.331-1.997-2.663-2.568-3.997-.572-1.335-.098-2.43 1.427-3.289 1.525-.859 4.281-1.276 8.28-1.276l5.708.853c3.807.763 8.516 3.042 14.133 6.851 5.614 3.806 10.229 8.754 13.846 14.842 4.38 7.806 9.657 13.754 15.846 17.847 6.184 4.093 12.419 6.136 18.699 6.136 6.28 0 11.704-.476 16.274-1.423 4.565-.952 8.848-2.383 12.847-4.285 1.713-12.758 6.377-22.559 13.988-29.41-10.848-1.14-20.601-2.857-29.264-5.14-8.658-2.286-17.605-5.996-26.835-11.14-9.235-5.137-16.896-11.516-22.985-19.126-6.09-7.614-11.088-17.61-14.987-29.979-3.901-12.374-5.852-26.648-5.852-42.826 0-23.035 7.52-42.637 22.557-58.817-7.044-17.318-6.379-36.732 1.997-58.24 5.52-1.715 13.706-.428 24.554 3.853 10.85 4.283 18.794 7.952 23.84 10.994 5.046 3.041 9.089 5.618 12.135 7.708 17.705-4.947 35.976-7.421 54.818-7.421s37.117 2.474 54.823 7.421l10.849-6.849c7.419-4.57 16.18-8.758 26.262-12.565 10.088-3.805 17.802-4.853 23.134-3.138 8.562 21.509 9.325 40.922 2.279 58.24 15.036 16.18 22.559 35.787 22.559 58.817 0 16.178-1.958 30.497-5.853 42.966-3.9 12.471-8.941 22.457-15.125 29.979-6.191 7.521-13.901 13.85-23.131 18.986-9.232 5.14-18.182 8.85-26.84 11.136-8.662 2.286-18.415 4.004-29.263 5.146 9.894 8.562 14.842 22.077 14.842 40.539v60.237c0 3.422 1.19 6.279 3.572 8.562 2.379 2.279 6.136 2.95 11.276 1.995 44.163-14.653 80.185-41.062 108.068-79.226 27.88-38.161 41.825-81.126 41.825-128.906-.01-39.771-9.818-76.454-29.414-110.049z"/></svg>
+                          <svg xmlns="http://www.w3.org/2000/svg" width="438.549" height="438.549" viewBox="0 0 438.549 438.549"><path d="M409.132 114.573c-19.608-33.596-46.205-60.194-79.798-79.8-33.598-19.607-70.277-29.408-110.063-29.408-39.781 0-76.472 9.804-110.063 29.408-33.596 19.605-60.192 46.204-79.8 79.8C9.803 148.168 0 184.854 0 224.63c0 47.78 13.94 90.745 41.827 128.906 27.884 38.164 63.906 64.572 108.063 79.227 5.14.954 8.945.283 11.419-1.996 2.475-2.282 3.711-5.14 3.711-8.562 0-.571-.049-5.708-.144-15.417a2549.81 2549.81 0 01-.144-25.406l-6.567 1.136c-4.187.767-9.469 1.092-15.846 1-6.374-.089-12.991-.757-19.842-1.999-6.854-1.231-13.229-4.086-19.13-8.559-5.898-4.473-10.085-10.328-12.56-17.556l-2.855-6.57c-1.903-4.374-4.899-9.233-8.992-14.559-4.093-5.331-8.232-8.945-12.419-10.848l-1.999-1.431c-1.332-.951-2.568-2.098-3.711-3.429-1.142-1.331-1.997-2.663-2.568-3.997-.572-1.335-.098-2.43 1.427-3.289 1.525-.859 4.281-1.276 8.28-1.276l5.708.853c3.807.763 8.516 3.042 14.133 6.851 5.614 3.806 10.229 8.754 13.846 14.842 4.38 7.806 9.657 13.754 15.846 17.847 6.184 4.093 12.419 6.136 18.699 6.136 6.28 0 11.704-.476 16.274-1.423 4.565-.952 8.848-2.383 12.847-4.285 1.713-12.758 6.377-22.559 13.988-29.41-10.848-1.14-20.601-2.857-29.264-5.14-8.658-2.286-17.605-5.996-26.835-11.14-9.235-5.137-16.896-11.516-22.985-19.126-6.09-7.614-11.088-17.61-14.987-29.979-3.901-12.374-5.852-26.648-5.852-42.826 0-23.035 7.52-42.637 22.557-58.817-7.044-17.318-6.379-36.732 1.997-58.24 5.52-1.715 13.706-.428 24.554 3.853 10.85 4.283 18.794 7.952 23.84 10.994 5.046 3.041 9.089 5.618 12.135 7.708 17.705-4.947 35.976-7.421 54.818-7.421s37.117 2.474 54.823 7.421l10.849-6.849c7.419-4.57 16.18-8.758 26.262-12.565 10.088-3.805 17.802-4.853 23.134-3.138 8.562 21.509 9.325 40.922 2.279 58.24 15.036 16.18 22.559 35.787 22.559 58.817 0 16.178-1.958 30.497-5.853 42.966-3.9 12.471-8.941 22.457-15.125 29.979-6.191 7.521-13.901 13.85-23.131 18.986-9.232 5.14-18.182 8.85-26.84 11.136-8.662 2.286-18.415 4.004-29.263 5.146 9.894 8.562 14.842 22.077 14.842 40.539v60.237c0 3.422 1.19 6.279 3.572 8.562 2.379 2.279 6.136 2.95 11.276 1.995 44.163-14.653 80.185-41.062 108.068-79.226 27.88-38.161 41.825-81.126 41.825-128.906-.01-39.771-9.818-76.454-29.414-110.049z"></path></svg>
                         </a>
                     </li>
 
-                  <li  class="hidden-xs">
+                  <li class="hidden-xs">
                     <a href="https://opencollective.com/codeception/" class="social-link social-link--last">
-                      <svg width="256" height="256" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid"><path d="M209.765 128.15c0 16.013-4.9 31.34-13.266 44.575l33.447 33.447a128.918 128.918 0 0025.783-77.35c0-29.265-9.754-55.751-26.47-77.336l-32.776 32.729a79.442 79.442 0 0113.267 43.888l.015.047z"/><path d="M127.513 210.355c-45.367-.086-82.125-36.838-82.22-82.205.069-45.386 36.835-82.166 82.22-82.252 16.732 0 32.058 4.901 44.607 13.267l32.744-32.776A128.965 128.965 0 00127.514.636C57.123.636 0 57.76 0 128.15c0 70.359 57.124 127.513 127.513 127.513a125.126 125.126 0 0077.351-26.501l-33.447-33.431c-11.861 9.754-27.157 14.624-43.904 14.624z"/></svg>
+                      <svg width="256" height="256" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid"><path d="M209.765 128.15c0 16.013-4.9 31.34-13.266 44.575l33.447 33.447a128.918 128.918 0 0025.783-77.35c0-29.265-9.754-55.751-26.47-77.336l-32.776 32.729a79.442 79.442 0 0113.267 43.888l.015.047z"></path><path d="M127.513 210.355c-45.367-.086-82.125-36.838-82.22-82.205.069-45.386 36.835-82.166 82.22-82.252 16.732 0 32.058 4.901 44.607 13.267l32.744-32.776A128.965 128.965 0 00127.514.636C57.123.636 0 57.76 0 128.15c0 70.359 57.124 127.513 127.513 127.513a125.126 125.126 0 0077.351-26.501l-33.447-33.431c-11.861 9.754-27.157 14.624-43.904 14.624z"></path></svg>
                     </a>
                   </li>
                 </ul>
@@ -215,446 +213,364 @@
 
 
     
+    <div><!-- Adding the new Homepage here -->
+
+<div id="home-hero">
+  <div class="container">
+    <div class="bubble">
+      <img src="/images/code-example.svg" class="visible-lg-block" alt="code example">
+
+      <h1>PHP Testing for <br>everyone<span class="blue">_</span></h1>
+
+      <p class="lead">
+        Codeception collects and shares best practices and solutions for testing PHP web applications. With a flexible
+        set of included modules tests are easy to write, easy to use and easy to maintain.<br>
+      </p>
+
+      <div class="home-btns">
+        <a class="btn btn-lg btn-install" href="/quickstart">Quick Start</a>&nbsp;
+        <a class="btn btn-lg btn-default" href="http://sdclabs.com/codeception?utm_source=codeception.com&amp;utm_medium=cover_section&amp;utm_term=big_button&amp;utm_campaign=reference">Enterprise
+          Support</a>
+      </div> <!-- /.row -->
+    </div>
+  </div>
+</div>
+
+</div>
+    
 
     <!-- CONTENT -->
     <div class="container-fluid">
-        <div class="row pt">
-  <div class="col-sm-3 col-lg-3">
+        <div class="bg-white">
+  <div class="container">
+    <div class="row">
 
-    <div>
+      <div class="col-lg-12 feature">
+        <h2>Benefits<span class="blue">_</span></h2>
+      </div>
+
+      <div class="col-sm-6 feature clearfix">
+        <svg width="70" height="70" viewBox="0 0 70 70" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="2.5" y="48.5" width="65" height="19" stroke="#226AFD" stroke-width="5"></rect>
+          <circle cx="34.5" cy="20.5" r="18" stroke="#226AFD" stroke-width="5"></circle>
+        </svg>
+
+        <h3>User_Centric_Tests</h3>
+
+        <p>
+          Codeception provides high-level domain language for tests.
+          Tests are represented as a set of user's actions.
+        </p>
+
+        <a class="btn btn-default" href="/docs/02-GettingStarted">Learn More</a>
+      </div>
+
+      <div class="col-sm-6 feature clearfix">
+        <svg width="70" height="70" viewBox="0 0 70 70" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M0 0V40.8333V46.6667V58.3333H32.0833V64.1667H14.5833V70H32.0833H37.9167H55.4167V64.1667H37.9167V58.3333H70V46.6667V40.8333V0H0ZM64.1667 52.5H37.9167H32.0833H5.83333V46.6667H64.1667V52.5ZM64.1667 40.8333H5.83333V5.83333H64.1667V40.8333Z" fill="#236BFD"></path>
+        </svg>
+
+        <h3>Browser_Testing</h3>
+
+        <p>
+          Tests can be executed using Firefox, Chrome, Safari or Cloud Testing services with <strong>Selenium
+          WebDriver</strong>. Browser can be emulated with HTTP-requests through CURL with PhpBrowser.
+        </p>
+
+        <a class="btn btn-default" href="/docs/03-AcceptanceTests">Learn More</a>
+      </div>
+    </div>
 
 
-    <input type="text" class="algolia__input js-algolia__input" autocomplete="off" name="query" placeholder="Search in docs..." />
+    <div class="row">
 
-    <hr>
+      <div class="col-sm-6 feature clearfix">
+        <svg width="70" height="71" viewBox="0 0 70 71" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M70 20.4606V0.0439453H49.572V7.33561H34.992V32.1273H26.26V17.5439H20.428V23.3773H0V46.7106H20.428V52.5439H26.26V37.9606H34.992V62.7523H49.572V70.0439H70V49.6273H49.572V56.9189H40.824V37.9606H49.572V43.7939H55.404V26.2939H49.572V32.1273H40.824V13.1689H49.572V20.4606H70ZM55.404 5.87728H64.168V14.6273H55.404V5.87728ZM20.412 40.8773H5.832V29.2106H20.412V40.8773ZM55.404 62.7523V56.9189V55.4606H64.168V64.2106H55.404V62.7523Z" fill="#226AFD"></path>
+        </svg>
 
-    <h3>Guides</h3>    
+        <h3>Framework_Testing</h3>
 
-  <ol class="guides">    
-      <li><a href="/docs/01-Introduction">Introduction</a></li><li><a href="/docs/02-GettingStarted">Getting Started</a></li><li><a href="/docs/03-AcceptanceTests">Acceptance Tests</a></li><li><a href="/docs/04-FunctionalTests">Functional Tests</a></li><li><a href="/docs/05-UnitTests">Unit Tests</a></li><li><a href="/docs/06-ModulesAndHelpers">Modules And Helpers</a></li><li><a href="/docs/06-ReusingTestCode">Reusing Test Code</a></li><li><a href="/docs/07-AdvancedUsage">Advanced Usage</a></li><li><a href="/docs/07-BDD">BDD</a></li><li><a href="/docs/08-Customization">Customization</a></li><li><a href="/docs/09-Data">Data</a></li><li><a href="/docs/10-APITesting">API Testing</a></li><li><a href="/docs/11-Codecoverage">Codecoverage</a></li><li><a href="/docs/12-ContinuousIntegration">Continuous Integration</a></li><li><a href="/docs/12-ParallelExecution">Parallel Execution</a></li>
+        <p>
+          Tests can be executed inside a PHP framework. This way web application can be executed without web server to
+          running faster and accessing application internals. <strong>Symfony</strong>, <strong>Laravel</strong>,
+          <strong>Zend Framework</strong>, <strong>Yii</strong>, <strong>Phalcon</strong> are supported.
+        </p>
 
-  </ol>
+        <a class="btn btn-default" href="/docs/04-FunctionalTests">Learn More</a>
+      </div>
 
-  <hr>
+      <div class="col-sm-6 feature clearfix">
+        <svg width="70" height="70" viewBox="0 0 70 70" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M8.75 23.3334V35V40.8334V46.6667H14.5833V40.8334H20.4167V46.6667H26.25V40.8334V35V23.3334H8.75ZM20.4167 35H14.5833V29.1667H20.4167V35Z" fill="#236BFD"></path>
+          <path d="M37.9167 23.3334H32.0833V40.8334V46.6667H37.9167V40.8334H49.5833V23.3334H37.9167ZM43.75 35H37.9167V29.1667H43.75V35Z" fill="#236BFD"></path>
+          <path d="M61.25 23.3334H55.4167V46.6667H61.25V23.3334Z" fill="#236BFD"></path>
+          <path d="M42.0408 7.29168L35 0.24939L27.9592 7.29168H0V18.9583H5.83333V13.125H30.3742L35 8.50064L39.6258 13.125H64.1667V18.9583H70V7.29168H42.0408Z" fill="#236BFD"></path>
+          <path d="M64.1667 51.0417V56.875H39.6258L35 61.4994L30.3742 56.875H5.83333V51.0417H0V62.7083H27.9592L35 69.7506L42.0408 62.7083H70V51.0417H64.1667Z" fill="#236BFD"></path>
+        </svg>
 
-      <p><a href="http://sdclabs.com/codeception?utm_source=codeception.com&utm_medium=docs_left&utm_term=link&utm_campaign=reference" class="btn btn-default doc-btn">Enterprise support</a></p>
-      <p><a href="http://sdclabs.com/trainings?utm_source=codeception.com&utm_medium=docs_left&utm_term=link&utm_campaign=reference" class="btn btn-default doc-btn">Trainings </a>
-      </p>
+        <h3>API_Testing</h3>
+
+        <p>
+          Codeception simplifies <strong>REST</strong> and <strong>SOAP</strong> testing.
+          There are flexible commands to test structure and data of JSON and XML responses.
+          Testing can be done over HTTP or inside a framework.
+        </p>
+
+        <a class="btn btn-default" href="/docs/10-APITesting">Learn More</a>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-6 feature clearfix">
+        <svg width="70" height="70" viewBox="0 0 70 70" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M0 0V11.6667V17.5V70H70V17.5V11.6667V0H0ZM64.1667 64.1667H5.83333V17.5H64.1667V64.1667ZM64.1667 11.6667H5.83333V5.83333H64.1667V11.6667Z" fill="#236BFD"></path>
+        </svg>
+
+        <h3>Data Driven Tests_</h3>
+
+        <p>
+          Connect to various data sources
+          <strong>MySQL, PostgreSQL, MongoDB, Redis, Memcache</strong> to use their data inside tests.
+          Take <strong>snapshots</strong> to compare data changes with previous runs.
+        </p>
+
+        <a class="btn btn-default" href="/docs/09-Data">Learn More</a>
+      </div>
+
+      <div class="col-sm-6 feature clearfix">
+        <svg width="70" height="70" viewBox="0 0 70 70" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M70 5.83333V0H0V11.6667V17.5V70H40.8333H58.3333H70V58.3333H64.1667V64.1667H58.3333V50.5123C65.3844 47.1713 70 40.0167 70 32.0833C70 23.4383 64.5283 15.7048 56.385 12.8377L52.5 11.4713V29.1667H46.6667V11.4713L42.7817 12.8392C34.6383 15.7048 29.1667 23.4383 29.1667 32.0833C29.1667 40.021 33.7881 47.1815 40.8333 50.5138V64.1667H5.83333V17.5H29.1667V11.6667H5.83333V5.83333H70ZM52.5 64.1667H46.6667V52.2929C46.9233 52.3294 47.1858 52.3498 47.4454 52.376C47.616 52.3935 47.7867 52.4169 47.9588 52.4315C49.0379 52.516 50.1273 52.516 51.2065 52.4315C51.3829 52.4169 51.5579 52.3935 51.7329 52.3746C51.9896 52.3483 52.2463 52.3294 52.5 52.2929V64.1667ZM35 32.0833C35 27.4152 37.2313 23.1204 40.8333 20.4181V35H58.3333V20.4181C61.9354 23.1204 64.1667 27.4152 64.1667 32.0833C64.1667 38.2565 60.2613 43.7806 54.4294 45.8325C52.1223 46.6623 49.5542 46.8694 47.1158 46.4552C46.2992 46.3152 45.4956 46.1052 44.7183 45.8252C38.9054 43.7806 35 38.2565 35 32.0833Z" fill="#236BFD"></path>
+          <path d="M17.5 52.5V29.1667H23.3333V23.3333H11.6667V58.3333H29.1667V52.5H17.5Z" fill="#236BFD"></path>
+        </svg>
+
+        <h3>Unit &amp; Integration Testing</h3>
+
+        <p>
+          Codeception is built on top of <strong>PHPUnit</strong> and is able to execute its tests.
+        </p>
+
+        <a class="btn btn-default" href="/docs/05-UnitTests">Learn More</a>
+      </div>
+    </div>
   </div>
-
-
 </div>
-  <div class="col-sm-12 col-lg-6">
 
+<div class="bg-white community-wrapper">
 
-    <div class="content page">
-      <div>
+  <div class="container">
 
 
+    <div class="row">
 
-        <div id="page">
 
+      <div class="col-sm-12 col-lg-6">
+        <h3 class="text-center">Voice of Developers_</h3>
 
-          <div class="algolia__search-content js-algolia__search-content">
-            <h1 class="page-title">Search</h1>
-            <div class="posts algolia__results"></div>
-          </div>
+        <div id="carousel-tweets" data-interval="10000" class="carousel slide" data-ride="carousel">
 
-          <div class="algolia__initial-content js-algolia__initial-content">
+          <!-- Wrapper for slides -->
+          <div class="carousel-inner" role="listbox">
 
-            <h1 id="getting-started">Getting Started</h1>
 
-<p>Let’s take a look at Codeception’s architecture. We’ll assume that you have already <a href="https://codeception.com/install">installed</a> it
-and bootstrapped your first test suites. Codeception has generated three of them: unit, functional, and acceptance.
-They are well described in the <a href="https://codeception.com/docs/01-Introduction">previous chapter</a>. Inside your <strong>/tests</strong> folder you will have three <code class="language-plaintext highlighter-rouge">.yml</code> config files and three directories
-with names corresponding to these suites: <code class="language-plaintext highlighter-rouge">unit</code>, <code class="language-plaintext highlighter-rouge">functional</code>, <code class="language-plaintext highlighter-rouge">acceptance</code>. Suites are independent groups of tests with a common purpose.</p>
+            <div class="item">
+  <div class="twitter-tweet twitter-tweet-rendered" style="max-width: 550px; width: 100%; margin-top: 10px; margin-bottom: 10px;"><iframe id="twitter-widget-1" scrolling="no" frameborder="0" allowtransparency="true" allowfullscreen="true" class="" title="Twitter Tweet" src="https://platform.twitter.com/embed/index.html?dnt=false&amp;embedId=twitter-widget-1&amp;frame=false&amp;hideCard=false&amp;hideThread=false&amp;id=1090249232303489025&amp;lang=en&amp;origin=https%3A%2F%2Fcodeception.com%2F&amp;theme=light&amp;widgetsVersion=9066bb2%3A1593540614199&amp;width=550px" data-tweet-id="1090249232303489025" style="position: absolute; visibility: hidden; width: 0px; height: 0px; display: block;"></iframe></div><blockquote class="twitter-tweet" data-lang="en" data-twitter-extracted-i1594490597621338585="true"><p lang="en" dir="ltr">A couple of weeks ago we migrated from Zend
+    Framework 1 to Symfony 3 and all the functional tests kept working. We basically only needed to replace the ZF1
+    module with the Symfony module. Thanks <a href="https://twitter.com/codeception?ref_src=twsrc%5Etfw">@codeception</a> for your awesome work there!</p>—
+    Matthias Noback (@matthiasnoback) <a href="https://twitter.com/matthiasnoback/status/1090249232303489025?ref_src=twsrc%5Etfw">January 29, 2019</a>
+  </blockquote>
+</div>
 
-<h2 id="the-codeception-syntax">The Codeception Syntax</h2>
+<div class="item">
+  <div class="twitter-tweet twitter-tweet-rendered" style="max-width: 550px; width: 100%; margin-top: 10px; margin-bottom: 10px;"><iframe id="twitter-widget-2" scrolling="no" frameborder="0" allowtransparency="true" allowfullscreen="true" class="" title="Twitter Tweet" src="https://platform.twitter.com/embed/index.html?dnt=false&amp;embedId=twitter-widget-2&amp;frame=false&amp;hideCard=false&amp;hideThread=false&amp;id=718065313452060673&amp;lang=en&amp;origin=https%3A%2F%2Fcodeception.com%2F&amp;partner=tweetdeck&amp;theme=light&amp;widgetsVersion=9066bb2%3A1593540614199&amp;width=550px" data-tweet-id="718065313452060673" style="position: absolute; visibility: hidden; width: 0px; height: 0px; display: block;"></iframe></div><blockquote class="twitter-tweet" data-partner="tweetdeck" data-twitter-extracted-i1594490597621338585="true"><p lang="en" dir="ltr">I remember tearing hair out for half
+    a day trying to write a unit test asserting that a route renders a certain view. <a href="https://twitter.com/codeception">@codeception</a> = 5 min.</p>— Michael Sullivan (@regularmike) <a href="https://twitter.com/regularmike/status/718065313452060673">April 7, 2016</a>
+  </blockquote>
+</div>
 
-<p>Codeception follows simple naming rules to make it easy to remember (as well as easy to understand) its method names.</p>
+<div class="item">
+  <div class="twitter-tweet twitter-tweet-rendered" style="max-width: 550px; width: 100%; margin-top: 10px; margin-bottom: 10px;"><iframe id="twitter-widget-3" scrolling="no" frameborder="0" allowtransparency="true" allowfullscreen="true" class="" title="Twitter Tweet" src="https://platform.twitter.com/embed/index.html?dnt=false&amp;embedId=twitter-widget-3&amp;frame=false&amp;hideCard=false&amp;hideThread=false&amp;id=870578932810223617&amp;lang=en&amp;origin=https%3A%2F%2Fcodeception.com%2F&amp;partner=tweetdeck&amp;theme=light&amp;widgetsVersion=9066bb2%3A1593540614199&amp;width=550px" data-tweet-id="870578932810223617" style="position: absolute; visibility: hidden; width: 0px; height: 0px; display: block;"></iframe></div><blockquote class="twitter-tweet" data-partner="tweetdeck" data-twitter-extracted-i1594490597621338585="true"><p lang="en" dir="ltr">Two years ago I decided to make <a href="https://twitter.com/codeception">@codeception</a> the testing tool of the whole PAYBACK Global web dev. It was
+    the best decision I ever made.</p>— Lars Frantzen (@frantzencd) <a href="https://twitter.com/frantzencd/status/870578932810223617">June 2, 2017</a>
+  </blockquote>
+</div>
 
-<ul>
-  <li><strong>Actions</strong> start with a plain english verb, like “click” or “fill”. Examples:</li>
-</ul>
+<div class="item active">
+  <div class="twitter-tweet twitter-tweet-rendered" style="max-width: 550px; width: 100%; margin-top: 10px; margin-bottom: 10px;"><iframe id="twitter-widget-4" scrolling="no" frameborder="0" allowtransparency="true" allowfullscreen="true" class="" title="Twitter Tweet" src="https://platform.twitter.com/embed/index.html?dnt=false&amp;embedId=twitter-widget-4&amp;frame=false&amp;hideCard=false&amp;hideThread=false&amp;id=677491552013389825&amp;lang=en&amp;origin=https%3A%2F%2Fcodeception.com%2F&amp;partner=tweetdeck&amp;theme=light&amp;widgetsVersion=9066bb2%3A1593540614199&amp;width=550px" style="position: absolute; visibility: hidden; width: 0px; height: 0px; display: block;" data-tweet-id="677491552013389825"></iframe></div><blockquote class="twitter-tweet" data-partner="tweetdeck" data-twitter-extracted-i1594490597621338585="true"><p lang="en" dir="ltr"><a href="https://twitter.com/codeception">@codeception</a> Wow, using pageobject and stepobject with cest test types is
+    awesome. So much flexibility <a href="https://twitter.com/hashtag/testing?src=hash">#testing</a> <a href="https://twitter.com/hashtag/php?src=hash">#php</a></p>— Mario Bašić (@ShockMario) <a href="https://twitter.com/ShockMario/status/677491552013389825">December 17, 2015</a>
+  </blockquote>
+</div>
 
-<figure class="highlight"><pre><code class="language-php" data-lang="php">    <span class="cp">&lt;?php</span>
-    <span class="nv">$I</span><span class="o">-&gt;</span><span class="na">click</span><span class="p">(</span><span class="s1">'Login'</span><span class="p">);</span>
-    <span class="nv">$I</span><span class="o">-&gt;</span><span class="na">fillField</span><span class="p">(</span><span class="s1">'#input-username'</span><span class="p">,</span> <span class="s1">'John Dough'</span><span class="p">);</span>
-    <span class="nv">$I</span><span class="o">-&gt;</span><span class="na">pressKey</span><span class="p">(</span><span class="s1">'#input-remarks'</span><span class="p">,</span> <span class="s1">'foo'</span><span class="p">);</span>
-    </code></pre></figure>
+<div class="item">
+  <div class="twitter-tweet twitter-tweet-rendered" style="max-width: 550px; width: 100%; margin-top: 10px; margin-bottom: 10px;"><iframe id="twitter-widget-5" scrolling="no" frameborder="0" allowtransparency="true" allowfullscreen="true" class="" title="Twitter Tweet" src="https://platform.twitter.com/embed/index.html?dnt=false&amp;embedId=twitter-widget-5&amp;frame=false&amp;hideCard=false&amp;hideThread=false&amp;id=646265421876850688&amp;lang=en&amp;origin=https%3A%2F%2Fcodeception.com%2F&amp;partner=tweetdeck&amp;theme=light&amp;widgetsVersion=9066bb2%3A1593540614199&amp;width=550px" data-tweet-id="646265421876850688" style="position: absolute; visibility: hidden; width: 0px; height: 0px; display: block;"></iframe></div><blockquote class="twitter-tweet" data-partner="tweetdeck" data-twitter-extracted-i1594490597621338585="true"><p lang="en" dir="ltr">Spending my life writing tests for
+    <a href="https://twitter.com/orderswift">@orderswift</a> right now. Really impressed with <a href="https://twitter.com/codeception">@codeception</a> which makes thing a hell of a lot easier.</p>— Rich
+    Martell (@RichMartell) <a href="https://twitter.com/RichMartell/status/646265421876850688">September 22, 2015</a>
+  </blockquote>
+</div>
 
-<ul>
-  <li><strong>Assertions</strong> always start with “see” or “dontSee”. Examples:</li>
-</ul>
+<div class="item">
+  <div class="twitter-tweet twitter-tweet-rendered" style="max-width: 550px; width: 100%; margin-top: 10px; margin-bottom: 10px;"><iframe id="twitter-widget-6" scrolling="no" frameborder="0" allowtransparency="true" allowfullscreen="true" class="" title="Twitter Tweet" src="https://platform.twitter.com/embed/index.html?dnt=false&amp;embedId=twitter-widget-6&amp;frame=false&amp;hideCard=false&amp;hideThread=false&amp;id=647788564571230208&amp;lang=en&amp;origin=https%3A%2F%2Fcodeception.com%2F&amp;partner=tweetdeck&amp;theme=light&amp;widgetsVersion=9066bb2%3A1593540614199&amp;width=550px" data-tweet-id="647788564571230208" style="position: absolute; visibility: hidden; width: 0px; height: 0px; display: block;"></iframe></div><blockquote class="twitter-tweet" data-partner="tweetdeck" data-twitter-extracted-i1594490597621338585="true"><p lang="en" dir="ltr">.<a href="https://twitter.com/zachwills">@zachwills</a> showing everyone <a href="https://twitter.com/codeception">@codeception</a>
+    as a great way to do acceptance testing of legacy code. <a href="https://t.co/gWXYbGhbAW">http://t.co/gWXYbGhbAW</a>
+    Great tool! <a href="https://twitter.com/hashtag/wctpa?src=hash">#wctpa</a></p>— Shawn Hooper (@ShawnHooper)
+    <a href="https://twitter.com/ShawnHooper/status/647788564571230208">September 26, 2015</a>
+  </blockquote>
+</div>
 
-<figure class="highlight"><pre><code class="language-php" data-lang="php">    <span class="cp">&lt;?php</span>
-    <span class="nv">$I</span><span class="o">-&gt;</span><span class="na">see</span><span class="p">(</span><span class="s1">'Welcome'</span><span class="p">);</span>
-    <span class="nv">$I</span><span class="o">-&gt;</span><span class="na">seeInTitle</span><span class="p">(</span><span class="s1">'My Company'</span><span class="p">);</span>
-    <span class="nv">$I</span><span class="o">-&gt;</span><span class="na">seeElement</span><span class="p">(</span><span class="s1">'nav'</span><span class="p">);</span>
-    <span class="nv">$I</span><span class="o">-&gt;</span><span class="na">dontSeeElement</span><span class="p">(</span><span class="s1">'#error-message'</span><span class="p">);</span>
-    <span class="nv">$I</span><span class="o">-&gt;</span><span class="na">dontSeeInPageSource</span><span class="p">(</span><span class="s1">'&lt;section class="foo"&gt;'</span><span class="p">);</span>
-    </code></pre></figure>
+<div class="item">
+  <div class="twitter-tweet twitter-tweet-rendered" style="max-width: 550px; width: 100%; margin-top: 10px; margin-bottom: 10px;"><iframe id="twitter-widget-7" scrolling="no" frameborder="0" allowtransparency="true" allowfullscreen="true" class="" title="Twitter Tweet" src="https://platform.twitter.com/embed/index.html?dnt=false&amp;embedId=twitter-widget-7&amp;frame=false&amp;hideCard=false&amp;hideThread=false&amp;id=636232359881392130&amp;lang=en&amp;origin=https%3A%2F%2Fcodeception.com%2F&amp;partner=tweetdeck&amp;theme=light&amp;widgetsVersion=9066bb2%3A1593540614199&amp;width=550px" data-tweet-id="636232359881392130" style="position: absolute; visibility: hidden; width: 0px; height: 0px; display: block;"></iframe></div><blockquote class="twitter-tweet" data-partner="tweetdeck" data-twitter-extracted-i1594490597621338585="true"><p lang="en" dir="ltr">Thank you <a href="https://twitter.com/codeception">@codeception</a> you just made my life easier <a href="https://twitter.com/hashtag/php?src=hash">#php</a> <a href="https://twitter.com/hashtag/testing?src=hash">#testing</a>
+  </p>— Rock Lobster (@lorenzoferrara) <a href="https://twitter.com/lorenzoferrara/status/636232359881392130">August
+    25, 2015</a>
+  </blockquote>
+</div>
 
-<ul>
-  <li><strong>Grabbers</strong> take information. The return value of those are meant to be saved as variables and used later. Example:</li>
-</ul>
-
-<figure class="highlight"><pre><code class="language-php" data-lang="php">    <span class="cp">&lt;?php</span>
-    <span class="nv">$method</span> <span class="o">=</span> <span class="nv">$I</span><span class="o">-&gt;</span><span class="na">grabAttributeFrom</span><span class="p">(</span><span class="s1">'#login-form'</span><span class="p">,</span> <span class="s1">'method'</span><span class="p">);</span>
-    <span class="nv">$I</span><span class="o">-&gt;</span><span class="na">assertEquals</span><span class="p">(</span><span class="s1">'post'</span><span class="p">,</span> <span class="nv">$method</span><span class="p">);</span>
-    </code></pre></figure>
-
-<h2 id="actors">Actors</h2>
-
-<p>One of the main concepts of Codeception is representation of tests as actions of a person. We have a UnitTester, who executes functions and tests the code. We also have a FunctionalTester, a qualified tester,
-who tests the application as a whole, with knowledge of its internals. Lastly we have an AcceptanceTester, a user who works with our application
-through an interface that we provide.</p>
-
-<p>Methods of actor classes are generally taken from <a href="https://codeception.com/docs/06-ModulesAndHelpers">Codeception Modules</a>. Each module provides predefined actions for different testing purposes, and they can be combined to fit the testing environment.
-Codeception tries to solve 90% of possible testing issues in its modules, so you don’t have to reinvent the wheel.
-We think that you can spend more time on writing tests and less on writing support code to make those tests run.
-By default, AcceptanceTester relies on PhpBrowser module, which is set in the <code class="language-plaintext highlighter-rouge">tests/acceptance.suite.yml</code> configuration file:</p>
-
-<figure class="highlight"><pre><code class="language-yaml" data-lang="yaml"><span class="na">actor</span><span class="pi">:</span> <span class="s">AcceptanceTester</span>
-<span class="na">modules</span><span class="pi">:</span>
-    <span class="na">enabled</span><span class="pi">:</span>
-        <span class="pi">-</span> <span class="na">PhpBrowser</span><span class="pi">:</span>
-            <span class="na">url</span><span class="pi">:</span> <span class="s">http://localhost/myapp/</span>
-        <span class="pi">-</span> <span class="s">\Helper\Acceptance</span></code></pre></figure>
-
-<p>In this configuration file you can enable/disable and reconfigure modules for your needs.
-When you change the configuration, the actor classes are rebuilt automatically. If the actor classes are not created or updated as you expect,
-try to generate them manually with the <code class="language-plaintext highlighter-rouge">build</code> command:</p>
-
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash">php vendor/bin/codecept build</code></pre></figure>
-
-<h2 id="writing-a-sample-test">Writing a Sample Test</h2>
-
-<p>Codeception has its own testing format called Cest (Codecept + Test). 
-To start writing a test we need to create a new Cest file. We can do that by running the following command:</p>
-
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash">php vendor/bin/codecept generate:cest acceptance Signin</code></pre></figure>
-
-<p>This will generate <code class="language-plaintext highlighter-rouge">SigninCest.php</code> file inside <code class="language-plaintext highlighter-rouge">tests/acceptance</code> directory. Let’s open it:</p>
-
-<figure class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
-<span class="kd">class</span> <span class="nc">SigninCest</span>
-<span class="p">{</span>
-    <span class="k">function</span> <span class="nf">_before</span><span class="p">(</span><span class="nx">AcceptanceTester</span> <span class="nv">$I</span><span class="p">)</span>
-    <span class="p">{</span>
-    <span class="p">}</span>
-    
-    <span class="k">public</span> <span class="k">function</span> <span class="nf">_after</span><span class="p">(</span><span class="nx">AcceptanceTester</span> <span class="nv">$I</span><span class="p">)</span>
-    <span class="p">{</span>        
-    <span class="p">}</span>
-
-    <span class="k">public</span> <span class="k">function</span> <span class="nf">tryToTest</span><span class="p">(</span><span class="nx">AcceptanceTester</span> <span class="nv">$I</span><span class="p">)</span>
-    <span class="p">{</span>
-       <span class="c1">// todo: write test</span>
-    <span class="p">}</span>
-<span class="p">}</span></code></pre></figure>
-
-<p>We have <code class="language-plaintext highlighter-rouge">_before</code> and <code class="language-plaintext highlighter-rouge">_after</code> methods to run some common actions before and after a test. And we have a placeholder action <code class="language-plaintext highlighter-rouge">tryToTest</code> which we need to implement.
-If we try to test a signin process it’s a good start to test a successful signin. Let’s rename this method to <code class="language-plaintext highlighter-rouge">signInSuccessfully</code>.</p>
-
-<p>We’ll assume that we have a ‘login’ page where we get authenticated by providing a username and password. 
-Then we are sent to a user page, where we see the text <code class="language-plaintext highlighter-rouge">Hello, %username%</code>. Let’s look at how this scenario is written in Codeception:</p>
-
-<figure class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
-<span class="kd">class</span> <span class="nc">SigninCest</span>
-<span class="p">{</span>
-    <span class="k">public</span> <span class="k">function</span> <span class="nf">signInSuccessfully</span><span class="p">(</span><span class="nx">AcceptanceTester</span> <span class="nv">$I</span><span class="p">)</span>
-    <span class="p">{</span>
-        <span class="nv">$I</span><span class="o">-&gt;</span><span class="na">amOnPage</span><span class="p">(</span><span class="s1">'/login'</span><span class="p">);</span>
-        <span class="nv">$I</span><span class="o">-&gt;</span><span class="na">fillField</span><span class="p">(</span><span class="s1">'Username'</span><span class="p">,</span><span class="s1">'davert'</span><span class="p">);</span>
-        <span class="nv">$I</span><span class="o">-&gt;</span><span class="na">fillField</span><span class="p">(</span><span class="s1">'Password'</span><span class="p">,</span><span class="s1">'qwerty'</span><span class="p">);</span>
-        <span class="nv">$I</span><span class="o">-&gt;</span><span class="na">click</span><span class="p">(</span><span class="s1">'Login'</span><span class="p">);</span>
-        <span class="nv">$I</span><span class="o">-&gt;</span><span class="na">see</span><span class="p">(</span><span class="s1">'Hello, davert'</span><span class="p">);</span>
-    <span class="p">}</span>
-<span class="p">}</span></code></pre></figure>
-
-<p>This scenario can probably be read by non-technical people. If you just remove all special chars like braces, arrows and <code class="language-plaintext highlighter-rouge">$</code>,
-this test transforms into plain English text:</p>
-
-<figure class="highlight"><pre><code class="language-yaml" data-lang="yaml"><span class="s">I amOnPage '/login'</span>
-<span class="s">I fillField 'Username','davert'</span>
-<span class="s">I fillField 'Password','qwerty'</span>
-<span class="s">I click 'Login'</span>
-<span class="s">I see 'Hello, davert'</span></code></pre></figure>
-
-<p>Codeception generates this text representation from PHP code by executing:</p>
-
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash">php vendor/bin/codecept generate:scenarios</code></pre></figure>
-
-<p>These generated scenarios will be stored in your <code class="language-plaintext highlighter-rouge">_data</code> directory in text files.</p>
-
-<p>Before we execute this test, we should make sure that the website is running on a local web server.
-Let’s open the <code class="language-plaintext highlighter-rouge">tests/acceptance.suite.yml</code> file and replace the URL with the URL of your web application:</p>
-
-<figure class="highlight"><pre><code class="language-yaml" data-lang="yaml"><span class="na">actor</span><span class="pi">:</span> <span class="s">AcceptanceTester</span>
-<span class="na">modules</span><span class="pi">:</span>
-    <span class="na">enabled</span><span class="pi">:</span>
-        <span class="pi">-</span> <span class="na">PhpBrowser</span><span class="pi">:</span>
-            <span class="na">url</span><span class="pi">:</span> <span class="s1">'</span><span class="s">http://myappurl.local'</span>
-        <span class="pi">-</span> <span class="s">\Helper\Acceptance</span></code></pre></figure>
-
-<p>After configuring the URL we can run this test with the <code class="language-plaintext highlighter-rouge">run</code> command:</p>
-
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash">php vendor/bin/codecept run</code></pre></figure>
-
-<p>This is the output we should see:</p>
-
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash">Acceptance Tests <span class="o">(</span>1<span class="o">)</span> <span class="nt">-------------------------------</span>
-✔ SigninCest: sign <span class="k">in </span>successfully
-<span class="nt">----------------------------------------------------</span>
-
-Time: 1 second, Memory: 21.00Mb
-
-OK <span class="o">(</span>1 <span class="nb">test</span>, 1 assertions<span class="o">)</span></code></pre></figure>
-
-<p>Let’s get some detailed output:</p>
-
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash">php vendor/bin/codecept run acceptance <span class="nt">--steps</span></code></pre></figure>
-
-<p>We should see a step-by-step report on the performed actions:</p>
-
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash">Acceptance Tests <span class="o">(</span>1<span class="o">)</span> <span class="nt">-------------------------------</span>
-SigninCest: Login to website
-Signature: SigninCest.php:signInSuccessfully
-Test: tests/acceptance/SigninCest.php:signInSuccessfully
-Scenario <span class="nt">--</span>
- I am on page <span class="s2">"/login"</span>
- I fill field <span class="s2">"Username"</span> <span class="s2">"davert"</span>
- I fill field <span class="s2">"Password"</span> <span class="s2">"qwerty"</span>
- I click <span class="s2">"Login"</span>
- I see <span class="s2">"Hello, davert"</span>
- OK
-<span class="nt">----------------------------------------------------</span>
-
-Time: 0 seconds, Memory: 21.00Mb
-
-OK <span class="o">(</span>1 <span class="nb">test</span>, 1 assertions<span class="o">)</span></code></pre></figure>
-
-<p>This simple test can be extended to a complete scenario of site usage, therefore,
-by emulating the user’s actions, you can test any of your websites.</p>
-
-<p>To run more tests create a public method for each of them. Include <code class="language-plaintext highlighter-rouge">AcceptanceTester</code> object as <code class="language-plaintext highlighter-rouge">$I</code> as a method parameter and use the same <code class="language-plaintext highlighter-rouge">$I-&gt;</code> API you’ve seen before.
-If your tests share common setup actions put them into <code class="language-plaintext highlighter-rouge">_before</code> method.</p>
-
-<p>For instance, to test CRUD we want 4 methods to be implemented and all next tests should start at <code class="language-plaintext highlighter-rouge">/task</code> page:</p>
-
-<figure class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
-<span class="kd">class</span> <span class="nc">TaskCrudCest</span>
-<span class="p">{</span>
-    <span class="k">function</span> <span class="nf">_before</span><span class="p">(</span><span class="nx">AcceptanceTester</span> <span class="nv">$I</span><span class="p">)</span>
-    <span class="p">{</span>
-        <span class="c1">// will be executed at the beginning of each test</span>
-        <span class="nv">$I</span><span class="o">-&gt;</span><span class="na">amOnPage</span><span class="p">(</span><span class="s1">'/task'</span><span class="p">);</span>
-    <span class="p">}</span>
-
-    <span class="k">function</span> <span class="nf">createTask</span><span class="p">(</span><span class="nx">AcceptanceTester</span> <span class="nv">$I</span><span class="p">)</span>
-    <span class="p">{</span>
-       <span class="c1">// todo: write test</span>
-    <span class="p">}</span>
-
-    <span class="k">function</span> <span class="nf">viewTask</span><span class="p">(</span><span class="nx">AcceptanceTester</span> <span class="nv">$I</span><span class="p">)</span>
-    <span class="p">{</span>
-       <span class="c1">// todo: write test</span>
-    <span class="p">}</span>
-
-    <span class="k">function</span> <span class="nf">updateTask</span><span class="p">(</span><span class="nx">AcceptanceTester</span> <span class="nv">$I</span><span class="p">)</span>
-    <span class="p">{</span>
-        <span class="c1">// todo: write test</span>
-    <span class="p">}</span>
-
-    <span class="k">function</span> <span class="nf">deleteTask</span><span class="p">(</span><span class="nx">AcceptanceTester</span> <span class="nv">$I</span><span class="p">)</span>
-    <span class="p">{</span>
-       <span class="c1">// todo: write test</span>
-    <span class="p">}</span>
-<span class="p">}</span></code></pre></figure>
-
-<p>Learn more about the <a href="https://codeception.com/docs/07-AdvancedUsage#Cest-Classes">Cest format</a> in the Advanced Testing section.</p>
-
-<h2 id="interactive-pause">Interactive Pause</h2>
-
-<p>It’s hard to write a complete test at once. 
-You will need to try different commands with different arguments before you find a correct path.</p>
-
-<p>Since Codeception 3.0 you can pause execution in any point and enter interactive shell where you will be able to try commands in action.
-All you need to do is to <strong>call <code class="language-plaintext highlighter-rouge">$I-&gt;pause()</code> in debug mode</strong>.</p>
-
-<figure class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
-<span class="c1">// use pause inside a test:</span>
-<span class="nv">$I</span><span class="o">-&gt;</span><span class="na">pause</span><span class="p">();</span> </code></pre></figure>
-
-<p>When a test gets to this point it stops and shows a console where you can try all available commands. 
-This can be very useful when you write functional, acceptance, or api test.</p>
-
-<p><img src="https://user-images.githubusercontent.com/220264/54929617-875ad180-4f1e-11e9-8fea-fc1b02423050.gif" alt="" /></p>
-
-<p>Inside interactive pause you can use all power of PHP interpreter. Use variables, functions, etc.
-Result of the last executed command (usually a grabber) is saved to <code class="language-plaintext highlighter-rouge">$result</code> variable, so you can use it in next commands.</p>
-
-<p>Inside acceptance or functional test you can save page screenshot or html snapshot to check the page you are working on.</p>
-
-<figure class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
-<span class="c1">// inside PhpBrowser, WebDrvier, frameworks</span>
-<span class="c1">// saves current HTML and prints a path to created file </span>
-<span class="nv">$I</span><span class="o">-&gt;</span><span class="na">makeHtmlSnapshot</span><span class="p">();</span>
-
-<span class="c1">// inside WebDriver</span>
-<span class="c1">// saves screenshot and prints a path to created file</span>
-<span class="nv">$I</span><span class="o">-&gt;</span><span class="na">makeScreenshot</span><span class="p">();</span></code></pre></figure>
-
-<p>To try commands without running a single test you can launch interactive console:</p>
-
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span>php vendor/bin/codecept console suitename</code></pre></figure>
-
-<p>Now you can execute all the commands of a corresponding Actor class and see the results immediately.</p>
-
-<h2 id="bdd">BDD</h2>
-
-<p>Codeception allows execution of user stories in Gherkin format in a similar manner as is done in Cucumber or Behat.
-Please refer to <a href="https://codeception.com/docs/07-BDD">the BDD chapter</a> to learn more.</p>
-
-<h2 id="configuration">Configuration</h2>
-
-<p>Codeception has a global configuration in <code class="language-plaintext highlighter-rouge">codeception.yml</code> and a config for each suite. We also support <code class="language-plaintext highlighter-rouge">.dist</code> configuration files.
-If you have several developers in a project, put shared settings into <code class="language-plaintext highlighter-rouge">codeception.dist.yml</code> and personal settings into <code class="language-plaintext highlighter-rouge">codeception.yml</code>.
-The same goes for suite configs. For example, the <code class="language-plaintext highlighter-rouge">unit.suite.yml</code> will be merged with <code class="language-plaintext highlighter-rouge">unit.suite.dist.yml</code>.</p>
-
-<h2 id="running-tests">Running Tests</h2>
-
-<p>Tests can be started with the <code class="language-plaintext highlighter-rouge">run</code> command:</p>
-
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash">php vendor/bin/codecept run</code></pre></figure>
-
-<p>With the first argument you can run all tests from one suite:</p>
-
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash">php vendor/bin/codecept run acceptance</code></pre></figure>
-
-<p>To limit tests run to a single class, add a second argument. Provide a local path to the test class, from the suite directory:</p>
-
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash">php vendor/bin/codecept run acceptance SigninCest.php</code></pre></figure>
-
-<p>Alternatively you can provide the full path to test file:</p>
-
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash">php vendor/bin/codecept run tests/acceptance/SigninCest.php</code></pre></figure>
-
-<p>You can further filter which tests are run by appending a method name to the class, separated by a colon (for Cest or Test formats):</p>
-
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash">php vendor/bin/codecept run tests/acceptance/SigninCest.php:^anonymousLogin<span class="err">$</span></code></pre></figure>
-
-<p>You can provide a directory path as well. This will execute all acceptance tests from the <code class="language-plaintext highlighter-rouge">backend</code> dir:</p>
-
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash">php vendor/bin/codecept run tests/acceptance/backend</code></pre></figure>
-
-<p>Using regular expressions, you can even run many different test methods from the same directory or class.
-For example, this will execute all acceptance tests from the <code class="language-plaintext highlighter-rouge">backend</code> dir beginning with the word “login”:</p>
-
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash">php vendor/bin/codecept run tests/acceptance/backend:^login</code></pre></figure>
-
-<p>To execute a group of tests that are not stored in the same directory, you can organize them in <a href="https://codeception.com/docs/07-AdvancedUsage#Groups">groups</a>.</p>
-
-<h3 id="reports">Reports</h3>
-
-<p>To generate JUnit XML output, you can provide the <code class="language-plaintext highlighter-rouge">--xml</code> option, and <code class="language-plaintext highlighter-rouge">--html</code> for HTML report.</p>
-
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash">php vendor/bin/codecept run <span class="nt">--steps</span> <span class="nt">--xml</span> <span class="nt">--html</span></code></pre></figure>
-
-<p>This command will run all tests for all suites, displaying the steps, and building HTML and XML reports. Reports will be stored in the <code class="language-plaintext highlighter-rouge">tests/_output/</code> directory.</p>
-
-<p>To see all the available options, run the following command:</p>
-
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash">php vendor/bin/codecept <span class="nb">help </span>run</code></pre></figure>
-
-<h2 id="debugging">Debugging</h2>
-
-<p>To receive detailed output, tests can be executed with the <code class="language-plaintext highlighter-rouge">--debug</code> option.
-You may print any information inside a test using the <code class="language-plaintext highlighter-rouge">codecept_debug</code> function.</p>
-
-<h3 id="generators">Generators</h3>
-
-<p>There are plenty of useful Codeception commands:</p>
-
-<ul>
-  <li><code class="language-plaintext highlighter-rouge">generate:cest</code> <em>suite</em> <em>filename</em> - Generates a sample Cest test</li>
-  <li><code class="language-plaintext highlighter-rouge">generate:test</code> <em>suite</em> <em>filename</em> - Generates a sample PHPUnit Test with Codeception hooks</li>
-  <li><code class="language-plaintext highlighter-rouge">generate:feature</code> <em>suite</em> <em>filename</em> - Generates Gherkin feature file</li>
-  <li><code class="language-plaintext highlighter-rouge">generate:suite</code> <em>suite</em> <em>actor</em> - Generates a new suite with the given Actor class name</li>
-  <li><code class="language-plaintext highlighter-rouge">generate:scenarios</code> <em>suite</em> - Generates text files containing scenarios from tests</li>
-  <li><code class="language-plaintext highlighter-rouge">generate:helper</code> <em>filename</em> - Generates a sample Helper File</li>
-  <li><code class="language-plaintext highlighter-rouge">generate:pageobject</code> <em>suite</em> <em>filename</em> - Generates a sample Page object</li>
-  <li><code class="language-plaintext highlighter-rouge">generate:stepobject</code> <em>suite</em> <em>filename</em> - Generates a sample Step object</li>
-  <li><code class="language-plaintext highlighter-rouge">generate:environment</code> <em>env</em> - Generates a sample Environment configuration</li>
-  <li><code class="language-plaintext highlighter-rouge">generate:groupobject</code> <em>group</em> - Generates a sample Group Extension</li>
-</ul>
-
-<h2 id="conclusion">Conclusion</h2>
-
-<p>We have taken a look into the Codeception structure. Most of the things you need were already generated by the <code class="language-plaintext highlighter-rouge">bootstrap</code> command.
-After you have reviewed the basic concepts and configurations, you can start writing your first scenario.</p>
-
-<ul>
-  <li><strong>Next Chapter: <a href="/docs/03-AcceptanceTests">AcceptanceTests &gt;</a></strong></li>
-  <li><strong>Previous Chapter: <a href="/docs/01-Introduction">&lt; Introduction</a></strong></li>
-</ul>
+<!-- add your own tweets -->
 
 
           </div>
+
+          <!-- Controls -->
+          <a class="right carousel-control" href="#carousel-tweets" role="button" data-slide="next">
+            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+          </a>
         </div>
-        <div class="alert alert-success">
+      </div>
 
-Don't know how to write tests on your own? We will build or improve them for you. 
-<strong>
-  Request a quote for official 
-         <a href="http://sdclabs.com/codeception?utm_source=codeception.com&utm_medium=docs_bottom&utm_term=link&utm_campaign=reference">enterprise support</a> or <a href="http://sdclabs.com/trainings?utm_source=codeception.com&utm_medium=docs_bottom&utm_term=link&utm_campaign=reference">trainings</a></strong>
+      <div class="col-sm-12 col-lg-6">
+        <h3 class="text-center">Trusted By_</h3>
 
+        <div data-interval="10000" id="carousel-companies" class="carousel slide" data-ride="carousel">
+
+          <!-- Wrapper for slides -->
+          <div class="carousel-inner" role="listbox">
+            <div class="item">
+  <a target="_blank" rel="nofollow" href="http://rebilly.com"><img src="/images/Rebilly.png" alt="Rebilly"></a>
 </div>
 
+<div class="item">
+  <a target="_blank" rel="nofollow" href="http://depositphotos.com/"><img src="/images/companies/depositphotos.png" alt="Deposit Photos"></a>
+</div>
+
+<div class="item">
+  <a target="_blank" rel="nofollow" href="http://www.pdffiller.com"><img src="/images/companies/logo-pdffiller.svg" alt="PDF Filler"></a>
+</div>
+
+<div class="item">
+  <a target="_blank" rel="nofollow" href="http://gen.tech"><img src="/images/companies/genesis.png" alt="Genesis Tech"></a>
+</div>
+
+<div class="item">
+  <a target="_blank" rel="nofollow" href="http://spryker.com"><img src="/images/companies/spryker.png" alt="Spryker"></a>
+</div>
+
+<div class="item active">
+  <a target="_blank" rel="nofollow" href="http://2amigos.us"><img src="/images/2amigos.png" alt="2 Amigos"></a>
+</div>
+
+<div class="item item--company-magma">
+  <a target="_blank" rel="nofollow" href="http://magmadigital.co.uk/"><img src="/images/companies/magma.svg" alt="Magma Digital"></a>
+</div>
+
+<div class="item">
+  <a target="_blank" rel="nofollow" href="http://www.payback.net/de/en/home/"><img src="/images/companies/payback.png" alt="Magma Digital"></a>
+</div>
+          </div>
+
+          <!-- Controls -->
+          <a class="right carousel-control" href="#carousel-companies" role="button" data-slide="next">
+            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+          </a>
+        </div>
+
+        <p class="text-center">
+
+          <a href="https://github.com/Codeception/Codeception/wiki/Who-is-using-it%3F">...and many others. Add your
+            company too!</a>
+        </p>
 
       </div>
     </div>
   </div>
-
-    <div class="col-sm-12 col-lg-3">
-
-    <!-- <input type="search" class="search" placeholder="live search..."> -->
-     <!-- toc.js generated nav... -->
-     <div id="toc" class="nav"></div>
-
-   <script>
-    $(document).ready(function () {
-      $(".cp:contains('<?php')").css({ visibility : 'hidden' });
-      $(".cp:contains('?>')").css({ visibility : 'hidden' });
-      $('#page table').addClass('table table-striped table-bordered');
-      $('#toc').toc({
-        'selectors': 'h2,h3,h4',
-        'prefix': 'toc',
-        'container': '#page',
-        //custom function for anchor name
-        'anchorName': function(i, heading, prefix) {
-          return $(heading).text().replace(/\s/g, '-').replace(/[^\w-]/g, '');
-        },
+</div>
+<script>
+  $(document).ready(function () {
+    function randomCarousel(id) {
+      var num = $(id + ' .item').length;
+      var slide = Math.floor((Math.random() * num));
+      $(id + ' .item').each(function (index) {
+        if (index == slide) {
+          $(this).addClass('active');
+        } else {
+          $(this).removeClass('active');
+        }
       });
-      // List.js
-      $('#toc > ul').addClass('list');
-      $('#toc ul.list li a').addClass('searchitem');
-      var options = {
-        valueNames: [ 'searchitem' ]
-      };
-      var userList = new List('searchable', options);
-      // end List.js
+    }
 
-    }); // docrdy
-  </script>
+    randomCarousel('#carousel-tweets');
+    randomCarousel('#carousel-companies');
+  });
+</script>
 
-
-
-    </div>
+<div class="bg-grey">
+  <div class="container">
+    <h2 class="text-center">Use_With</h2>
+    <div class="row casestudy">
+  <div class="col-sm-4">
+    <a href="/for/symfony" class="item img-thumbnail bg-white item--symfony">
+      <div>
+        <img src="/images/frameworks/symfony.svg" alt="Symfony">
+        <h4>Symfony</h4>
+      </div>
+    </a>
   </div>
+  <div class="col-sm-4">
+    <a href="/for/laravel" class="img-thumbnail item bg-white item--laravel">
+      <div>
+        <img src="/images/frameworks/laravel.svg" alt="laravel">
+        <h4>Laravel</h4>
+      </div>
+    </a>
+  </div>
+  <div class="col-sm-4">
+    <a href="/for/wordpress" class="img-thumbnail bg-white item item--wp">
+      <div>
+        <img src="/images/frameworks/wordpress.svg" alt="wordPress">
+        <h4>WordPress</h4>
+      </div>
+    </a>
+  </div>
+</div>
+
+<div class="row casestudy">
+  <div class="col-sm-4">
+    <a href="/for/joomla" class="item img-thumbnail bg-white item--joomla">
+      <div>
+        <img src="/images/frameworks/joomla.svg" alt="joomla">
+        <h4>joomla</h4>
+      </div>
+    </a>
+  </div>
+  <div class="col-sm-4">
+    <a href="/for/yii" class="img-thumbnail item bg-white item--yii">
+      <div>
+        <img src="/images/frameworks/yii-logo.svg" alt="yii">
+        <h4>Yii Framework</h4>
+      </div>
+    </a>
+  </div>
+  
+  <div class="col-sm-4">
+    <a href="/for/phalcon" class="img-thumbnail bg-white item item--phalcon">
+      <div>
+        <img src="/images/frameworks/phalcon-logo.svg" alt="Phalcon">
+        <h4>Phalcon</h4>
+      </div>
+    </a>
+  </div>
+</div>
 
 
+  </div>
+</div>
 
     </div>
 
@@ -679,8 +595,8 @@ Don't know how to write tests on your own? We will build or improve them for you
           <li><a href="/install">Installation</a></li>
           <li><a href="/credits">Credits</a></li>
           <li><a href="/changelog">Releases</a></li>
-          <li><a href="http://sdclabs.com/codeception?utm_source=codeception.com&utm_medium=bottom_menu&utm_term=link&utm_campaign=reference" >Enterprise Support</a></li>
-          <li><a href="http://sdclabs.com/trainings?utm_source=codeception.com&utm_medium=bottom_menu&utm_term=link&utm_campaign=reference" >Trainings</a></li>
+          <li><a href="http://sdclabs.com/codeception?utm_source=codeception.com&amp;utm_medium=bottom_menu&amp;utm_term=link&amp;utm_campaign=reference">Enterprise Support</a></li>
+          <li><a href="http://sdclabs.com/trainings?utm_source=codeception.com&amp;utm_medium=bottom_menu&amp;utm_term=link&amp;utm_campaign=reference">Trainings</a></li>
         </ul>
       </div>
 
@@ -699,19 +615,19 @@ Don't know how to write tests on your own? We will build or improve them for you
             <div class="col-sm-6 col-md-4 col-lg-4 text-center footer-social">
 
                         <a href="https://github.com/codeception/codeception" class="social">
-                          <svg xmlns="http://www.w3.org/2000/svg" width="438.549" height="438.549" viewBox="0 0 438.549 438.549"><path d="M409.132 114.573c-19.608-33.596-46.205-60.194-79.798-79.8-33.598-19.607-70.277-29.408-110.063-29.408-39.781 0-76.472 9.804-110.063 29.408-33.596 19.605-60.192 46.204-79.8 79.8C9.803 148.168 0 184.854 0 224.63c0 47.78 13.94 90.745 41.827 128.906 27.884 38.164 63.906 64.572 108.063 79.227 5.14.954 8.945.283 11.419-1.996 2.475-2.282 3.711-5.14 3.711-8.562 0-.571-.049-5.708-.144-15.417a2549.81 2549.81 0 01-.144-25.406l-6.567 1.136c-4.187.767-9.469 1.092-15.846 1-6.374-.089-12.991-.757-19.842-1.999-6.854-1.231-13.229-4.086-19.13-8.559-5.898-4.473-10.085-10.328-12.56-17.556l-2.855-6.57c-1.903-4.374-4.899-9.233-8.992-14.559-4.093-5.331-8.232-8.945-12.419-10.848l-1.999-1.431c-1.332-.951-2.568-2.098-3.711-3.429-1.142-1.331-1.997-2.663-2.568-3.997-.572-1.335-.098-2.43 1.427-3.289 1.525-.859 4.281-1.276 8.28-1.276l5.708.853c3.807.763 8.516 3.042 14.133 6.851 5.614 3.806 10.229 8.754 13.846 14.842 4.38 7.806 9.657 13.754 15.846 17.847 6.184 4.093 12.419 6.136 18.699 6.136 6.28 0 11.704-.476 16.274-1.423 4.565-.952 8.848-2.383 12.847-4.285 1.713-12.758 6.377-22.559 13.988-29.41-10.848-1.14-20.601-2.857-29.264-5.14-8.658-2.286-17.605-5.996-26.835-11.14-9.235-5.137-16.896-11.516-22.985-19.126-6.09-7.614-11.088-17.61-14.987-29.979-3.901-12.374-5.852-26.648-5.852-42.826 0-23.035 7.52-42.637 22.557-58.817-7.044-17.318-6.379-36.732 1.997-58.24 5.52-1.715 13.706-.428 24.554 3.853 10.85 4.283 18.794 7.952 23.84 10.994 5.046 3.041 9.089 5.618 12.135 7.708 17.705-4.947 35.976-7.421 54.818-7.421s37.117 2.474 54.823 7.421l10.849-6.849c7.419-4.57 16.18-8.758 26.262-12.565 10.088-3.805 17.802-4.853 23.134-3.138 8.562 21.509 9.325 40.922 2.279 58.24 15.036 16.18 22.559 35.787 22.559 58.817 0 16.178-1.958 30.497-5.853 42.966-3.9 12.471-8.941 22.457-15.125 29.979-6.191 7.521-13.901 13.85-23.131 18.986-9.232 5.14-18.182 8.85-26.84 11.136-8.662 2.286-18.415 4.004-29.263 5.146 9.894 8.562 14.842 22.077 14.842 40.539v60.237c0 3.422 1.19 6.279 3.572 8.562 2.379 2.279 6.136 2.95 11.276 1.995 44.163-14.653 80.185-41.062 108.068-79.226 27.88-38.161 41.825-81.126 41.825-128.906-.01-39.771-9.818-76.454-29.414-110.049z"/></svg>
+                          <svg xmlns="http://www.w3.org/2000/svg" width="438.549" height="438.549" viewBox="0 0 438.549 438.549"><path d="M409.132 114.573c-19.608-33.596-46.205-60.194-79.798-79.8-33.598-19.607-70.277-29.408-110.063-29.408-39.781 0-76.472 9.804-110.063 29.408-33.596 19.605-60.192 46.204-79.8 79.8C9.803 148.168 0 184.854 0 224.63c0 47.78 13.94 90.745 41.827 128.906 27.884 38.164 63.906 64.572 108.063 79.227 5.14.954 8.945.283 11.419-1.996 2.475-2.282 3.711-5.14 3.711-8.562 0-.571-.049-5.708-.144-15.417a2549.81 2549.81 0 01-.144-25.406l-6.567 1.136c-4.187.767-9.469 1.092-15.846 1-6.374-.089-12.991-.757-19.842-1.999-6.854-1.231-13.229-4.086-19.13-8.559-5.898-4.473-10.085-10.328-12.56-17.556l-2.855-6.57c-1.903-4.374-4.899-9.233-8.992-14.559-4.093-5.331-8.232-8.945-12.419-10.848l-1.999-1.431c-1.332-.951-2.568-2.098-3.711-3.429-1.142-1.331-1.997-2.663-2.568-3.997-.572-1.335-.098-2.43 1.427-3.289 1.525-.859 4.281-1.276 8.28-1.276l5.708.853c3.807.763 8.516 3.042 14.133 6.851 5.614 3.806 10.229 8.754 13.846 14.842 4.38 7.806 9.657 13.754 15.846 17.847 6.184 4.093 12.419 6.136 18.699 6.136 6.28 0 11.704-.476 16.274-1.423 4.565-.952 8.848-2.383 12.847-4.285 1.713-12.758 6.377-22.559 13.988-29.41-10.848-1.14-20.601-2.857-29.264-5.14-8.658-2.286-17.605-5.996-26.835-11.14-9.235-5.137-16.896-11.516-22.985-19.126-6.09-7.614-11.088-17.61-14.987-29.979-3.901-12.374-5.852-26.648-5.852-42.826 0-23.035 7.52-42.637 22.557-58.817-7.044-17.318-6.379-36.732 1.997-58.24 5.52-1.715 13.706-.428 24.554 3.853 10.85 4.283 18.794 7.952 23.84 10.994 5.046 3.041 9.089 5.618 12.135 7.708 17.705-4.947 35.976-7.421 54.818-7.421s37.117 2.474 54.823 7.421l10.849-6.849c7.419-4.57 16.18-8.758 26.262-12.565 10.088-3.805 17.802-4.853 23.134-3.138 8.562 21.509 9.325 40.922 2.279 58.24 15.036 16.18 22.559 35.787 22.559 58.817 0 16.178-1.958 30.497-5.853 42.966-3.9 12.471-8.941 22.457-15.125 29.979-6.191 7.521-13.901 13.85-23.131 18.986-9.232 5.14-18.182 8.85-26.84 11.136-8.662 2.286-18.415 4.004-29.263 5.146 9.894 8.562 14.842 22.077 14.842 40.539v60.237c0 3.422 1.19 6.279 3.572 8.562 2.379 2.279 6.136 2.95 11.276 1.995 44.163-14.653 80.185-41.062 108.068-79.226 27.88-38.161 41.825-81.126 41.825-128.906-.01-39.771-9.818-76.454-29.414-110.049z"></path></svg>
                         </a>
 
                         <a href="https://twitter.com/codeception" class="social">
-                          <svg height="512pt" viewBox="0 0 512 512" width="512pt" xmlns="http://www.w3.org/2000/svg"><path d="M256 0C114.637 0 0 114.637 0 256s114.637 256 256 256 256-114.637 256-256S397.363 0 256 0zm116.887 199.602c.113 2.52.168 5.05.168 7.593 0 77.645-59.102 167.18-167.184 167.184h.004-.004c-33.184 0-64.062-9.727-90.066-26.395 4.597.543 9.277.813 14.015.813 27.532 0 52.868-9.39 72.98-25.152-25.722-.477-47.41-17.465-54.894-40.813a58.481 58.481 0 0011.043 1.063c5.363 0 10.559-.723 15.496-2.07-26.886-5.384-47.14-29.145-47.14-57.598 0-.266 0-.504.007-.75a58.354 58.354 0 0026.614 7.347c-15.778-10.527-26.149-28.523-26.149-48.91a58.597 58.597 0 017.957-29.535c28.977 35.555 72.282 58.937 121.118 61.394a58.708 58.708 0 01-1.528-13.398c0-32.437 26.317-58.754 58.766-58.754 16.902 0 32.168 7.145 42.89 18.567a117.855 117.855 0 0037.313-14.262c-4.395 13.715-13.707 25.222-25.84 32.5 11.887-1.422 23.215-4.574 33.742-9.254a119.412 119.412 0 01-29.308 30.43zm0 0"/></svg>
+                          <svg height="512pt" viewBox="0 0 512 512" width="512pt" xmlns="http://www.w3.org/2000/svg"><path d="M256 0C114.637 0 0 114.637 0 256s114.637 256 256 256 256-114.637 256-256S397.363 0 256 0zm116.887 199.602c.113 2.52.168 5.05.168 7.593 0 77.645-59.102 167.18-167.184 167.184h.004-.004c-33.184 0-64.062-9.727-90.066-26.395 4.597.543 9.277.813 14.015.813 27.532 0 52.868-9.39 72.98-25.152-25.722-.477-47.41-17.465-54.894-40.813a58.481 58.481 0 0011.043 1.063c5.363 0 10.559-.723 15.496-2.07-26.886-5.384-47.14-29.145-47.14-57.598 0-.266 0-.504.007-.75a58.354 58.354 0 0026.614 7.347c-15.778-10.527-26.149-28.523-26.149-48.91a58.597 58.597 0 017.957-29.535c28.977 35.555 72.282 58.937 121.118 61.394a58.708 58.708 0 01-1.528-13.398c0-32.437 26.317-58.754 58.766-58.754 16.902 0 32.168 7.145 42.89 18.567a117.855 117.855 0 0037.313-14.262c-4.395 13.715-13.707 25.222-25.84 32.5 11.887-1.422 23.215-4.574 33.742-9.254a119.412 119.412 0 01-29.308 30.43zm0 0"></path></svg>
                         </a>
 
                         <a href="https://www.facebook.com/pages/Codeception/288959711204412" class="social">
-                          <svg height="512pt" viewBox="0 0 512 512" width="512pt" xmlns="http://www.w3.org/2000/svg"><path d="M297.277 508.668zm0 0M302.398 507.793c-1.02.187-2.039.36-3.058.535 1.02-.176 2.039-.348 3.058-.535zm0 0M285.137 510.34zm0 0M290.055 509.738zm0 0M309.367 506.41zm0 0M326.664 502.113c-.726.207-1.453.403-2.18.606.727-.203 1.454-.399 2.18-.606zm0 0M321.434 503.543c-.79.207-1.582.418-2.375.617.793-.2 1.586-.406 2.375-.617zm0 0M314.59 505.254c-.836.195-1.68.379-2.524.566.844-.187 1.688-.37 2.524-.566zm0 0M277.527 511.09zm0 0M512 256C512 114.637 397.363 0 256 0S0 114.637 0 256s114.637 256 256 256c1.504 0 3-.031 4.5-.059V312.656h-55V248.56h55V201.39c0-54.703 33.395-84.477 82.191-84.477 23.368 0 43.454 1.742 49.309 2.52v57.171h-33.648c-26.547 0-31.688 12.618-31.688 31.13v40.824h63.477l-8.274 64.097h-55.203V502.11C433.668 471.434 512 372.852 512 256zm0 0M272.914 511.43zm0 0M264.754 511.836zm0 0"/></svg>
+                          <svg height="512pt" viewBox="0 0 512 512" width="512pt" xmlns="http://www.w3.org/2000/svg"><path d="M297.277 508.668zm0 0M302.398 507.793c-1.02.187-2.039.36-3.058.535 1.02-.176 2.039-.348 3.058-.535zm0 0M285.137 510.34zm0 0M290.055 509.738zm0 0M309.367 506.41zm0 0M326.664 502.113c-.726.207-1.453.403-2.18.606.727-.203 1.454-.399 2.18-.606zm0 0M321.434 503.543c-.79.207-1.582.418-2.375.617.793-.2 1.586-.406 2.375-.617zm0 0M314.59 505.254c-.836.195-1.68.379-2.524.566.844-.187 1.688-.37 2.524-.566zm0 0M277.527 511.09zm0 0M512 256C512 114.637 397.363 0 256 0S0 114.637 0 256s114.637 256 256 256c1.504 0 3-.031 4.5-.059V312.656h-55V248.56h55V201.39c0-54.703 33.395-84.477 82.191-84.477 23.368 0 43.454 1.742 49.309 2.52v57.171h-33.648c-26.547 0-31.688 12.618-31.688 31.13v40.824h63.477l-8.274 64.097h-55.203V502.11C433.668 471.434 512 372.852 512 256zm0 0M272.914 511.43zm0 0M264.754 511.836zm0 0"></path></svg>
                         </a>
 
                         <a href="https://bit.ly/chat-codeception" class="social">
-                          <svg height="512" viewBox="0 0 24 24" width="512" xmlns="http://www.w3.org/2000/svg"><path d="M8.843 12.651a2.521 2.521 0 00-2.521 2.521v6.306a2.521 2.521 0 005.042 0v-6.306a2.523 2.523 0 00-2.521-2.521zM.019 15.172a2.524 2.524 0 005.046 0v-2.523H2.542a2.524 2.524 0 00-2.523 2.523zM8.846-.001h-.003a2.524 2.524 0 000 5.046h2.521V2.517A2.519 2.519 0 008.846-.001zM2.525 11.37h6.318a2.524 2.524 0 000-5.046H2.525a2.524 2.524 0 000 5.046zM21.457 6.323a2.518 2.518 0 00-2.518 2.518v2.528h2.521a2.524 2.524 0 000-5.046h-.003zM12.641 2.522v6.325a2.521 2.521 0 005.042 0V2.522a2.521 2.521 0 00-5.042 0zM17.682 21.476a2.521 2.521 0 00-2.521-2.521H12.64v2.523a2.521 2.521 0 005.042-.002zM21.479 12.649h-6.318a2.524 2.524 0 000 5.046h6.318a2.524 2.524 0 000-5.046z"/></svg>
+                          <svg height="512" viewBox="0 0 24 24" width="512" xmlns="http://www.w3.org/2000/svg"><path d="M8.843 12.651a2.521 2.521 0 00-2.521 2.521v6.306a2.521 2.521 0 005.042 0v-6.306a2.523 2.523 0 00-2.521-2.521zM.019 15.172a2.524 2.524 0 005.046 0v-2.523H2.542a2.524 2.524 0 00-2.523 2.523zM8.846-.001h-.003a2.524 2.524 0 000 5.046h2.521V2.517A2.519 2.519 0 008.846-.001zM2.525 11.37h6.318a2.524 2.524 0 000-5.046H2.525a2.524 2.524 0 000 5.046zM21.457 6.323a2.518 2.518 0 00-2.518 2.518v2.528h2.521a2.524 2.524 0 000-5.046h-.003zM12.641 2.522v6.325a2.521 2.521 0 005.042 0V2.522a2.521 2.521 0 00-5.042 0zM17.682 21.476a2.521 2.521 0 00-2.521-2.521H12.64v2.523a2.521 2.521 0 005.042-.002zM21.479 12.649h-6.318a2.524 2.524 0 000 5.046h6.318a2.524 2.524 0 000-5.046z"></path></svg>
                         </a>
 
 
@@ -724,14 +640,14 @@ Don't know how to write tests on your own? We will build or improve them for you
             <div class="col-sm-6 col-md-4 col-lg-4 text-center">
                     <h4>they support us_</h4>
 
-                    <a href="https://www.jetbrains.com/phpstorm/" rel=nofollow><img src="/images/support/phpstorm.png" alt="PhpStorm" class="sponsors sponsors--phpstorm"></a>
+                    <a href="https://www.jetbrains.com/phpstorm/" rel="nofollow"><img src="/images/support/phpstorm.png" alt="PhpStorm" class="sponsors sponsors--phpstorm"></a>
 
-                    <a href="https://www.rebilly.com/" rel=nofollow><img src="/images/support/rebilly.png"  class="sponsors sponsors--rebilly" alt="Your Partner
+                    <a href="https://www.rebilly.com/" rel="nofollow"><img src="/images/support/rebilly.png" class="sponsors sponsors--rebilly" alt="Your Partner
                         In Subscription Billing
                         Uncover your revenue potential with
                         our recurring billing software." title="Your Partner
                         In Subscription Billing"></a>
-                    <a href="https://themeisle.com/" rel=nofollow><img src="/images/support/themeisle.png"  class="sponsors sponsors--themeisle" alt="Premium WordPress themes, Templates & Plugins"></a>
+                    <a href="https://themeisle.com/" rel="nofollow"><img src="/images/support/themeisle.png" class="sponsors sponsors--themeisle" alt="Premium WordPress themes, Templates &amp; Plugins"></a>
 
 
             </div>
@@ -748,14 +664,14 @@ Don't know how to write tests on your own? We will build or improve them for you
   Design made by
   <a href="https://pizdata.is/">
     <svg width="17" height="22" viewBox="0 0 17 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-     <path d="M14.1521 4.64018L13.5305 3.83959L12.2672 5.6787C11.3601 4.22562 9.35785 1.74674 5.75912 0.57675L3.98126 0L4.88607 1.58776C4.89702 1.60708 5.83747 3.28537 5.66941 5.11943L2.80415 3.48567L3.14267 5.05097C3.14982 5.08409 3.83233 8.3093 3.20491 11.3562C3.12457 11.421 3.01509 11.4774 2.86608 11.4774C2.63863 11.4774 2.13696 11.3484 1.33672 10.4825L0.283136 9.3428L0.0669574 10.8565C0.056478 10.9316 -0.934383 18.4053 5.07684 21.1622C6.18671 21.71 7.48187 22 8.8226 22H8.82308C11.2433 22 13.4927 21.0735 14.9939 19.4586C16.5583 17.7762 17.2281 15.4572 16.9315 12.7513C16.9202 12.2855 16.744 7.9779 14.1521 4.64018Z" fill="white"/>
+     <path d="M14.1521 4.64018L13.5305 3.83959L12.2672 5.6787C11.3601 4.22562 9.35785 1.74674 5.75912 0.57675L3.98126 0L4.88607 1.58776C4.89702 1.60708 5.83747 3.28537 5.66941 5.11943L2.80415 3.48567L3.14267 5.05097C3.14982 5.08409 3.83233 8.3093 3.20491 11.3562C3.12457 11.421 3.01509 11.4774 2.86608 11.4774C2.63863 11.4774 2.13696 11.3484 1.33672 10.4825L0.283136 9.3428L0.0669574 10.8565C0.056478 10.9316 -0.934383 18.4053 5.07684 21.1622C6.18671 21.71 7.48187 22 8.8226 22H8.82308C11.2433 22 13.4927 21.0735 14.9939 19.4586C16.5583 17.7762 17.2281 15.4572 16.9315 12.7513C16.9202 12.2855 16.744 7.9779 14.1521 4.64018Z" fill="white"></path>
     </svg><strong>Pizdata</strong>
   </a>
 </div>
 
 
 <div>
-    © Codeception 2011&ndash;2020
+    © Codeception 2011–2020
 </div>
 </div>
 </div>
@@ -788,8 +704,7 @@ $(document).ready(function(){
 <div class="visible-lg-block twitter-btn">
 
                                   <aside>
-          <a href="https://twitter.com/codeception" class="twitter-follow-button" data-show-count="false"
-          data-lang="en" data-size="large">Follow @Codeception</a>
+          <iframe id="twitter-widget-0" scrolling="no" frameborder="0" allowtransparency="true" allowfullscreen="true" class="twitter-follow-button twitter-follow-button-rendered" title="Twitter Follow Button" src="https://platform.twitter.com/widgets/follow_button.c4b33f07650267db9f8a72eaac551cac.en.html#dnt=false&amp;id=twitter-widget-0&amp;lang=en&amp;screen_name=codeception&amp;show_count=false&amp;show_screen_name=true&amp;size=l&amp;time=1594490597660" data-screen-name="codeception" style="position: static; visibility: visible; width: 179px; height: 28px;"></iframe>
           <script>!function (d, s, id) {
             var js, fjs = d.getElementsByTagName(s)[0];
             if (!d.getElementById(id)) {
@@ -832,5 +747,6 @@ $(document).ready(function(){
 <script src="/js/algolia.js"></script>
 
 
-</body>
-</html>
+
+
+<iframe scrolling="no" frameborder="0" allowtransparency="true" src="https://platform.twitter.com/widgets/widget_iframe.c4b33f07650267db9f8a72eaac551cac.html?origin=https%3A%2F%2Fcodeception.com" title="Twitter settings iframe" style="display: none;"></iframe></body></html>

@@ -15,7 +15,7 @@ services:
             - ext
           
     phpfpm: 
-        image: phpexttry:latest
+        image: phpexttry:latest #from phpdockerio/php73-fpm:latest
         #build: .docker/conf/fpm
         restart: always
         working_dir: /appli
@@ -28,7 +28,7 @@ services:
             - ext
     
     selenium:
-        image: nkovacs/selenium-standalone-phantomjs
+        image: nkovacs/selenium-standalone-phantomjs:latest
         restart: always
         ports:
             - 4444:4444

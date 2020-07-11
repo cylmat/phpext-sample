@@ -19,4 +19,27 @@ class Browser extends \Codeception\Module
 
         #return $url;
     }
+
+    public function getModuleConfig()
+    {
+        $c = \Codeception\Configuration::suiteSettings('browser', \Codeception\Configuration::config());
+
+        return ($c['params']['custom_param']);
+    }
+
+    public function getCurrentEnabled()
+    {
+        $c = \Codeception\Configuration::suiteSettings('browser', \Codeception\Configuration::config());
+
+        return ($c['modules']['enabled'][0]);
+    }
+
+    public function isWebDriver()
+    {
+        $enabled = $this->getCurrentEnabled();
+        if ('WebDriver' == $enabled) {
+            return true;
+        }
+        return false;
+    }
 }

@@ -7,26 +7,37 @@
 actor: BrowserTester
 
 modules:
+    #config:
+    #    param: value
     step_decorators: ~  
+    depends:
+        PhpBrowser
     enabled:
-        - PhpBrowser:
-            url: https://codeception.com
+        #- PhpBrowser
+        - WebDriver
+         #   url: https://codeception.com
         - \Helper\Browser
-            #depends:
-            #        PhpBrowser
-        # - WebDriver:
-        #     url: https://codeception.com
-        #     browser: phantomjs
-        #     host: sel
-        #     port: 4444
-        #     capabilities: 
-        #         acceptSslCerts: true
-        #         trustAllSSLCertificates: true
-        #         javascriptEnabled: true
-        #         phantomjs.page.customHeaders.Authorization:  "Basic c3VwcG9ydC50bWFpZDokdVAzNGEyVyFuPg==" #base64_encode('user:pass')
+    config:
+        PhpBrowser:
+            url: https://codeception.com
+        WebDriver:
+            # https://github.com/SeleniumHQ/selenium/wiki/DesiredCapabilities
+            url: https://codeception.com
+            browser: phantomjs
+            host: selenium
+            port: 4444
+            capabilities: 
+                acceptSslCerts: true
+                trustAllSSLCertificates: true
+                javascriptEnabled: true
+                phantomjs.page.customHeaders.Authorization:  "Basic c3VwcG9ydC50b8kdVAzNGEyVyFuPg==" #base64_encode('user:pass')
 
+params:
+    custom_param: value8s
+            
 settings:
     shuffle: true
+    colors: true
 
 step_decorators:  
     - \Codeception\Step\TryTo 

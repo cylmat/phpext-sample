@@ -11,6 +11,11 @@ class PrototypeCest
         $I->amOnPage('/');
     }
 
+    public function _inject()
+    {
+        
+    }
+
     /**
      * ref: https://codeception.com/docs/03-BrowserTests
      */
@@ -25,27 +30,34 @@ class PrototypeCest
         #[id,name,css,xpath,link,class] => 'text displayed'
         #link(text), button(value,name,text), image(alt)
 
-        $I->click(["link" => "Quick Start"]); #link in the home page, button in uppercase 
+        
         $I->tryToclick(["link" => "Codeception"]); #click on logo DOESNT WORK <a href>IMAGE + text</a>
         
-        $I->click(["link" => "QuickStart"]); #click on the top menu link
-        $I->click("A Complete Getting Started Guide");
-
         ### COOKIES ###
 
         $I->setCookie('auth', '123345');
         $I->grabCookie('auth');
         $I->seeCookie('auth');
+
+        if ($I->isWebDriver()) {
+            ### -WEBDRIVER- ONLY ###
+
+            #$I->makeScreenshot(); 
+            #$I->click("/html/body/div[2]/div/div/div/div/a[1]"); #link in the home page button in uppercase 
+
+            // label displayed, not in html
+            $I->click(["link" => "QUICK START"]); #link displayed in the home page, button in uppercase 
+            #$I->click(["link" => "quickstart"]); #click on the top menu link
+            #$I->click(["link" => "CODECEPTION_"]); #click on logo
+
+        } else {
+            ### BROWSER ###
+
+            $I->click(["link" => "Quick Start"]); #link in the home page, button in uppercase 
+            $I->click(["link" => "QuickStart"]); #click on the top menu link
+            $I->click("A Complete Getting Started Guide");
+        }
         
-        ### -WEBDRIVER- ONLY ###
-
-        #$I->makeScreenshot(); 
-        #$I->click("/html/body/div[2]/div/div/div/div/a[1]"); #link in the home page button in uppercase 
-
-        // label displayed, not in html
-        #$I->click(["link" => "quickstart"]); #click on the top menu link
-        #$I->click(["link" => "QUICK START"]); #link displayed in the home page, button in uppercase 
-        #$I->click(["link" => "CODECEPTION_"]); #click on logo
     }
     
     /**

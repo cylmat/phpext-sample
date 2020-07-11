@@ -27,7 +27,11 @@ class BrowserTester extends \Codeception\Actor
     function _customActor_seeThatInTitle($title)
     {
         $I = $this;
-        
         $I->seeInTitle($title);
+    }
+
+    function customhelper_validCurrentUrl()
+    {
+
     }
 }
