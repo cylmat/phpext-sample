@@ -1,5 +1,7 @@
 <?php
 
+use Codeception\Step\Argument\PasswordArgument;
+
 /**
  * phpbrowser api: https://codeception.com/docs/modules/PhpBrowser
  * webdriver: https://codeception.com/docs/modules/WebDriver
@@ -205,6 +207,14 @@ class PrototypeCest
         // , 'submitButton');
     }
 
+    /**
+     * @ env firefox
+     */
+    protected function close()
+    {
+
+    } 
+
     public function _failed(\BrowserTester $I)
     {
         // will be executed on test failure
@@ -213,6 +223,29 @@ class PrototypeCest
     public function _passed(\BrowserTester $I)
     {
         // will be executed when test is successful
+    }
+
+    /**
+     * @group admin
+     * 
+     * @dataProvider pageProvider
+     */
+    public function tryExemplePage(BrowserTester $I, \Codeception\Example $example)
+    {
+        #error
+        $I->amOnPage($example['url']);
+        #$I->see($example['title'], 'h1');
+        $I->seeInTitle($example['title']);
+    }
+
+    protected function pageProvider()
+    {
+        return [
+            ['url'=>"/", 'title'=>"Codeception"],
+            ['url'=>"/docs/03-AcceptanceTests", 'title'=>"AcceptanceTests"],
+            ['url'=>"/docs/04-FunctionalTests", 'title'=>"FunctionalTests"],
+            ['url'=>"/docs/05-UnitTests",   'title'=>"UnitTests"]
+        ];
     }
 }
 

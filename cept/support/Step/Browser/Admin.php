@@ -10,4 +10,5 @@ class Admin extends \BrowserTester
         $I->seeInCurrentUrl('docs/02-GettingStarted');
         $text = $I->grabTextFrom('h1#getting-started');
     }
+
 }

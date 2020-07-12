@@ -7,6 +7,11 @@ namespace Helper;
 
 class Browser extends \Codeception\Module
 {
+     /**
+     * Get current url from WebDriver
+     * @return mixed
+     * @throws \Codeception\Exception\ModuleException
+     */
     public function customhelper_validCurrentUrl()
     {
         ###webdriver###
@@ -19,6 +24,7 @@ class Browser extends \Codeception\Module
 
         #return $url;
     }
+
 
     public function getModuleConfig()
     {

@@ -17,6 +17,13 @@ modules:
         - WebDriver
          #   url: https://codeception.com
         - \Helper\Browser
+        # - REST:
+        #     url: '%REST_URL%'
+        #     depends: PhpBrowser
+        #     part: Json
+        # - SOAP:
+        #     endpoint: http://192.168.99.100:82/soaps/index/getBenchWsdl
+        #     depends: PhpBrowser
     config:
         PhpBrowser:
             url: https://codeception.com

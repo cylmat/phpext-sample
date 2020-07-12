@@ -28,6 +28,7 @@ class BrowserTester extends \Codeception\Actor
     {
         $I = $this;
         $I->seeInTitle($title);
+        return $this->getScenario()->runStep(new \Codeception\Step\Assertion('seeInTitle', [$title]));
     }
 
     function customhelper_validCurrentUrl()

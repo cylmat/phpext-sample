@@ -43,4 +43,9 @@ class Started
         $I->dontSee("Bad text in this page");
         $I->dontSeeElement('.error');
     }
+
+    public function adminConnexion()
+    {
+        
+    }
 }

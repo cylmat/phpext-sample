@@ -1,22 +1,3 @@
-* CODECEPTION *
- wantToTest($text)  wantTo($text) execute($callable) expectTo($prediction) expect($prediction)
- amGoingTo($argumentation) am($role) lookForwardTo($achieveValue) comment($description) pause()
-
- amOnPage() fillField('Username','davert') click('Login') see('Hello, davert') etc...
- see() dontSee() $I->seeElement('.notice')  seeNumberOfElements(['css' => 'button.link'], 5)
- seeInCurrentUrl('/user/miles') seeCheckboxIsChecked('#agree') seeInField('user[name]', 'Miles') seeLink('Login');
- CONDIT° NO FAIL(config) 
-    canSeeInCurrentUrl('/user/miles') canSeeCheckboxIsChecked('#agree') cantSeeInField('user[name]', 'Miles')
-    (config:\Codeception\Step\TryTo)    $I->tryToClick('x', '.alert');  $I->tryToSeeElement('.alert')
- Comment: amGoingTo() expect() expectTo()
- $password = $I->grabTextFrom('#password'); $I->grabTextFrom("descendant::input/descendant::*[@id = 'password']");
- $I->setCookie('auth', '123345'); $I->grabCookie('auth'); $I->seeCookie('auth')
- seeInTitle() seeCurrentUrlEquals() seeCurrentUrlMatches() seeInCurrentUrl() $user_id = $I->grabFromCurrentUrl('~^/user/(\d+)/~');
-
- - WebDriver
- wait(3) $I->waitForElement('#agree_button', 30); // secs waitForElementVisible() etc...
- Session: $I->loadSessionSnapshot('login') saveSessionSnapshot('login')  Codeception\Lib\Interfaces\SessionSnapshot
- Helper Webdriver: _initializeSession  _closeSession  _restart  _capabilities 
 
 
 * PHPSPEC *
