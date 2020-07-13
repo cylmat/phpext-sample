@@ -4,7 +4,7 @@ FROM phpdockerio/php73-fpm:latest
 WORKDIR "/appli"
 
 # Fix debconf warnings upon build
-ARG DEBIAN_FRONTEND=noninteractive
+#ARG DEBIAN_FRONTEND=noninteractive
 
 # Install
 # be careful of cache
@@ -26,17 +26,6 @@ RUN pecl channel-update pecl.php.net
 RUN apt-get install -y php-xdebug php7.3-phpdbg
 RUN pecl install pcov
 RUN echo "\nextension=pcov.so" >> /etc/php/7.3/cli/php.ini
-
-# Phalcon 
-#RUN curl -s https://packagecloud.io/install/repositories/phalcon/stable/script.deb.sh | bash 
-#RUN apt-get install -y php7.3-phalcon
-# RUN apt-get update && apt-get -y --no-install-recommends install  php7.3-mysql php-redis
-# RUN curl -s https://packagecloud.io/install/repositories/phalcon/stable/script.deb.sh | bash && \
-#         apt-get update && apt-get install -y php-pear php5.6-dev php7.3-phalcon
-
-#SWOOLE : take much time
-#RUN printf "yes\n" | pecl install swoole
-#RUN echo "extension=swoole.so" >> /etc/php/7.3/fpm/php.ini
 
 # clean
 #RUN apt-get clean; rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /usr/share/doc/*

@@ -1,4 +1,4 @@
-version: '2.2'
+version: '3'
 
 services: 
     nginx:
@@ -6,7 +6,7 @@ services:
         restart: always
         volumes:
             - ${WEBSERVER}/${DIRECTORY}:/appli
-            - ${WEBSERVER}/${DIRECTORY}/.docker/conf/nginx:/etc/nginx/conf.d:ro
+            - ${WEBSERVER}/${DIRECTORY}/.docker/nginx:/etc/nginx/conf.d:ro
         depends_on: 
             - phpfpm
         ports:
@@ -23,7 +23,7 @@ services:
             - 9009:9000
         volumes:
             - ${WEBSERVER}/${DIRECTORY}:/appli
-            #- ${WEBSERVER}/${DIRECTORY}/.docker/conf/fpm/php.ini:/etc/php/7.3/fpm/php.ini
+            #- ${WEBSERVER}/${DIRECTORY}/.docker/fpm/php.ini:/etc/php/7.3/fpm/php.ini
         networks: 
             - ext
     
@@ -74,6 +74,6 @@ networks:
 #         - 9999:9000
 
 ######################
-# https://nanobox.io
 # https://devilbox.org
+# https://nanobox.io
 ######################

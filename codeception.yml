@@ -1,6 +1,6 @@
 paths:
     tests: cept
-    support: cept/support
+    support: cept/_support
     output: cept/_more/_output
     data: cept/_more/_data
     envs: cept/_more/_envs

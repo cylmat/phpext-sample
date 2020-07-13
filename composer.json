@@ -1,15 +1,13 @@
 {
-    "name": "root/html",
+    "name": "freeonisland/phpext",
     "description": "Trying differents php-pear-pecl extensions",
     "require": {
-        
     },
     "require-dev": {
         "codeception/codeception": "^4.1",
         "codeception/module-asserts": "^1.2",
         "codeception/module-phpbrowser": "^1.0",
         "codeception/module-webdriver": "^1.1",
-        "friendsofphp/php-cs-fixer": "^2.1",
         "fzaninotto/faker": "^1.9",
         "kint-php/kint": "^3.3",
         "nunomaduro/phpinsights": "^1.1",
@@ -51,7 +49,6 @@
     "extra": {
         "md": "cleancode: class import-else and return.., codesize: too much methods, controversial: camelCase",
         "md2": "design: var_dump-exit, naming: short name, unusedcode",
-        "phalcon/cphalcon": "4.0",
-        "phalcon/devtools": "4.0"
+        "robmorgan/phinx": "*"
     }
 }

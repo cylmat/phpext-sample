@@ -240,12 +240,13 @@ class PrototypeCest
 
     protected function pageProvider()
     {
-        return [
-            ['url'=>"/", 'title'=>"Codeception"],
-            ['url'=>"/docs/03-AcceptanceTests", 'title'=>"AcceptanceTests"],
-            ['url'=>"/docs/04-FunctionalTests", 'title'=>"FunctionalTests"],
-            ['url'=>"/docs/05-UnitTests",   'title'=>"UnitTests"]
-        ];
+        return [];
+        // return [
+        //     ['url'=>"/", 'title'=>"Codeception"],
+        //     ['url'=>"/docs/03-AcceptanceTests", 'title'=>"AcceptanceTests"],
+        //     ['url'=>"/docs/04-FunctionalTests", 'title'=>"FunctionalTests"],
+        //     ['url'=>"/docs/05-UnitTests",   'title'=>"UnitTests"]
+        // ];
     }
 }
 
