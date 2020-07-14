@@ -237,10 +237,12 @@ class PrototypeCest
         #$I->see($example['title'], 'h1');
         $I->seeInTitle($example['title']);
     }
-
+    
     protected function pageProvider()
     {
-        return [];
+        return [
+            ['url'=>"/", 'title'=>"Codeception"]
+        ];
         // return [
         //     ['url'=>"/", 'title'=>"Codeception"],
         //     ['url'=>"/docs/03-AcceptanceTests", 'title'=>"AcceptanceTests"],
