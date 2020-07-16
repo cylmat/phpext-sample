@@ -25,7 +25,8 @@
         "psr-4": {
             "": [
                 "src/",
-                "src/Php/"
+                "src/Php/",
+                "src/Db/"
             ]
         }
     },

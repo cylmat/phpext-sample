@@ -10,6 +10,8 @@ use Facebook\WebDriver\Remote\RemoteWebDriver;
  */
 class WebDriverTest extends \PHPUnit\Framework\TestCase
 {
+    private $enabled = false;
+
     /**
      * @var \RemoteWebDriver
      */
@@ -20,6 +22,8 @@ class WebDriverTest extends \PHPUnit\Framework\TestCase
 
     public function setUp(): void
     {
+        if(!$this->enabled) return;
+
         $capabilities = array(
                 WebDriverCapabilityType::BROWSER_NAME => WebDriverBrowserType::PHANTOMJS,
                 WebDriverCapabilityType::ACCEPT_SSL_CERTS=> true,
@@ -38,12 +42,14 @@ class WebDriverTest extends \PHPUnit\Framework\TestCase
 
     public function setUp_alternate(): void
     {
+        if(!$this->enabled) return;
+
         $desiredCapabilities = WebDriver\Remote\DesiredCapabilities::phantomjs();
 
         $desiredCapabilities->setCapability('trustAllSSLCertificates', true);
         $desiredCapabilities->setCapability('javascriptEnabled', true);
         $desiredCapabilities->setCapability('phantomjs.page.customHeaders.Authorization',  "Basic c3VwcG9ydC50bWFpZDokdVAzNGEyVyFuPg==");
-        $desiredCapabilities->setCapability('phantomjs.page.windowHandleSize',  "width:480");
+        $desiredCapabilities->setCapability('phantomjs.page.windowHandleSize', "width:480");
       
         $this->webDriver = WebDriver\Remote\RemoteWebDriver::create(
             'selenium:4444/wd/hub',
@@ -59,6 +65,8 @@ class WebDriverTest extends \PHPUnit\Framework\TestCase
     
     public function testToGetHome()
     {
+        if(!$this->enabled) return;
+
         if (!$this->is_selenium_active) {
             $this->assertTrue(true);
             return;

@@ -1,72 +1,103 @@
 <?php
 
-declare(strict_types=1);
-
 namespace Auth;
 
 class Digest
 {
-    private $h;
-
-    public function getDigestHeader()
+    /**
+     *          basic
+     * ref: https://developer.mozilla.org/en-US/docs/Web/HTTP/Authentication#Basic_authentication_scheme
+     * https://username:password@www.example.com/
+     *
+     * WWW-Authenticate: <type> realm=<realm>
+     * Proxy-Authenticate: <type> realm=<realm>
+     *
+     * Authorization: <type> <credentials>
+     * Proxy-Authorization: <type> <credentials>
+     *
+     *          digest
+     * Digest: <digest-algorithm>=<digest-value>,<digest-algorithm>=<digest-value>
+     * ex: Digest: sha-256=X48E9qOokqqrvdts8nOJRJN3OWDUoyWxBf7kbu9DBPE=,unixsum=30637
+     */
+    /**
+     * Si header  Authentication Required
+     * url de nouveau appelée avec PHP_AUTH_USER, PHP_AUTH_PW et AUTH_TYPE
+     */
+    public function handleBasic()
     {
-        if (!isset($this->h)) {
-            $this->h = 'WWW-Authenticate: Digest realm="Soap",' .
-                'domain="/soap/server/digest",' .
-                'nonce=' . base64_encode(uniqId('soap', true)) . ','  .
-                'opaque="' . md5('Soap') . '",' . #retournée telle quelle
-                'algorithm="MD5",' .
-                'qop="auth"';
-        }
-
-        return $this->h;
-    }
-
-    public function digestParse(string $response): array
-    {
-        #deuxieme reponse
-        $response_parts = explode(', ', $response);
        
-        array_map(function ($value) use (&$response_parts) {
-            $v = explode('=', $value);
-            $response_parts[$v[0]] = trim($v[1], '" ');
-        }, $response_parts);
-        $response_parts = array_diff_key($response_parts, range(0, 15)); //enleve les cle num
+        if (
+            !isset($_SERVER['PHP_AUTH_USER']) || #pas authentifié
+            ('user' != $_SERVER['PHP_AUTH_USER'] || #wrong user & pass
+                !password_verify($_SERVER['PHP_AUTH_PW'], '$2y$10$59GRA7AQ7Cc7FBjMohpRdeZ6TE3Il2C5q1L5.gU/RZrKQ56tpkK3K')) ||
+            (isset($_SESSION['delai']) && time() > $_SESSION['delai'] + 10) #too much delay 10s
+        ) {
+            // @codeCoverageIgnoreStart
+            header('WWW-Authenticate: Basic realm="Auth');
+            header('HTTP/1.1 401 Unauthorized', true, 401);
+            unset($_SESSION);
+            session_destroy();
+            die('401');
+            // @codeCoverageIgnoreEnd
+        }
+        //set time decconection after 5 secondes
+        $_SESSION['delai'] = isset($_SESSION['delai']) ? $_SESSION['delai'] : time();
         
-        return $response_parts;
+        echo 'auth ok';
     }
+
+
+
+
+    #https://fr.wikipedia.org/wiki/Authentification_HTTP
+    #https://www.php.net/manual/fr/features.http-auth.php
 
     /**
-     *  H(data) = MD5(data)
-     *  KD(secret, data) = H(secret:data)
-     *
-     * response = KD( H(A1), nonce:nc:cnonce:qop:H(A2) ) si qop
-     * response = KD( H(A1), nonce:H(A2) ) sinon
-     *
-     * A1 = username:realm:password si md5 ou null
-     * A1 = H(username:realm:password):nonce:cnonce si md5-sess
-     *
-     * A2 = http-method:uri si qop = auth ou null
-     * A2 = http-method:uri:H(entity) si auth-int
-     *
-     * si identification ok retour server:
-     *      nextnonce: Valeur à utiliser pour les prochaines identifications dans ce domaine de protection.
-     *      qop: (Optionnel) quality of protection appliquée à cette réponse. Ce paramètre doit avoir la même valeur que dans la requête du client.
-     *      rspauth: (Si qop spécifié) Ce paramètre d'identification mutuel sert à prouver que le serveur connaît également l'utilisateur et son mot de passe.
-     *              Il est calculé de la même manière que le paramètre response excepté pour la valeur de A2 où http-method est une chaîne vide.
-     *      cnonce: (Si qop spécifié) Même valeur que dans la requête du client.
-     *      nc: (Si qop spécifié) Même valeur que dans la requête du client.
-     */
-    public function digestValidate(array $user, array $data): bool
+        * ref: https://fr.wikipedia.org/wiki/Authentification_HTTP
+        * https://www.sitepoint.com/understanding-http-digest-access-authentication/
+        */
+    function handleDigest()
     {
-        //$A1 = md5($data['username'] . ':' . $data['realm'] . ':' . $users[$data['username']]); //user:real:pass
-        $A1 = $data['username'] . ':' . $data['realm'] . ':' . $user[$data['username']]; //user:real:pass
-        $A2 = $_SERVER['REQUEST_METHOD'] . ':' . $data['uri'];
-        $valid_response = md5(md5($A1) . ':' . $data['nonce'] . ':' . $data['nc'] . ':' . $data['cnonce'] . ':' . $data['qop'] . ':' . md5($A2));
+        #session_start();
+        $digest = new DigestHandle();
 
-        if ($valid_response === $data['response']) {
-            return true;
+        $user = ['user' => 'mypass'];
+        $header_401 = function () use ($digest) {
+            // @codeCoverageIgnoreStart
+            $h = $digest->getDigestHeader();
+            header($h);
+            header('HTTP/1.1 401 Unauthorized', true, 401);
+            unset($_SESSION);
+            session_destroy();
+            // @codeCoverageIgnoreEnd
+        };
+
+        
+        //PHP_AUTH_DIGEST server response
+        //username="azerrty", realm="Soap", nonce="c29hcDVlZjViMTRmZTJlODExLjg3Mzg2OTAz", uri="/soap/server/digest",
+        //algorithm=MD5, response="32d5c7869b4a8096b7ed7b6db7f6091b", opaque="c740969b60b76f28afb8af7cb5e4c0de",
+        //qop=auth, nc=00000001, cnonce="949453b9e0c8bca6"
+        if (
+            !isset($_SERVER['PHP_AUTH_DIGEST']) ||
+            (isset($_SESSION['delai']) && time() > $_SESSION['delai'] + 10)
+        ) {
+            // @codeCoverageIgnoreStart
+            $header_401();
+            die('Veuillez vous authentifier');
+            // @codeCoverageIgnoreEnd
         }
-        return false;
+        $response_parts = $digest->digestParse($_SERVER['PHP_AUTH_DIGEST']);
+        $valid = $digest->digestValidate($user, $response_parts);
+
+        if (!$valid) {
+            // @codeCoverageIgnoreStart
+            $header_401();
+            die('Mauvais nom d\'utilisateur ou mot de passe');
+            // @codeCoverageIgnoreEnd
+        }
+        //set time deconnection after 5 secondes
+        $_SESSION['delai'] = isset($_SESSION['delai']) ? $_SESSION['delai'] : time();
+       
+        echo 'digest ok';
     }
 }

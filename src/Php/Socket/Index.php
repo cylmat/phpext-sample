@@ -4,6 +4,8 @@ declare(strict_types = 1);
 
 namespace Socket;
 
+class CustomError extends \AssertionError {}
+
 class Index
 {
     /**
@@ -18,6 +20,8 @@ class Index
     function simple_client()
     {
         //ok
+        ini_set('assert.exception', 1);
+        assert(false, new CustomError('Custom Error Message!'));
     }
 }
 

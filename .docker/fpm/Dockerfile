@@ -25,6 +25,7 @@ COPY ./www.conf /etc/php/7.3/fpm/pool.d/www.conf
 RUN pecl channel-update pecl.php.net
 
 # coverage
+#REQUIRE php7.3-dev php-pear
 RUN apt-get install -y php-xdebug php7.3-phpdbg
 RUN pecl install pcov
 RUN echo "\nextension=pcov.so" >> /etc/php/7.3/cli/php.ini
