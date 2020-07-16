@@ -6,6 +6,12 @@ namespace PU;
 
 use PHPUnit\Framework\TestCase;
 
+/*
+ * - A stub is a class that *implements an API or interface** that a test cannot test easily directly on its own, 
+ *      in order to make testing possible.
+ * - A mock is a class that extends another class that the test is directly dependent on, 
+ *      in order to change behaviors of that class to make testing easier.
+ */
 class PrototypeTest extends TestCase
 {
     protected $stack = [];

@@ -92,8 +92,14 @@ networks:
 #     image: minio/minio
 #     ports:
 #         - 9999:9000
-
 ######################
+
 # https://devilbox.org
 # https://nanobox.io
+
+# https://laradock.io/
+# https://github.com/laraedit/laraedit-docker
+# https://laragon.org/
+# https://www.easyphp.org/
+
 ######################
