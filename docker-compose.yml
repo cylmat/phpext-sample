@@ -1,75 +1,82 @@
 version: '3'
 
 services: 
-    nginx:
+    nginx81:
         image: nginx:1.17
-        container_name: nginx89
         restart: always
         volumes:
             - ${WEBSERVER}/${DIRECTORY}:/appli
             - ${WEBSERVER}/${DIRECTORY}/.docker/nginx:/etc/nginx/conf.d:ro
         depends_on: 
-            - phpfpm
+            - phpfpm81
         ports:
-            - 89:80
+            - 81:80
         networks: 
-            - ext
+            - ext1
           
-    phpfpm: 
+    phpfpm81: 
         image: phpexttry:latest #from phpdockerio/php73-fpm:latest
         #build: .docker/conf/fpm
-        container_name: phpfpm89
         restart: always
         working_dir: /appli
+        depends_on: 
+            - mysql81
         ports: 
-            - 9009:9000
+            - 9001:9000
         volumes:
             - ${WEBSERVER}/${DIRECTORY}:/appli
             #- ${WEBSERVER}/${DIRECTORY}/.docker/fpm/php.ini:/etc/php/7.3/fpm/php.ini
         networks: 
-            - ext
+            - ext1
     
-    selenium:
-        image: nkovacs/selenium-standalone-phantomjs:latest
-        container_name: selenium89
-        restart: always
-        ports:
-            - 4444:4444
-            - 5900:5900
-        volumes:
-            - ${WEBSERVER}/${DIRECTORY}:/appli
-        networks: 
-            - ext
-
-    # mysql:
-    #     image: mysql:5.7
-    #     container_name: mysql89
-    #     #restart: always
-    #     environment:
-    #         MYSQL_ROOT_PASSWORD: root
-    #         MYSQL_USER: user
-    #         MYSQL_PASSWORD: pass
-    #         #MYSQL_DATABASE: db
+    # selenium89:
+    #     image: nkovacs/selenium-standalone-phantomjs:latest
+    #     container_name: selenium89
+    #     restart: always
+    #     ports:
+    #         - 4444:4444
+    #         - 5900:5900
     #     volumes:
-    #         - ${WEBSERVER}/${DIRECTORY}/data:/var/lib/mysql
-    #     command: /bin/bash -c "mysqld --user=root --innodb-use-native-aio=0"
+    #         - ${WEBSERVER}/${DIRECTORY}:/appli
     #     networks: 
-    #         - ext
+    #         - ext1
+
+    # issue 
+    # https://stackoverflow.com/questions/48239668/fails-to-initialize-mysql-database-on-windows-10
+    mysql81:
+        image: mysql:5.7
+        restart: always
+        environment:
+            MYSQL_ROOT_PASSWORD: root
+            MYSQL_USER: user
+            MYSQL_PASSWORD: pass
+            MYSQL_DATABASE: db
+        command: "--innodb_use_native_aio=0"
+        #command: /bin/bash -c "mysqld --user=root --initialize --innodb-use-native-aio=0" #first time --initialize(-insecure)
+        #command: /bin/bash -c "mysqld --innodb-use-native-aio=0" #remove for next
+
+        volumes:
+            - ${WEBSERVER}/${DIRECTORY}/data/mysql:/var/lib/mysql
+        #  - ${WEBSERVER}/${DIRECTORY}/mysql/mysql.cnf:/etc/mysql/conf.d/mysql.cnf:ro
+        ports:
+            - 3306:3306
+        networks: 
+            - ext1
     
-    # mariadb: 
+    # mariadb81: 
     #     image: mariadb
     #     container_name: mariadb
     #     ports: 
-    #         - 3306:3306
-    #     restart: always
+    #         - 3308:3306
     #     environment:
     #         MYSQL_ROOT_PASSWORD: example
-        # volumes: 
-        #     - /WEBSERVER/packages/data:/var/lib/mysql
+    #     volumes: 
+    #         - ${WEBSERVER}/${DIRECTORY}/data/maria:/var/lib/mysql
+        # networks: 
+        #     - ext1
     
-    # adminer:
+    # adminer81:
     #     image: adminer
-    #     container_name: mariadb-adminer
     #     restart: always
     #     ports:
     #         - 8080:8080
@@ -78,12 +85,12 @@ services:
     #     target: /data
     #     volume:
     #       nocopy: true
-    #   - type: bind
+    #      - type: bind
     #     source: ./static
     #     target: /opt/app/static
        
 networks: 
-    ext:
+    ext1:
         driver: bridge
 
 #################

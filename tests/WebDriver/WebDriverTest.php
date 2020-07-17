@@ -22,6 +22,7 @@ class WebDriverTest extends \PHPUnit\Framework\TestCase
 
     public function setUp(): void
     {
+        $this->assertTrue(true);
         if(!$this->enabled) return;
 
         $capabilities = array(

@@ -3,3 +3,4 @@
 /public/cover
 *.cache
 */**/_output
+/data

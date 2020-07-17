@@ -30,5 +30,7 @@ class MysqlTest extends \PHPUnit\Framework\TestCase
     function testSql()
     {
         $this->index->index();
+
+        $this->expectOutputRegex('/john/');
     }
 }
