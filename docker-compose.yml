@@ -88,6 +88,11 @@ services:
     #      - type: bind
     #     source: ./static
     #     target: /opt/app/static
+
+    ######################
+    # GIT SERVER
+    # jkarlos/git-server-docker
+    ######################
        
 networks: 
     ext1:
