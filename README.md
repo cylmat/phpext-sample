@@ -4,6 +4,7 @@ Implémentation des extensions de Php-Pecl-Pear sur différents exemples
 
 Php samples
 ---
+[src/Php](src/Php)
 - Auth, basic and digest
 - Closures functions
 - Iterators Spl
