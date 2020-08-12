@@ -15,8 +15,9 @@ services:
             - ext1
           
     phpfpm81: 
-        image: phpexttry:latest #from phpdockerio/php73-fpm:latest
-        #build: .docker/conf/fpm
+        #image: phpexttry:latest #from phpdockerio/php73-fpm:latest
+        build: .docker/fpm
+        container_name: phpfpm81
         restart: always
         working_dir: /appli
         depends_on: 
@@ -26,6 +27,11 @@ services:
         volumes:
             - ${WEBSERVER}/${DIRECTORY}:/appli
             #- ${WEBSERVER}/${DIRECTORY}/.docker/fpm/php.ini:/etc/php/7.3/fpm/php.ini
+            
+            # ################
+            # from https://github.com/git/git/blob/master/contrib/completion/
+            # ################
+            - ${WEBSERVER}/${DIRECTORY}/.docker/fpm/home:/root
         networks: 
             - ext1
     
@@ -62,7 +68,27 @@ services:
             - 3306:3306
         networks: 
             - ext1
+
+    ######
+    # Git
+    ######
+    git81:
+        image: jkarlos/git-server-docker
+        restart: always
+        ports:
+            - '2222:22'
+        volumes: 
+            - ${WEBSERVER}/${DIRECTORY}/.git-server/keys:/git-server/keys
+            - ${WEBSERVER}/${DIRECTORY}/.git-server/repos:/git-server/repos
+
+        networks: 
+            - ext1
     
+networks: 
+    ext1:
+        driver: bridge
+
+
     # mariadb81: 
     #     image: mariadb
     #     container_name: mariadb
@@ -94,9 +120,7 @@ services:
     # jkarlos/git-server-docker
     ######################
        
-networks: 
-    ext1:
-        driver: bridge
+
 
 #################
 # https://min.io

@@ -8,8 +8,11 @@ WORKDIR "/appli"
 
 # Install
 # be careful of cache
-RUN apt-get update && ENV=_docker_id_to_update_44636fd45899
+RUN apt-get update && ENV=_docker_id_to_update_eg1641h45899
 RUN apt-get install -y curl sqlite3 php7.3-dev vim wget zip
+
+# git
+RUN apt-get install -y git
 
 # Php ext
 RUN apt-get install -y php-curl php-ds php-mbstring php-redis php7.3-intl php-pear php7.3-mysql

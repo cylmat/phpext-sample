@@ -1,6 +1,11 @@
-/vendor/
-/cache/
+/vendor
+/cache
 /public/cover
-*.cache
-*/**/_output
 /data
+
+/.git-server/keys/*
+/.git-server/repos/*
+/myrepo
+
+*.cache
+*.tmp
