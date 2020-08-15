@@ -424,6 +424,9 @@ git submodule update
 
 git clone --recursive (--recurse-submodules)
 
+- add local repository
+git submodule add --force --branch dev git@github.com:<remote_path>/<remote_path> <../local_path_dir>
+
 -> prefer "Subtree" instead
 
 ### Subtree
