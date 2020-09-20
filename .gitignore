@@ -1,12 +1,13 @@
 /vendor
 /cache
 /public/cover
-/data
-
-/.git-server/keys/*
-/.git-server/repos/*
 /myrepo
+
+.git-server
+
+.docker/.data/
 
 .bash_history
 *.cache
 *.tmp
+*.local

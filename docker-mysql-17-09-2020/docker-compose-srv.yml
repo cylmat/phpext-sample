@@ -1,0 +1,50 @@
+version: "3"
+
+services:
+    ###############
+    # SERVER
+    ################
+    nginx: 
+        image: nginx:1.19
+        restart: always
+        ports: 
+            - 80:80
+            # api
+            - 81:81
+        volumes:
+            - /TMAID/.docker/conf/nginx/conf.d/default.conf:/etc/nginx/conf.d/default.conf:ro
+            - /TMAID/.docker/conf/nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+            - /TMAID:/var/www/
+            - /TMAID/api:/var/www_api/
+        networks:
+            - web
+    
+    apache:
+        image: httpd:2.4
+        restart: always
+        ports: 
+            - 85:80
+        volumes:
+            - /TMAID/.docker/conf/apache-httpd/:/usr/local/apache2/conf/:ro
+            - /TMAID:/usr/local/apache2/htdocs/
+        networks:
+            - web
+    
+    # todo!
+    
+    # lighttpd:
+    #     image: sebp/lighttpd
+    #     restart: always
+    #     ports: 
+    #         - 89:80
+    #     volumes: 
+    #         - /TMAID/.docker/conf/lighttpd/:/etc/lighttpd/:ro
+    #         - /TMAID/:/var/www/localhost/htdocs/
+    #     tty: true
+    #     networks:
+    #         - web
+
+# docker network create web
+networks: 
+    web:
+        external: true

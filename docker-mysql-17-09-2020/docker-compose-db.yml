@@ -1,0 +1,104 @@
+version: "3"
+
+services:
+    ###############
+    # DATABASE
+    ################
+    mysql:
+        image: mysql:5.7
+        restart: always
+        environment:
+            MYSQL_ROOT_PASSWORD: root
+            MYSQL_USER: user
+            MYSQL_PASSWORD: pass
+            MYSQL_DATABASE: mydb
+        ports:
+            - 3306:3306
+        command: "--innodb_use_native_aio=0"
+        volumes:
+            - /TMAID/.docker/conf/mysql/:/etc/mysql/
+            - /TMAID/.docker/.data/mysql:/var/lib/mysql
+        networks:
+            - web
+        # https://sp.mysqltutorial.org/wp-content/uploads/2018/03/mysqlsampledatabase.zip
+        
+        ############
+        # tuner
+        # https://github.com/major/MySQLTuner-perl
+        ############
+
+    mysql8:
+        image: mysql:8.0
+        restart: always
+        environment:
+            MYSQL_ROOT_PASSWORD: root
+            MYSQL_USER: user
+            MYSQL_PASSWORD: pass
+            MYSQL_DATABASE: mydb8
+        ports:
+            - 3308:3306
+        command: "--innodb_use_native_aio=0"
+        volumes:
+            - /TMAID/.docker/.data/mysql8:/var/lib/mysql
+        networks:
+            - web
+            
+    mariadb:
+        image: mariadb:10.0
+        restart: always
+        environment:
+            MYSQL_ROOT_PASSWORD: root
+            MYSQL_USER: user
+            MYSQL_PASSWORD: pass
+            MYSQL_DATABASE: madb
+        ports: 
+            - 3307:3306
+        command: "--innodb_use_native_aio=0"
+        volumes:
+            - /TMAID/.docker/conf/mariadb/:/etc/mysql/
+            - /TMAID/.docker/.data/mariadb/:/var/lib/mysql
+        networks:
+            - web
+
+    postgres:
+        image: postgres:12.4
+        restart: always
+        environment:
+            POSTGRES_USER: user
+            POSTGRES_PASSWORD: pass
+            POSTGRES_DB: pgdb
+        ports:
+            - 5432:5432
+        volumes:
+            - vpgdata:/var/lib/postgresql/data
+        networks:
+            - web
+
+    redis:
+        image: redis:6.0  
+        restart: always
+        ports:
+            - 6379:6379
+        volumes: 
+            - /TMAID/.docker/.data/redis/:/data/
+            - /TMAID/.docker/conf/redis/redis.conf:/usr/local/etc/redis/redis.conf:ro
+        networks:
+            - web
+    
+    memcached:
+        image: memcached:1.6
+        restart: always
+        ports:
+            - 11211:11211
+        networks:
+            - web
+
+    #apacheignite/ignite
+    
+networks: 
+    web:
+        external: true
+
+# docker volume create --name=vpgdata        
+volumes:
+    vpgdata:
