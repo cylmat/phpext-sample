@@ -1,6 +1,9 @@
 version: '3'
 
 services: 
+    ###############
+    # PHP-FPM
+    ################
     phpfpm: 
         build: .docker/df/phpfpm
         restart: always
@@ -13,20 +16,40 @@ services:
         volumes:
             - ${WEBSERVER}/${DIRECTORY}:/appli
             - ${WEBSERVER}/${DIRECTORY}/.docker/config/phpfpm/:/etc/php/7.4/:ro
+            - ${WEBSERVER}/${DIRECTORY}/.docker/config/phpfpm/mods-available/:/etc/php/7.4/fpm/conf.d/
+            - ${WEBSERVER}/${DIRECTORY}/.docker/config/phpfpm/mods-available/:/etc/php/7.4/cli/conf.d/
             
+            # sqlite
+            - ${WEBSERVER}/${DIRECTORY}/.docker/.data/sqlite/:/sqlite/
+
             # ################
             # Use git autocompletion and prompt
             # from https://github.com/git/git/blob/master/contrib/completion/
             # git-completion.bash
             # git-prompt.sh
             # ################
+            - ${WEBSERVER}/${DIRECTORY}/.docker/config/git/.gitconfig:/root/.gitconfig:ro
             - ${WEBSERVER}/${DIRECTORY}/.docker/.phpfpm/home:/root
         networks: 
             - phpext
     
+    # for api-tools
+    fpm-api:
+        build: .docker/Df/fpm 
+        restart: always
+        ports:
+            - 9002:9000
+        volumes:         
+            - ${WEBSERVER}/${DIRECTORY}/api:/var/www_api/
+        working_dir: /var/www_api
+        networks:
+            - phpext
+
+    #ruby:
+    #    image: ruby
 networks: 
     phpext:
-        driver: bridge
+        #driver: bridge
 
 # https://devilbox.org
 # https://nanobox.io

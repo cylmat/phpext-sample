@@ -4,22 +4,28 @@ services:
     #############
     # DATABASES
     #############
-    mysql:
+    mysql36:
         image: mysql:5.7
         restart: always
         environment:
             MYSQL_ROOT_PASSWORD: root
             MYSQL_USER: user
             MYSQL_PASSWORD: pass
-            MYSQL_DATABASE: mydb
+            MYSQL_DATABASE: myalphadb
         command: "--innodb_use_native_aio=0"
         volumes:
-            - ${WEBSERVER}/${DIRECTORY}/.docker/.data/mysql:/var/lib/mysql
+            - ${WEBSERVER}/${DIRECTORY}/.docker/.data/mysql36:/var/lib/mysql
             - ${WEBSERVER}/${DIRECTORY}/.docker/config/mysql/:/etc/mysql/:ro
         ports:
-            - 3306:3306
+            - 3310:3306
         networks: 
             - phpext
+         # https://sp.mysqltutorial.org/wp-content/uploads/2018/03/mysqlsampledatabase.zip
+
+        ############
+        # tuner
+        # https://github.com/major/MySQLTuner-perl
+        ############
 
     # mysql-repl:
     #     image: mysql:5.7

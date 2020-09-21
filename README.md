@@ -1,4 +1,4 @@
-Php extentions samples
+Php extensions samples
 ===
 Implémentation des extensions de Php-Pecl-Pear sur différents exemples
 
