@@ -1,8 +1,6 @@
 FROM phpdockerio/php74-fpm:latest
 #Ubuntu (debian) 20.04 LTS (Focal Fossa)
 
-WORKDIR "/appli"
-
 # Fix debconf warnings upon build
 ARG DEBIAN_FRONTEND=noninteractive
 

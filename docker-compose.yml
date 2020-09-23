@@ -7,20 +7,34 @@ services:
     phpfpm: 
         build: .docker/df/phpfpm
         restart: always
-        working_dir: /appli
+        working_dir: /var/www
         ports: 
             - 9001:9000
         environment:
             - DB_USER=user
             - DB_PASS=pass
         volumes:
-            - ${WEBSERVER}/${DIRECTORY}:/appli
+            - ${WEBSERVER}/${DIRECTORY}:/var/www/
             - ${WEBSERVER}/${DIRECTORY}/.docker/config/phpfpm/:/etc/php/7.4/:ro
             - ${WEBSERVER}/${DIRECTORY}/.docker/config/phpfpm/mods-available/:/etc/php/7.4/fpm/conf.d/
             - ${WEBSERVER}/${DIRECTORY}/.docker/config/phpfpm/mods-available/:/etc/php/7.4/cli/conf.d/
             
             # sqlite
             - ${WEBSERVER}/${DIRECTORY}/.docker/.data/sqlite/:/sqlite/
+        networks: 
+            - phpext
+    
+    # for api-tools
+    fpm-api:
+        build: .docker/df/phpfpm
+        working_dir: /var/www_api
+        restart: always
+        ports:
+            - 9002:9000
+        networks:
+            - phpext
+        volumes:         
+            - ${WEBSERVER}/${DIRECTORY}/api:/var/www_api/
 
             # ################
             # Use git autocompletion and prompt
@@ -30,20 +44,6 @@ services:
             # ################
             - ${WEBSERVER}/${DIRECTORY}/.docker/config/git/.gitconfig:/root/.gitconfig:ro
             - ${WEBSERVER}/${DIRECTORY}/.docker/.phpfpm/home:/root
-        networks: 
-            - phpext
-    
-    # for api-tools
-    fpm-api:
-        build: .docker/Df/fpm 
-        restart: always
-        ports:
-            - 9002:9000
-        volumes:         
-            - ${WEBSERVER}/${DIRECTORY}/api:/var/www_api/
-        working_dir: /var/www_api
-        networks:
-            - phpext
 
     #ruby:
     #    image: ruby
@@ -51,12 +51,17 @@ networks:
     phpext:
         #driver: bridge
 
+##################
+# clear cache: docker system prune
+##################
+
+###################
+# Boxes
+
 # https://devilbox.org
 # https://nanobox.io
-
 # https://laradock.io/
 # https://github.com/laraedit/laraedit-docker
 # https://laragon.org/
 # https://www.easyphp.org/
-
 ######################
