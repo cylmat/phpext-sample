@@ -10,4 +10,7 @@ services:
         volumes:
             - ${WEBSERVER}/${DIRECTORY}:/appli
         networks: 
-            - ext1
+            - phpext
+
+networks: 
+    phpext:

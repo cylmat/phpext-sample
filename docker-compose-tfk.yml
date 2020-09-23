@@ -16,6 +16,8 @@ services:
         - type: npipe
             source: \\.\pipe\docker_engine
             target: \\.\pipe\docker_engine
+        networks: 
+            phpext:
 
     whoami1:
         image: stefanscherer/whoami
@@ -23,6 +25,8 @@ services:
         - "traefik.backend=whoami"
         - "traefik.frontend.entryPoints=http"
         - "traefik.frontend.rule=Host:whoami.docker.local"
+        networks: 
+            phpext:
 
     whoami2:
         image: stefanscherer/whoami
@@ -30,6 +34,8 @@ services:
         - "traefik.backend=whoami"
         - "traefik.frontend.entryPoints=http"
         - "traefik.frontend.rule=Host:whoami.docker.local"
+        networks: 
+            phpext:
 
 #  portainer:
 #    image: portainer/portainer
