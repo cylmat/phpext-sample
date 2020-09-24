@@ -7,7 +7,7 @@ services:
         volumes:
             - ${WEBSERVER}/${DIRECTORY}/.docker/config/nginx/nginx.conf:/etc/nginx/nginx.conf:ro
             - ${WEBSERVER}/${DIRECTORY}/.docker/config/nginx/conf.d/:/etc/nginx/conf.d/:ro
-            - ${WEBSERVER}/${DIRECTORY}/public:/var/www/html
+            - ${WEBSERVER}/${DIRECTORY}:/var/www/
         ports:
             - 8001:80
         networks: 
@@ -21,7 +21,7 @@ services:
         volumes:
             - ${WEBSERVER}/${DIRECTORY}/.docker/config/nginx/nginx.conf:/etc/nginx/nginx.conf:ro
             - ${WEBSERVER}/${DIRECTORY}/.docker/config/nginx/conf.d/:/etc/nginx/conf.d/:ro
-            - ${WEBSERVER}/${DIRECTORY}/public:/var/www/html
+            - ${WEBSERVER}/${DIRECTORY}:/var/www/
         ports:
             - 8002:80
         networks: 
