@@ -31,6 +31,8 @@ services:
         environment:
             - PGADMIN_DEFAULT_EMAIL=user@localhost.fr
             - PGADMIN_DEFAULT_PASSWORD=pass
+        external_links:
+            - postgres:postgres
         ports: 
             - 8082:80
         networks:
