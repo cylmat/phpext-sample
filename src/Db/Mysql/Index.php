@@ -6,8 +6,10 @@ class Index
 {   
     function index()
     {
+        include __DIR__ . '/pdo.php';
+
         //UTF-8
-        $dbh = mysqli_connect('mysql81','user','pass','db');
+        /*$dbh = mysqli_connect('mysql81','user','pass','db');
         $dbh->set_charset('utf8mb4'); // object oriented style
         mysqli_set_charset($dbh, 'utf8mb4'); // procedural style
 
@@ -22,6 +24,6 @@ class Index
         echo $dbh->error;
         foreach($r as $row) {
             echo $row['user'];
-        }
+        }*/
     }
 }
