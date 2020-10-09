@@ -1,0 +1,90 @@
+https://dev.mysql.com/doc/refman/5.7/en/data-types.html
+
+------numeric
+MySQL supports all standard SQL numeric data types. 
+These types include the exact numeric data types (INTEGER, SMALLINT, DECIMAL, and NUMERIC), 
+as well as the approximate numeric data types (FLOAT, REAL, and DOUBLE PRECISION). 
+The keyword INT is a synonym for INTEGER, and the keywords DEC and FIXED are synonyms for DECIMAL. 
+MySQL treats DOUBLE as a synonym for DOUBLE PRECISION (a nonstandard extension). 
+MySQL also treats REAL as a synonym for DOUBLE PRECISION (a nonstandard variation), unless the REAL_AS_FLOAT SQL mode is enabled. 
+The BIT data type stores bit values and is supported for MyISAM, MEMORY, InnoDB, and NDB tables. 
+
+
+----date
+The date and time data types for representing temporal values are DATE, TIME, DATETIME, TIMESTAMP, and YEAR. 
+Each temporal type has a range of valid values, as well as a “zero” value that may be used when you specify an invalid value that MySQL cannot represent. 
+The TIMESTAMP and DATETIME types have special automatic updating behavior
+
+
+----string
+The string data types are CHAR, VARCHAR, BINARY, VARBINARY, BLOB, TEXT, ENUM, and SET. 
+
+
+----spatial
+https://dev.mysql.com/doc/refman/5.7/en/spatial-type-overview.html
+OpenGIS 
+
+{GEOMETRY | POINT | LINESTRING | POLYGON }  {MULTIPOINT, MULTILINESTRING, MULTIPOLYGON, GEOMETRYCOLLECTION }
+CREATE TABLE geom (g GEOMETRY NOT NULL, SPATIAL INDEX(g));
+ALTER TABLE geom ADD pt POINT;
+ALTER TABLE geom DROP pt;
+
+//index
+ALTER TABLE geom ADD SPATIAL INDEX(g); CREATE SPATIAL INDEX g ON geom (g); (R-tree index)
+
+//insert
+INSERT INTO geom VALUES (ST_GeomFromText('POINT(1 1)'));
+SET @g = 'POINT(1 1)';
+INSERT INTO geom VALUES (ST_GeomFromText(@g));
+SET @g = 'POLYGON((0 0,10 0,10 10,0 10,0 0),(5 5,7 5,7 7,5 7, 5 5))';
+INSERT INTO geom VALUES (ST_GeomFromText(@g));
+SELECT ST_AsText(g) FROM geom;
+
+
+--------JSON
+https://dev.mysql.com/doc/refman/5.7/en/json.html
+
+ CAST(value AS JSON)
+{"k1": "value", "k2": ["hot", "cold"], {"id": "HK500", "cost": 75.99}}
+
+JSON_TYPE(), JSON_ARRAY(), JSON_OBJECT(), JSON_MERGE(), JSON_VALID({...})
+JSON_EXTRACT('{"id": 14, "name": "Aztalan"}', '$.name');
+
+SELECT JSON_SET('"x"', '$[0]', 'a');
+JSON_INSERT(@j, '$[1].b[0]', 1, '$[2][2]', 2);
+JSON_REPLACE(@j, '$[1].b[0]', 1, '$[2][2]', 2);
+JSON_REMOVE(@j, '$[2]', '$[1].b[1]', '$[1].b[1]');
+
+ex: ORDER BY CAST(JSON_EXTRACT(jdoc, '$.id') AS UNSIGNED)
+
+-> 	Return value from JSON column after evaluating path; equivalent to JSON_EXTRACT().
+->> (introduced 5.7.13) 	Return value from JSON column after evaluating path and unquoting the result; equivalent to JSON_UNQUOTE(JSON_EXTRACT()).
+JSON_APPEND() (deprecated) 	Append data to JSON document
+JSON_ARRAY() 	Create JSON array
+JSON_ARRAY_APPEND() 	Append data to JSON document
+JSON_ARRAY_INSERT() 	Insert into JSON array
+JSON_CONTAINS() 	Whether JSON document contains specific object at path
+JSON_CONTAINS_PATH() 	Whether JSON document contains any data at path
+JSON_DEPTH() 	Maximum depth of JSON document
+JSON_EXTRACT() 	Return data from JSON document
+JSON_INSERT() 	Insert data into JSON document
+JSON_KEYS() 	Array of keys from JSON document
+JSON_LENGTH() 	Number of elements in JSON document
+JSON_MERGE() (deprecated 5.7.22) 	Merge JSON documents, preserving duplicate keys. Deprecated synonym for JSON_MERGE_PRESERVE()
+JSON_MERGE_PATCH() (introduced 5.7.22) 	Merge JSON documents, replacing values of duplicate keys
+JSON_MERGE_PRESERVE() (introduced 5.7.22) 	Merge JSON documents, preserving duplicate keys
+JSON_OBJECT() 	Create JSON object
+JSON_PRETTY() (introduced 5.7.22) 	Print a JSON document in human-readable format
+JSON_QUOTE() 	Quote JSON document
+JSON_REMOVE() 	Remove data from JSON document
+JSON_REPLACE() 	Replace values in JSON document
+JSON_SEARCH() 	Path to value within JSON document
+JSON_SET() 	Insert data into JSON document
+JSON_STORAGE_SIZE() (introduced 5.7.22) 	Space used for storage of binary representation of a JSON document
+JSON_TYPE() 	Type of JSON value
+JSON_UNQUOTE() 	Unquote JSON value
+JSON_VALID() 	Whether JSON value is valid
+
+
+ JSON_ARRAYAGG() and JSON_OBJECTAGG().
+ JSON_PRETTY()  JSON_STORAGE_SIZE().

@@ -1,0 +1,147 @@
+# ##########################
+# MySql Aggregates functions
+# ##########################
+AVG()       Return the average of non-NULL values.
+BIT_AND()   Return bitwise AND.
+BIT_OR()    Return bitwise OR.
+BIT_XOR()   Return bitwise XOR.
+COUNT()     Return the number of rows in a group, including rows with NULL values.
+GROUP_CONCAT()  Return a concatenated string.
+JSON_ARRAYAGG() Return result set as a single JSON array.
+JSON_OBJECTAGG()    Return result set as a single JSON object.
+MAX()       Return the highest value (maximum) in a set of non-NULL values.
+MIN()       Return the lowest value (minimum) in a set of non-NULL values.
+STDEV()     Return the population standard deviation.
+STDDEV_POP()    Return the population standard deviation.
+STDDEV_SAMP()   Return the sample standard deviation.
+SUM()       Return the summation of all non-NULL values a set.
+VAR_POP()   Return the population standard variance.
+VARP_SAM()  Return the sample variance.
+VARIANCE()  Return the population standard variance.
+-
+SELECT AVG(buyPrice) average_buy_price FROM products;
+SELECT productLine, MAX(buyPrice) FROM products GROUP BY productLine ORDER BY MAX(buyPrice) DESC;
+SELECT firstName, lastName, GROUP_CONCAT(DISTINCT customername ORDER BY customerName) customers FROM...
+
+# ###########
+# Comparison
+# ###########
+SELECT COALESCE(NULL, NULL, 3, 26, NULL, 8);  --> 3 (first non-null)
+SELECT customerName, city, COALESCE(state, 'N/A'), country... (substitute)
+SELECT id, title, COALESCE(excerpt, LEFT(body, 150)), published_at...
+SELECT id, title, (CASE WHEN excerpt IS NULL THEN LEFT(body, 150) ELSE excerpt END) AS excerpt, published_at...
+SELECT GREATEST(10, null, 20),  -- null
+       LEAST(10, 12, 30); -- 10
+       LEAST(IFNULL(q1, 0), IFNULL(q2, 0) low, -- avoid null
+SELECT ISNULL(1 + NULL); -- 1;
+
+# ######
+# DATES 
+# ######
+CURDATE     Returns the current date.                               -> DATE(NOW())
+DATEDIFF    Calculates the number of days between two DATE values.
+DAY         Gets the day of the month of a specified date.
+DATE_ADD    Adds a time value to date value.                        -> DATE_ADD('1999-12-31 23:59:59', INTERVAL '1:1' MINUTE_SECOND) result
+DATE_SUB    Subtracts a time value from a date value.
+DATE_FORMAT Formats a date value based on a specified date format.
+DAYNAME     Gets the name of a weekday for a specified date.        -> SET @@lc_time_names = 'fr_FR';
+DAYOFWEEK   Returns the weekday index for a date.
+EXTRACT     Extracts a part of a date.                              -> SELECT EXTRACT(DAY FROM '2017-07-14 09:04:44') DAY;
+LAST_DAY    Returns the last day of the month of a specified date   -> LAST_DAY(CURDATE() + INTERVAL 1 MONTH);
+NOW         Returns the current date and time at which the statement executed.
+MONTH       Returns an integer that represents a month of a specified date.
+STR_TO_DATE Converts a string into a date and time value based on a specified format. -> STR_TO_DATE('21,5,2013','%d,%m,%Y %h%i%s');
+SYSDATE     Returns the current EXACT date.                         -> SELECT SYSDATE(), SLEEP(5), SYSDATE();
+TIMEDIFF    Calculates the difference between two TIME or DATETIME values.
+TIMESTAMPDIFF   Calculates the difference between two DATE or DATETIME values. 
+    -> SELECT TIMESTAMPDIFF(HOUR, '2009-01-01 00:00:00', '2009-03-01 00:00:00') diff;
+WEEK        Returns a week number of a date.
+WEEKDAY     Returns a weekday index for a date.
+YEAR        Return the year for a specified date
+-- INTERVAL '-1 5' DAY_HOUR | DAY_MINUTE         
+-- INTERVAL '1.999999' SECOND_MICROSECOND 
+-- INTERVAL CAST(6/4 AS DECIMAL(3,1)) HOUR_MINUTE)
+
+##########
+# STRING
+##########
+CONCAT  Concatenate two or more strings into a single string
+IN      The IN operator determines whether a value matches any value in a set.      -> ...WHERE names IN ('O-1' , 'O-2');
+INSTR   Return the position of the first occurrence of a substring in a string      -> SELECT INSTR('Is MySQL INSTR', 'MySQL'); --> 4
+LENGTH  Get the length of a string in bytes and in characters
+LEFT    Get a specified number of leftmost characters from a string                 -> LEFT('MySQL LEFT', 5); --> MySql
+LOCATE  Search for a string and return position                                     -> LOCATE("3", "W3Schools.com") AS MatchPosition; -> 2
+LOWER   Convert a string to lowercase
+LTRIM   Remove all leading spaces from a string
+REPLACE Search and replace a substring in a string                  -> REPLACE(column_name, string_to_find, string_to_replace)
+REVERSE
+RIGHT   Get a specified number of rightmost characters from a string
+RTRIM   Remove all trailing spaces from a string
+SUBSTRING   Extract a substring starting from a position with a specific length.    -> SUBSTRING('MySQL SUBSTRING' FROM -10 FOR 5); -- (str,-10,5)
+SUBSTRING_INDEX Return a substring from a string before a specified number of occurrences of a delimiter    
+    -> SUBSTRING_INDEX('Hello World', 'l', 3); -- -Hello Wor
+TRIM    Remove unwanted characters from a string.                   -> SELECT TRIM({BOTH|LEADING|TRAILING} FROM '    MySQL TRIM Function   ');
+FIND_IN_SET Find a string within a comma-separated list of strings  -> SELECT FIND_IN_SET('y', 'x,y,z'); --> 2
+FORMAT  Format a number with a specific locale, rounded to the number of decimals   -> FORMAT(N,D,locale); -- FORMAT(12500.2015, 2,'de_DE');
+UPPER   Convert a string to uppercase
+
+#########
+# MATHS
+#########
+ABS()   Returns the absolute value of a number
+CEIL()  Returns the smallest integer value greater than or equal to the input number (n).
+FLOOR() Returns the largest integer value not greater than the argument
+MOD()   Returns the remainder of a number divided by another
+ROUND() Rounds a number to a specified number of decimal places.
+TRUNCATE()  Truncates a number to a specified number of decimal places
+CONV(n,from_base,to_base)   Converts a number between different number bases
+
+##########
+# JOIN
+##########
+SELECT * FROM orderDetails INNER JOIN products USING (productCode)
+SELECT * FROM orderDetails AS o INNER JOIN products AS p ON o.productCode = p.productCode
+SELECT * FROM members m RIGHT JOIN committees c USING(name) WHERE m.member_id IS NULL; -- only right part
+
+# INTERSECT -emulation-
+SELECT DISTINCT id FROM t1 WHERE id IN (SELECT id FROM t2);
+
+#######
+# DATA
+#######
+
+#########
+# CONTROL
+#########
+CASE    -- SELECT customerName, orderCount, CASE orderCount WHEN 1 THEN 'One-time Customer'
+            ELSE 'Loyal Customer' END customerType
+IF      IF(expr,if_true_expr,if_false_expr)
+IFNULL  return the first argument if it is not NULL , otherwise returns the second argument.    -- IFNULL(expression_1,expression_2);
+NULLIF  return NULL if the first argument is equal to the second argument, otherwise, returns the first argument. -- ("Hello", "world");  --> "Hello"
+
+#######
+# BASE
+#######
+# HAVING
+SELECT produit, MIN(qte) AS "Quantité basse" FROM stock GROUP BY produit HAVING MIN(qte) < 5;
+SELECT produit, COUNT(*) AS "Nb_comm" FROM stock WHERE cat='1' GROUP BY produit HAVING COUNT(*) > 5;
+# GROUP BY WITH ROLLUP -> Generate sub-totals and final-total SUMMARY
+group1 set1 x
+group1 set2 y
+group1 null x+y
+group2 set1 u etc...
+
+#######
+# TIPS 
+#######
+## UNION (remove duplicate) vs UNION ALL
+## EXPLAIN SELECT * FROM ...
+INSERT IGNORE INTO table(column_list) VALUES( value_list)... -- skip errors
+
+# SUBQUERY
+WHERE officeCode IN (SELECT officeCode FROM offices WHERE country = 'USA');
+INSERT INTO table_name(column_list) (SELECT select_list FROM another_table WHERE condition);
+
+# DERIVED TABLE
+SELECT column_list FROM (SELECT column_list FROM table_1) derived_table_name WHERE derived_table_name.c1 > 0;
+

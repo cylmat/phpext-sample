@@ -1,0 +1,46 @@
+--------------------
+-      CREATE
+--------------------
+/*
+PARTITION BY
+{ [LINEAR] HASH(expr)
+| [LINEAR] KEY(column_list)
+| RANGE(expr)
+| LIST(expr) }
+[PARTITIONS num]
+[SUBPARTITION BY
+{ [LINEAR] HASH(expr)
+| [LINEAR] KEY(column_list) }
+[SUBPARTITIONS num]
+]
+[(partition_definition[, partition_definition] ...)
+*/
+/*
+PARTITION partition_name
+[VALUES 
+{LESS THAN {(expr) | MAXVALUE} 
+| 
+IN (value_list)}]
+[[STORAGE] ENGINE [=] engine_name]
+[COMMENT [=] 'comment_text' ]
+[DATA DIRECTORY [=] 'data_dir']
+[INDEX DIRECTORY [=] 'index_dir']
+[MAX_ROWS [=] max_number_of_rows]
+[MIN_ROWS [=] min_number_of_rows]
+[TABLESPACE [=] tablespace_name]
+[NODEGROUP [=] node_group_id]
+[(subpartition_definition [, subpartition_definition] ...)]
+*/
+/*
+SUBPARTITION logical_name
+[[STORAGE] ENGINE [=] engine_name]
+[COMMENT [=] 'comment_text' ]
+[DATA DIRECTORY [=] 'data_dir']
+[INDEX DIRECTORY [=] 'index_dir']
+[MAX_ROWS [=] max_number_of_rows]
+[MIN_ROWS [=] min_number_of_rows]
+[TABLESPACE [=] tablespace_name]
+[NODEGROUP [=] node_group_id]
+*/
+
+ALTER TABLE t1 PARTITION BY HASH(id) PARTITIONS 6;

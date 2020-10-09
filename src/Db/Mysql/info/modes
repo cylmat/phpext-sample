@@ -1,0 +1,54 @@
+https://dev.mysql.com/doc/refman/8.0/en/sql-mode.html
+
+-------------usage
+    array(PDO::MYSQL_ATTR_INIT_COMMAND => 'SET sql_mode="TRADITIONAL"') 
+    SELECT @@sql_mode; 
+    
+    default: STRICT_TRANS_TABLES, STRICT_ALL_TABLES, NO_ZERO_IN_DATE, NO_ZERO_DATE, 
+             ERROR_FOR_DIVISION_BY_ZERO, TRADITIONAL, NO_AUTO_CREATE_USER, NO_ENGINE_SUBSTITUTION
+
+--------most
+ANSI
+    Equivalent to REAL_AS_FLOAT, PIPES_AS_CONCAT, ANSI_QUOTES, IGNORE_SPACE, and ONLY_FULL_GROUP_BY. 
+This mode changes syntax and behavior to conform more closely to standard SQL.
+
+STRICT_TRANS_TABLES
+If a value could not be inserted as given into a transactional table, abort the statement. 
+For a nontransactional table, abort the statement if the value occurs in a single-row statement or the first row of a multiple-row statement. 
+
+TRADITIONAL
+    is equivalent to STRICT_TRANS_TABLES, STRICT_ALL_TABLES, NO_ZERO_IN_DATE, NO_ZERO_DATE, ERROR_FOR_DIVISION_BY_ZERO, and NO_ENGINE_SUBSTITUTION. 
+Make MySQL behave like a “traditional” SQL database system. 
+A simple description of this mode is “give an error instead of a warning” when inserting an incorrect value into a column. 
+
+
+-------list
+ALLOW_INVALID_DATES : Do not perform full checking of dates. 
+ANSI_QUOTES         : Treat " as an identifier quote character
+HIGH_NOT_PRECEDENCE : The precedence of the NOT operator is such that expressions such as NOT a BETWEEN b AND c are parsed as NOT (a BETWEEN b AND c).
+IGNORE_SPACE        : Permit spaces between a function name and the ( character. This causes built-in function names to be treated as reserved words
+NO_AUTO_CREATE_USER : Prevent the GRANT statement from automatically creating new user accounts if it would otherwise do so         --deprecated, default
+NO_AUTO_VALUE_ON_ZERO : suppresses this behavior in auto-increment for 0 so that only NULL generates the next sequence number. 
+NO_BACKSLASH_ESCAPES: Disable the use of the backslash character (\) as an escape character within strings and identifiers. 
+NO_DIR_IN_CREATE    : When creating a table, ignore all INDEX DIRECTORY and DATA DIRECTORY directives. This option is useful on replica replication servers. 
+NO_ENGINE_SUBSTITUTION: Control automatic substitution of the default storage engine when a statement such as ALTER TABLE specifies a storage engine that is disabled. 
+NO_FIELD_OPTIONS    : Do not print MySQL-specific column options in the output of SHOW CREATE TABLE. 
+NO_UNSIGNED_SUBTRACTION: Subtraction between integer values, where one is of type UNSIGNED, produces an unsigned result by default. An error result
+ONLY_FULL_GROUP_BY  : Reject queries for which the select list, HAVING condition, or ORDER BY list refer to nonaggregated columns that are neither named in the GROUP BY
+PAD_CHAR_TO_FULL_LENGTH: trimming does not occur and retrieved CHAR values are padded to their full length, no trailing spaces are trimmed from CHAR column values on retrieval
+PIPES_AS_CONCAT     : Treat || as a string concatenation operator (same as CONCAT()) rather than as a synonym for OR. 
+REAL_AS_FLOAT       : Treat REAL as a synonym for FLOAT. By default, MySQL treats REAL as a synonym for DOUBLE. 
+
+-----strict
+STRICT_ALL_TABLES   : Enable strict SQL mode for all storage engines. Invalid data values are rejected. For details, see Strict SQL Mode. 
+STRICT_TRANS_TABLES : Enable strict SQL mode for transactional storage engines, and when possible for nontransactional storage engines.
+
+    For STRICT_ALL_TABLES, MySQL returns an error and ignores the rest of the rows. To avoid partial updates, use single-row statements
+    For STRICT_TRANS_TABLES, MySQL converts an invalid value to the closest valid value for the column and inserts the adjusted value
+
+--deprecated
+ERROR_FOR_DIVISION_BY_ZERO : The ERROR_FOR_DIVISION_BY_ZERO mode affects handling of division by zero, which includes MOD(N,0).                           
+NO_KEY_OPTIONS      : Do not print MySQL-specific index options in the output of SHOW CREATE TABLE
+NO_TABLE_OPTIONS    : Do not print MySQL-specific table options (such as ENGINE) in the output of SHOW CREATE TABLE..
+NO_ZERO_DATE        : The NO_ZERO_DATE mode affects whether the server permits '0000-00-00' as a valid date.                                              
+NO_ZERO_IN_DATE     : The NO_ZERO_IN_DATE mode affects whether the server permits dates in which the year part is nonzero but the month or day part is 0.

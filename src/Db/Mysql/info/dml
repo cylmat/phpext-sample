@@ -1,0 +1,24 @@
+- Data Definition Language (DDL) refers to the CREATE, ALTER and DROP statements.
+
+DDL or Data Definition Language actually consists of the SQL commands that can be used to define the database schema. 
+DDL allows to add / modify / delete the logical structures which contain the data or which allow users to access / maintain the data (databases, tables, keys, views...). 
+DDL is about "metadata".
+
+    - Data Manipulation Language (DML) refers to the INSERT, UPDATE and DELETE statements
+
+DML allows to add / modify / delete data itself.
+
+    - Data Query Language (DQL) refers to the SELECT, SHOW and HELP statements (queries)
+
+SELECT is the main DQL instruction. It retrieves data you need. SHOW retrieves infos about the metadata. HELP... is for people who need help.
+
+    - Data Control Language (DCL) refers to the GRANT and REVOKE statements
+
+DCL is used to grant / revoke permissions on databases and their contents. 
+DCL is simple, but MySQL's permissions are rather complex. DCL is about security.
+
+    - Data Transaction Language (DTL) refers to the START TRANSACTION, SAVEPOINT, COMMIT and ROLLBACK [TO SAVEPOINT] statements
+
+DTL is used to manage transactions (operations which include more instructions none of which can be executed if one of them fails). 
+
+ref: https://en.wikibooks.org/wiki/MySQL/Language/Definitions:_what_are_DDL,_DML_and_DQL%3F

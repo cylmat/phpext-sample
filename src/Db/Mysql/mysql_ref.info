@@ -1,0 +1,18 @@
+/**
+ * Mysql 5.7
+ * 
+ * All references from
+ * https://www.mysqltutorial.org
+ * 
+ * - mysql options:
+ * https://dev.mysql.com/doc/refman/5.7/en/mysql-command-options.html
+ * 
+ * - server options: 
+ * SHOW SESSION STATUS;
+ * https://dev.mysql.com/doc/refman/5.7/en/server-options.html
+ * https://dev.mysql.com/doc/refman/5.7/en/server-system-variables.html
+ * https://dev.mysql.com/doc/refman/5.7/en/server-status-variables.html 
+ * 
+ * - dump options:
+ * https://dev.mysql.com/doc/refman/5.7/en/mysqldump.html#mysqldump-connection-options
+ */
