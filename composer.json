@@ -1,5 +1,5 @@
 {
-    "name": "freeonisland/phpext",
+    "name": "cylmat/phpext-try",
     "description": "Trying differents php-pear-pecl extensions",
     "require": {
     },
@@ -20,8 +20,8 @@
         "squizlabs/php_codesniffer": "^3.5"
     },
     "config": {
-        "preferred-install": "dist",
         "bin-dir": "bin",
+        "preferred-install": "dist",
         "sort-packages": true
     },
     "autoload": {
@@ -39,16 +39,16 @@
         }
     },
     "scripts": {
-        "test": "phpunit --color=always",
-        "cover": "phpunit --color=always -vvv --coverage-text - --coverage-html public/cover",
-        "cover_dbg": "phpdbg -qrr vendor/phpunit/phpunit/phpunit --color=always -vvv --coverage-text - --coverage-html public/cover",
         "cept": "codecept run",
         "check": "phpcs",
+        "cover": "phpunit --color=always -vvv --coverage-text - --coverage-html public/cover",
+        "cover_dbg": "phpdbg -qrr vendor/phpunit/phpunit/phpunit --color=always -vvv --coverage-text - --coverage-html public/cover",
         "cs": "phpcs",
         "fix": "phpcbf -v",
         "insights": "phpinsights",
         "md": "phpmd src text cleancode, codesize, controversial, design, naming, unusedcode",
-        "php-cs-fixer": "php-cs-fixer fix src"
+        "php-cs-fixer": "php-cs-fixer fix src",
+        "test": "phpunit --color=always"
     },
     "extra": {
         "md": "cleancode: class import-else and return.., codesize: too much methods, controversial: camelCase",

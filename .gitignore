@@ -1,13 +1,12 @@
-/vendor
 /cache
+/vendor
 /public/cover
-/myrepo
-
-.git-server
-
+/bin/
 .docker/.data/
+_output/
 
-.bash_history
 *.cache
 *.tmp
 *.local
+
+.bash_history

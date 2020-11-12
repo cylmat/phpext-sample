@@ -1,67 +1,42 @@
 version: '3'
 
 services: 
-    ###############
-    # PHP-FPM
-    ################
+    ###########
+    # PHP-FPM #
+    ###########
     phpfpm: 
         build: .docker/df/phpfpm
         restart: always
         working_dir: /var/www
         ports: 
-            - 9001:9000
+            - 9000:9000
         environment:
             - DB_USER=user
             - DB_PASS=pass
         volumes:
             - ${WEBSERVER}/${DIRECTORY}:/var/www/
             - ${WEBSERVER}/${DIRECTORY}/.docker/config/phpfpm/:/etc/php/7.4/:ro
-            - ${WEBSERVER}/${DIRECTORY}/.docker/config/phpfpm/mods-available/:/etc/php/7.4/fpm/conf.d/
-            - ${WEBSERVER}/${DIRECTORY}/.docker/config/phpfpm/mods-available/:/etc/php/7.4/cli/conf.d/
+           # - ${WEBSERVER}/${DIRECTORY}/.docker/config/phpfpm/mods-available/:/etc/php/7.4/fpm/conf.d/
+           # - ${WEBSERVER}/${DIRECTORY}/.docker/config/phpfpm/mods-available/:/etc/php/7.4/cli/conf.d/
+        
+            # home
+            - ${WEBSERVER}/${DIRECTORY}/.docker/home:/root:ro
             
             # sqlite
             - ${WEBSERVER}/${DIRECTORY}/.docker/.data/sqlite/:/sqlite/
         networks: 
             - phpext
-    
-    # for api-tools
-    fpm-api:
-        build: .docker/df/phpfpm
-        working_dir: /var/www_api
+
+    apache:
+        image: httpd:2.4
         restart: always
-        ports:
-            - 9002:9000
+        ports: 
+            - 80:80
+        volumes:
+            - ${WEBSERVER}/${DIRECTORY}/.docker/config/apache/:/usr/local/apache2/conf/:ro
+            - ${WEBSERVER}/${DIRECTORY}:/usr/local/apache2/htdocs/
         networks:
             - phpext
-        volumes:         
-            - ${WEBSERVER}/${DIRECTORY}/api:/var/www_api/
-
-            # ################
-            # Use git autocompletion and prompt
-            # from https://github.com/git/git/blob/master/contrib/completion/
-            # git-completion.bash
-            # git-prompt.sh
-            # ################
-            - ${WEBSERVER}/${DIRECTORY}/.docker/config/git/.gitconfig:/root/.gitconfig:ro
-            - ${WEBSERVER}/${DIRECTORY}/.docker/.phpfpm/home:/root
-
-    #ruby:
-    #    image: ruby
+    
 networks: 
     phpext:
-        #driver: bridge
-
-##################
-# clear cache: docker system prune
-##################
-
-###################
-# Boxes
-
-# https://devilbox.org
-# https://nanobox.io
-# https://laradock.io/
-# https://github.com/laraedit/laraedit-docker
-# https://laragon.org/
-# https://www.easyphp.org/
-######################

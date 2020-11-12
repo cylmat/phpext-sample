@@ -25,13 +25,4 @@
             <directory suffix="Index.php">src</directory>
         </whitelist>
     </filter>
-
-    <!--logging>
-        <log type="coverage-text" target="php://stdout" showUncoveredFiles="false"/>
-        <log type="testdox-text" target="php://stdout" />
-    </logging-->
-
-    <!--listeners>
-        
-    </listeners-->
 </phpunit>

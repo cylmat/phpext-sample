@@ -9,12 +9,11 @@ ARG DEBIAN_FRONTEND=noninteractive
 
 # Install
 # be careful of cache
-RUN apt-get update && LAST_UPDATE=2020-09-20
+RUN apt-get update 
 RUN apt-get install -y libzip4 libzip-dev lbzip2 zlib1g-dev libicu-dev libxml2-dev
 RUN apt-get install -y apt-utils curl gnupg gnupg2 bzip2 sqlite3 vim wget g++ zip
 
-### git 
-### use with prompt and autocompletion
+### git, use with prompt and autocompletion
 RUN apt-get install -y git
 
 # 7.4
@@ -55,29 +54,11 @@ RUN apt-get install -y php7.4-odbc
 # Php-Redis: https://github.com/phpredis/phpredis/
 #RUN echo 'yes' | pecl install redis-5.3.1
 
-##############################
-# LUA HAXE NODE
-RUN apt-get install -y lua5.1 liblua5.1-0 liblua5.1-0-dev
-RUN pecl download lua-2.0.7 && tar xvzf lua-2.0.7.tgz 
-WORKDIR /tmp/lua-2.0.7
-RUN phpize && ./configure --with-lua-version=5.1 && make && make install
-
-# haxe && v8
-RUN apt-get install -y haxe libv8-dev
-
-# node
-RUN curl -sL https://deb.nodesource.com/setup_10.x | bash -
-RUN apt-get update && apt-get install -y nodejs
-
-###############################
-# PROFILING
-# Apache bench
-RUN apt-get install -y apache2-utils
-
 # coverage
 RUN apt-get install -y php7.4-xdebug php7.4-phpdbg
 RUN pecl install pcov
 
+# ################ #
 # XHPROF (tideways)
 WORKDIR /tmp
 RUN apt-get install -y graphviz
@@ -87,6 +68,6 @@ RUN phpize && ./configure && make && make install
 #RUN echo "extension=tideways_xhprof.so" > /etc/php/7.4/fpm/conf.d/xhprof.ini
 
 # clean
-#RUN apt-get clean; rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /usr/share/doc/*
+RUN apt-get clean; rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /usr/share/doc/*
 
 WORKDIR "/var/www"
