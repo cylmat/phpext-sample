@@ -133,6 +133,10 @@ git filter-branch --prune-empty --subdirectory-filter <folderName> master
 - supprimer un fichier de toutes les branches (infos sensibles)
 git filter-branch --index-filter 'git rm --cached <file>' HEAD
 
+- git filter-branch -f --tree-filter 'git rm -rf --ignore-unmatch ./**/*.item*' --prune-empty -- --all
+- git filter-branch -f --tree-filter 'git rm -rf --ignore-unmatch ./**/diehard.json' --prune-empty -- --all
+- git grep -l 'original_text' | xargs sed -i 's/original_text/new_text/g'
+
 ### Format-patch
 - apply a patch from unrelated repository
 git format-patch  --git-dir=<pathToOtherLocalRepo>/.git -k -1 --stdout <otherLocalCommitSHA> | git am -3 -k
