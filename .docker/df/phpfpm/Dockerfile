@@ -1,6 +1,11 @@
 FROM phpdockerio/php74-fpm:latest
 #Ubuntu (debian) 20.04 LTS (Focal Fossa)
 
+# from docker-compose
+ARG buildno
+ARG servername
+RUN echo "Build number: $buildno from $servername"
+
 # Fix debconf warnings upon build
 ARG DEBIAN_FRONTEND=noninteractive
 

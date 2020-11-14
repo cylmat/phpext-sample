@@ -6,6 +6,9 @@ services:
     ###########
     phpfpm: 
         build: .docker/df/phpfpm
+            args:
+                servername: "my.url_website"
+                buildno: 1
         restart: always
         working_dir: /var/www
         ports: 
