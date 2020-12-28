@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    Phing - A Php Build Tool
+    https://www.phing.info/
+-->
+<project name="ImageDefenseAcceptanceTest" default="dist">
+    <target name="cept">
+        <trycatch property="foo">
+            <try>
+                <echo msg="Launch cept testing" />
+                <exec executable="./bin/codecept" checkreturn="true">
+                    <arg value="run"/>
+                    <arg value="--debug"/>
+                    <arg value="-vvv"/>
+                </exec>
+            </try>
+            <catch>
+                <echo msg="Codeception tests not Accepted ${foo}"/>
+            </catch>
+        </trycatch>
+    </target>
+    <fail if="cept" message="Detected error!" />
+    
+    <!-- ============================================  -->
+    <!-- Target: prepare                               -->
+    <!-- ============================================  -->
+    <target name="prepare" depends="cept">
+        <echo msg="Making directory ./build" />
+        <mkdir dir="./build" />
+    </target>
+
+    <!-- ============================================  -->
+    <!-- Target: build                                 -->
+    <!-- ============================================  -->
+    <!--target name="build" depends="prepare">
+        <echo msg="Copying files to build directory..." />
+        <echo msg="Copying * to ./build directory..." />
+        <copy toDir="./build">
+            <fileset dir="./source">
+                <include name="**/*" />
+            </fileset>
+        </copy>
+    </target-->
+
+    <!-- ============================================  -->
+    <!-- (DEFAULT)  Target: dist                       -->
+    <!-- ============================================  -->
+    <target name="dist" depends="prepare">
+        <echo msg="Creating archive..." />
+        <tar destfile="./build/build.tar.gz" compression="gzip">
+            <fileset dir="./build">
+                <include name="**/*" />
+            </fileset>
+        </tar>
+        <echo msg="Files copied and compressed in build directory OK!" />
+    </target>
+</project>

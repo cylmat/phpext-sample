@@ -2,7 +2,7 @@
 /vendor
 /public/cover
 /bin/
-.docker/.data/
+/.data/
 _output/
 
 *.cache
