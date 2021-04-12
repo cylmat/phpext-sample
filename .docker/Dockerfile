@@ -7,18 +7,29 @@ ARG DEBIAN_FRONTEND=noninteractive
 # Install
 RUN apt-get update 
 RUN apt-get install -y libzip4 libzip-dev lbzip2 libicu-dev libxml2-dev zlib1g-dev
-RUN apt-get install -y apt-utils curl gnupg gnupg2 bzip2 sqlite3 vim wget g++ zip
+RUN apt-get install -y apt-utils bzip2 curl php-pear vim wget zip
 
-# 7.4
-RUN apt-get install -y php-dev php-mysql php-intl php-memcached php-soap 
-RUN apt-get install -y php-curl php-ds php-mbstring php-pear php-psr php-xml php-zip
+# php 7.4 ext
+# http://ppa.launchpad.net/ondrej/php/ubuntu
+RUN apt-get install -y \
+php7.4-dev \ 
+php7.4-curl \
+php7.4-ds \
+php7.4-intl \
+php7.4-mbstring \
+php7.4-memcached \
+php7.4-mysql \
+php7.4-psr \
+php7.4-soap \ 
+php7.4-xml \
+php7.4-zip
 
-# Pecl ext
+# Pecl
 RUN pecl channel-update pecl.php.net && pecl update-channels
 
 # clean
 RUN apt-get clean; rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /usr/share/doc/*
 
-WORKDIR "/var/www"
+WORKDIR /var/www
 
-CMD ["phpfpm-74 -O"]
+CMD ["/usr/sbin/php-fpm7.4", "-O"]
