@@ -2,11 +2,6 @@
 
 session_start();
 
-function d(...$v) 
-{
-    var_dump(...$v);
-}
-
 function b($limit=0) //Backtrace
 {
     $b = debug_backtrace(0, $limit); array_shift($b); $res = [];
@@ -19,8 +14,5 @@ function b($limit=0) //Backtrace
         });
         $res[] = $v['class'] . ':' . $v['function'] . '('. ($args ? ' '.join(',', $args).' ' : '') .')' . ':' . $v['line'];
     }); 
-    d($res); 
+    var_dump($res); 
 }
-
-require __DIR__ . '/../vendor/autoload.php';
-define('ROOT', __DIR__.'/..');

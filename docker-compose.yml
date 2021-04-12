@@ -7,28 +7,25 @@ services:
     # PHP-FPM #
     ###########
     php: 
-        build: .docker/df/phpfpm
-            args:
-                servername: "my.url_website"
-                buildno: 1
-        restart: always
+        build: .docker/fpm
         working_dir: /var/www
-        ports: 
-            - 9000:9000
-        environment:
-            - DB_USER=user
-            - DB_PASS=pass
         volumes:
             - ${DIRECTORY}:/var/www/
             - ${DIRECTORY}/.docker/config/phpfpm/:/etc/php/7.4/:ro
-           # - ${WEBSERVER}/${DIRECTORY}/.docker/config/phpfpm/mods-available/:/etc/php/7.4/fpm/conf.d/
-           # - ${WEBSERVER}/${DIRECTORY}/.docker/config/phpfpm/mods-available/:/etc/php/7.4/cli/conf.d/
-        
-            # home
-            - ${DIRECTORY}/.docker/home:/root:ro
-            
-            # sqlite
-            - ${DIRECTORY}/.docker/.data/sqlite/:/sqlite/
+
+    mysql:
+        image: mysql:5.7
+        restart: always
+        environment:
+            MYSQL_ROOT_PASSWORD: root
+            MYSQL_USER: user
+            MYSQL_PASSWORD: pass
+            MYSQL_DATABASE: mydb
+        # For Windows users
+        command: "--innodb_use_native_aio=0"
+        volumes:
+           - ${DIRECTORY}/.docker/config/mysql/my.cnf:/etc/mysql/my.cnf:ro
+
         networks: 
             - phpext
     
