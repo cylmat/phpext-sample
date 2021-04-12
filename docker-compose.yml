@@ -6,7 +6,7 @@ services:
     ###########
     # PHP-FPM #
     ###########
-    phpfpm: 
+    php: 
         build: .docker/df/phpfpm
             args:
                 servername: "my.url_website"
@@ -19,28 +19,17 @@ services:
             - DB_USER=user
             - DB_PASS=pass
         volumes:
-            - ${WEBSERVER}/${DIRECTORY}:/var/www/
-            - ${WEBSERVER}/${DIRECTORY}/.docker/config/phpfpm/:/etc/php/7.4/:ro
+            - ${DIRECTORY}:/var/www/
+            - ${DIRECTORY}/.docker/config/phpfpm/:/etc/php/7.4/:ro
            # - ${WEBSERVER}/${DIRECTORY}/.docker/config/phpfpm/mods-available/:/etc/php/7.4/fpm/conf.d/
            # - ${WEBSERVER}/${DIRECTORY}/.docker/config/phpfpm/mods-available/:/etc/php/7.4/cli/conf.d/
         
             # home
-            - ${WEBSERVER}/${DIRECTORY}/.docker/home:/root:ro
+            - ${DIRECTORY}/.docker/home:/root:ro
             
             # sqlite
-            - ${WEBSERVER}/${DIRECTORY}/.docker/.data/sqlite/:/sqlite/
+            - ${DIRECTORY}/.docker/.data/sqlite/:/sqlite/
         networks: 
-            - phpext
-
-    apache:
-        image: httpd:2.4
-        restart: always
-        ports: 
-            - 80:80
-        volumes:
-            - ${WEBSERVER}/${DIRECTORY}/.docker/config/apache/:/usr/local/apache2/conf/:ro
-            - ${WEBSERVER}/${DIRECTORY}:/usr/local/apache2/htdocs/
-        networks:
             - phpext
     
 networks: 

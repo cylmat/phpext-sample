@@ -24,5 +24,3 @@ function b($limit=0) //Backtrace
 
 require __DIR__ . '/../vendor/autoload.php';
 define('ROOT', __DIR__.'/..');
-
-var_dump($_SERVER);
