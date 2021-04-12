@@ -1,3 +1,5 @@
+[![PHPext](https://github.com/cylmat/phpext-sample/actions/workflows/main.yml/badge.svg)](https://github.com/cylmat/phpext-sample/actions/workflows/main.yml)
+
 Php extensions samples
 ===
 Implémentation des extensions de Php-Pecl-Pear

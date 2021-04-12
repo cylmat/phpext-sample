@@ -6,17 +6,16 @@ on:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     steps:
     - uses: actions/checkout@v2
 
-     # Php, composer, ext, xdebug
+     # Php ext
     - name: Setup PHP
       uses: shivammathur/setup-php@v2
       with:
         extensions: intl, mbstring
 
-    # - name: Run test suite
-    #   run: composer run-script test
+    - name: Run test suite
+      run: make tests
