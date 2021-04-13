@@ -15,10 +15,9 @@ jobs:
     - name: Setup PHP
       uses: shivammathur/setup-php@v2
       with:
+        php-version: '7.4'
         extensions: intl, mbstring
 
     - name: Run test suite
       run: |
-        sudo rm ./phpunit
-        sudo make phpunit-bin
         sudo make tests
