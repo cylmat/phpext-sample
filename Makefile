@@ -6,5 +6,5 @@ phpunit-bin:
 	chmod +x phpunit
 
 tests:
-	./phpunit --bootstrap src/bootstrap.php tests
+	./phpunit -c ./phpunit.xml
 .PHONY: tests
