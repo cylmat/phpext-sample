@@ -18,7 +18,10 @@
         <testsuite name="Test Suite">
             <directory>./tests</directory>
             <exclude>./tests/Db/Mysql/MysqlTest.php</exclude>
+            <exclude>./tests/Php/CurlTest.php</exclude>
             <exclude>./tests/Php/IteratorTest.php</exclude>
+            <exclude>./tests/Php/SoapTest.php</exclude>
+            <exclude>./tests/Php/SocketTest.php</exclude>
         </testsuite>
     </testsuites>
   <!-- ... -->
