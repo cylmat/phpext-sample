@@ -18,4 +18,4 @@ jobs:
         extensions: intl, mbstring
 
     - name: Run test suite
-      run: make tests
+      run: sudo make tests

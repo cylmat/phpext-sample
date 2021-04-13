@@ -19,6 +19,10 @@ class MysqlTest extends \PHPUnit\Framework\TestCase
     protected function setUp(): void
     {
         $this->index = new Index;
+
+        // $this->markTestIncomplete(
+        //     'This test has not been implemented yet.'
+        //   );
     }
 
     /**
