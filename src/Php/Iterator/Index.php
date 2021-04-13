@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace Iterator;
 
-defined('ROOT') or define('ROOT', __DIR__ . '/../..');
-
 /*
 https://www.php.net/manual/fr/spl.interfaces.php
 Countable -> fct count()
@@ -209,7 +207,7 @@ class Index
          */
     public function recursiveDirectoryIterators()
     {
-        $dirs = new \RecursiveIteratorIterator(new \RecursiveDirectoryIterator(ROOT . '/src'));
+        $dirs = new \RecursiveIteratorIterator(new \RecursiveDirectoryIterator(SRC));
         
         $dirs->rewind();
         while ($dirs->valid()) {
