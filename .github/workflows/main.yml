@@ -18,4 +18,6 @@ jobs:
         extensions: intl, mbstring
 
     - name: Run test suite
-      run: sudo make tests
+      run: |
+        sudo chmod 777 ./phpunit
+        sudo make tests
