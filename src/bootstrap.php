@@ -1,5 +1,7 @@
 <?php
 
+namespace Phpext;
+
 ini_set('display_errors', 'on');
 error_reporting(-1);
 
@@ -7,8 +9,8 @@ define('SRC', __DIR__ . '/');
 
 spl_autoload_register(function(string $classname){
     $base = __DIR__ . '/'; 
-    $recdirs = new RecursiveIteratorIterator(
-        new RecursiveDirectoryIterator($base), RecursiveIteratorIterator::LEAVES_ONLY
+    $recdirs = new \RecursiveIteratorIterator(
+        new \RecursiveDirectoryIterator($base), \RecursiveIteratorIterator::LEAVES_ONLY
     );
 
     $classfile = str_replace('\\', '/', $classname) . '.php';

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Curl;
+namespace Phpext\Php\Curl;
 
 class Curl
 {
@@ -24,16 +24,16 @@ class Curl
         curl_setopt($ch, CURLOPT_COOKIEFILE, "");
         # set the values to be sent
         /*curl_setopt($ch, CURLOPT_POSTFIELDS, array(
-           "username"=>"usr",
-           "password"=>"pss"
+            "username"=>"usr",
+            "password"=>"pss"
         ));*/
- 
+
         # return the response body
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         # send the request
         $result = curl_exec($ch);
         echo($result);
-         
+
         # we are not calling curl_init()
         # simply change the URL
         curl_setopt($ch, CURLOPT_URL, self::URL);

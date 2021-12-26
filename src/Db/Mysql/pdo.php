@@ -1,5 +1,7 @@
 <?php
 
+namespace Phpext\Db\Mysql;
+
 /**
  * PDO sample
  */

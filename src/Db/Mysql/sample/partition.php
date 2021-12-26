@@ -1,9 +1,12 @@
 <?php
+
+namespace Phpext\Db\Mysql;
+
 /*******************
  * Partitionnement *
  ******************/
-$db = new Pdo_dump(CONN, 'user', 'pass', [
-    PDO::MYSQL_ATTR_USE_BUFFERED_QUERY => true 
+$db = new \Pdo_dump(CONN, 'user', 'pass', [
+    \PDO::MYSQL_ATTR_USE_BUFFERED_QUERY => true 
 ]);
 /******************************
  *      SAMPLE
@@ -15,11 +18,11 @@ $db = new Pdo_dump(CONN, 'user', 'pass', [
 $db->exec(<<<Q
 DROP TABLE trans;
 CREATE TABLE IF NOT EXISTS trans (
-   id INT UNSIGNED,
-   montant INT UNSIGNED NOT NULL,
-   jour DATE NOT NULL,
-   codePays ENUM('FR', 'BE', 'UK', 'US', 'CA', 'JP') NOT NULL,
-   PRIMARY KEY `primary_on_id` (`id`, `montant`)
+    id INT UNSIGNED,
+    montant INT UNSIGNED NOT NULL,
+    jour DATE NOT NULL,
+    codePays ENUM('FR', 'BE', 'UK', 'US', 'CA', 'JP') NOT NULL,
+    PRIMARY KEY `primary_on_id` (`id`, `montant`)
 ) ENGINE=InnoDB CHARACTER SET=utf8mb4 COLLATE=utf8mb4_general_ci;
 Q); 
 /*******
@@ -94,17 +97,17 @@ CREATE TABLE IF NOT EXISTS trans_part (
     INDEX `index_on_year` (`jour`)
 ) ENGINE=InnoDB CHARACTER SET=utf8mb4 COLLATE=utf8mb4_general_ci 
 PARTITION BY RANGE(YEAR(jour)) (
-   PARTITION p1 VALUES LESS THAN(1997),
-   PARTITION p2 VALUES LESS THAN(1998),
-   PARTITION p3 VALUES LESS THAN(1999),
-   PARTITION p4 VALUES LESS THAN(2000),
-   PARTITION p5 VALUES LESS THAN(2001),
-   PARTITION p6 VALUES LESS THAN(2002),
-   PARTITION p7 VALUES LESS THAN(2003),
-   PARTITION p8 VALUES LESS THAN(2004),
-   PARTITION p9 VALUES LESS THAN(2005),
-   PARTITION p10 VALUES LESS THAN(2006),
-   PARTITION p11 VALUES LESS THAN MAXVALUE
+    PARTITION p1 VALUES LESS THAN(1997),
+    PARTITION p2 VALUES LESS THAN(1998),
+    PARTITION p3 VALUES LESS THAN(1999),
+    PARTITION p4 VALUES LESS THAN(2000),
+    PARTITION p5 VALUES LESS THAN(2001),
+    PARTITION p6 VALUES LESS THAN(2002),
+    PARTITION p7 VALUES LESS THAN(2003),
+    PARTITION p8 VALUES LESS THAN(2004),
+    PARTITION p9 VALUES LESS THAN(2005),
+    PARTITION p10 VALUES LESS THAN(2006),
+    PARTITION p11 VALUES LESS THAN MAXVALUE
 );
 Q);
 $proc_exists = null;

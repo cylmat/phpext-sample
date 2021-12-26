@@ -1,11 +1,11 @@
 <?php
 
-namespace Closures;
+namespace Phpext\Php\Closures;
 
 class Alpha {
     private $x = 1;
 }
- 
+
 class MyClass1 { 
     public $obj1prop;   
 }

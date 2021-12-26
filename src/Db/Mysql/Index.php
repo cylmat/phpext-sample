@@ -1,6 +1,6 @@
 <?php
 
-namespace Db\Mysql;
+namespace Phpext\Db\Mysql;
 
 class Index
 {   

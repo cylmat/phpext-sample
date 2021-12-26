@@ -1,6 +1,8 @@
 <?php
 
-namespace Auth;
+namespace Phpext\Php\Auth;
+
+use Phpext\Php\Auth\DigestHandle;
 
 class Digest
 {
@@ -25,7 +27,7 @@ class Digest
      */
     public function handleBasic()
     {
-       
+        
         if (
             !isset($_SERVER['PHP_AUTH_USER']) || #pas authentifié
             ('user' != $_SERVER['PHP_AUTH_USER'] || #wrong user & pass
@@ -97,7 +99,7 @@ class Digest
         }
         //set time deconnection after 5 secondes
         $_SESSION['delai'] = isset($_SESSION['delai']) ? $_SESSION['delai'] : time();
-       
+        
         echo 'digest ok';
     }
 }

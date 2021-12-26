@@ -1,6 +1,6 @@
 <?php
 
-namespace Closures;
+namespace Phpext\Php\Closures;
 
 include_once __DIR__.'/classes.php';
 

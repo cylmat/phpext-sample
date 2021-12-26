@@ -1,4 +1,7 @@
 <?php
+
+namespace Phpext\Db\Mysql;
+
 /*****************************
  * MASTER - SLAVE
  ************************/
@@ -25,11 +28,11 @@ CONFIGURATION SLAVE
 - mysql.cnf
 server_id=2
 CHANGE MASTER TO
-   MASTER_HOST='mysql',
-   MASTER_USER='root',
-   MASTER_PASSWORD='root',
-   MASTER_LOG_FILE='mysql-bin.000002',
-   MASTER_LOG_POS=154;
+    MASTER_HOST='mysql',
+    MASTER_USER='root',
+    MASTER_PASSWORD='root',
+    MASTER_LOG_FILE='mysql-bin.000002',
+    MASTER_LOG_POS=154;
 - SQL
 STOP SLAVE;
 CHANGE MASTER TO MASTER_LOG_FILE='mysql-bin.000002', MASTER_LOG_POS=154; 
@@ -44,23 +47,22 @@ SHOW SLAVE STATUS\G;
 /*****************************
  * MASTER - MASTER
  ************************/
-1) SHOW MASTER STATUS;
-2) CHANGE MASTER TO MASTER_LOG_FILE='mysql-bin.<from1>', MASTER_LOG_POS=<from1>; 
-2) SHOW MASTER STATUS;
-1) CHANGE MASTER TO MASTER_LOG_FILE='mysql-bin.<from2>', MASTER_LOG_POS=<from2>;
+# 1) SHOW MASTER STATUS;
+# 2) CHANGE MASTER TO MASTER_LOG_FILE='mysql-bin.<from1>', MASTER_LOG_POS=<from1>; 
+# 2) SHOW MASTER STATUS;
+# 1) CHANGE MASTER TO MASTER_LOG_FILE='mysql-bin.<from2>', MASTER_LOG_POS=<from2>;
 
 
 /*****************************
  * RESYNCHRO AFTER DOWN
  ************************/
-- verifier data
-SHOW MASTER STATUS - SHOW SLAVE STATUS -> "position" <> "Read/Exec_Master_Log_Pos"
-- stop master
-RESET MASTER; FLUSH TABLES WITH READ LOCK; SHOW MASTER STATUS;
-    ->exporter les données (manquantes)
-UNLOCK TABLES;
-- slave
-STOP SLAVE;
-CHANGE MASTER TO MASTER_LOG_FILE='mysql-bin.<new_index>', MASTER_LOG_POS=<newpos>; 
-START SLAVE; SHOW SLAVE STATUS;
-
+// - verifier data
+// SHOW MASTER STATUS - SHOW SLAVE STATUS -> "position" <> "Read/Exec_Master_Log_Pos"
+// - stop master
+// RESET MASTER; FLUSH TABLES WITH READ LOCK; SHOW MASTER STATUS;
+//     ->exporter les données (manquantes)
+// UNLOCK TABLES;
+// - slave
+// STOP SLAVE;
+// CHANGE MASTER TO MASTER_LOG_FILE='mysql-bin.<new_index>', MASTER_LOG_POS=<newpos>; 
+// START SLAVE; SHOW SLAVE STATUS;

@@ -1,9 +1,12 @@
 <?php
+
+namespace Phpext\Db\Mysql;
+
 /**
  * Triggers
  */
-$db = new Pdo_dump(CONN, 'user', 'pass', [
-    PDO::MYSQL_ATTR_USE_BUFFERED_QUERY => true 
+$db = new \Pdo_dump(CONN, 'user', 'pass', [
+    \PDO::MYSQL_ATTR_USE_BUFFERED_QUERY => true 
 ]);
 
 /*
@@ -38,9 +41,9 @@ CREATE TRIGGER before_employee_update
     FOR EACH ROW 
 INSERT INTO employees_audit
 SET action = 'update',
-     employeeNumber = OLD.employeeNumber,
-     lastname = OLD.lastname,
-     changedat = NOW();
+    employeeNumber = OLD.employeeNumber,
+    lastname = OLD.lastname,
+    changedat = NOW();
 Q);
 
 /*
@@ -85,8 +88,8 @@ DROP EVENT IF EXIST test_event_03;
 CREATE EVENT test_event_02
 ON SCHEDULE AT CURRENT_TIMESTAMP + INTERVAL 1 MINUTE
 DO
-   INSERT INTO messages(message,created_at)
-   VALUES('Test MySQL Event 2',NOW());
+    INSERT INTO messages(message,created_at)
+    VALUES('Test MySQL Event 2',NOW());
 Q);
 
 $db->exec(<<<Q
@@ -96,8 +99,8 @@ ON SCHEDULE EVERY 1 MINUTE
 STARTS CURRENT_TIMESTAMP
 ENDS CURRENT_TIMESTAMP + INTERVAL 1 HOUR
 DO
-   INSERT INTO messages(message,created_at)
-   VALUES('Test MySQL recurring Event', NOW());
+    INSERT INTO messages(message,created_at)
+    VALUES('Test MySQL recurring Event', NOW());
 Q);
 
 /*
@@ -109,8 +112,8 @@ ON COMPLETION [NOT] PRESERVE
 RENAME TO new_event_name
 ENABLE | DISABLE
 DO
-  event_body
-  --sample
+    event_body
+    --sample
 ALTER EVENT test_event_04 ON SCHEDULE EVERY 2 MINUTE;
 ALTER EVENT test_event_04 {ENABLE|DISABLE};
 ALTER EVENT test_event_04 RENAME TO test_event_05;

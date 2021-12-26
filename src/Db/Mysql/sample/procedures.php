@@ -1,12 +1,15 @@
 <?php
+
+namespace Phpext\Db\Mysql;
+
 /** 
  * Stored procedures 
  * 
  * PROCEDURE (IN/OUT)
  * FUNCTION (IN) RETURN
  */
-$db = new Pdo_dump(CONN, 'user', 'pass', [
-    PDO::MYSQL_ATTR_USE_BUFFERED_QUERY => true 
+$db = new \Pdo_dump(CONN, 'user', 'pass', [
+    \PDO::MYSQL_ATTR_USE_BUFFERED_QUERY => true 
 ]);
 
 $db->exec("USE classicmodels;");
@@ -61,13 +64,13 @@ $stmt = $db->query("SELECT @total_passed as total, @counter as counted");
 /*
 CASE customerCountry
         WHEN  'USA' THEN
-           SET pShipping = '2-day Shipping';
+            SET pShipping = '2-day Shipping';
         WHEN 'Canada' THEN
-           SET pShipping = '3-day Shipping';
+            SET pShipping = '3-day Shipping';
         WHEN waitingDay >= 1 AND waitingDay < 5 THEN
             SET pDeliveryStatus = 'Late';
         ELSE
-           SET pShipping = '5-day Shipping';
+            SET pShipping = '5-day Shipping';
     END CASE;
 */
 // -loop-----------------

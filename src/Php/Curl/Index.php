@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Curl;
+namespace Phpext\Php\Curl;
 
 /**
  * curl --header "X-MyHeader: 123" www.google.com

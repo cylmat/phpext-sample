@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Auth;
+namespace Phpext\Php\Auth;
 
 class DigestHandle
 {
