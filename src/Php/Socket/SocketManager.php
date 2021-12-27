@@ -2,7 +2,7 @@
 
 declare(strict_types = 1);
 
-namespace Socket;
+namespace Phpext\Php\Socket;
 
 class SocketManager
 {

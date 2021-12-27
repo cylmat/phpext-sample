@@ -1,6 +1,6 @@
 <?php
 
-namespace Stream;
+namespace Phpext\Php\Stream;
 
 /*
      streamWrapper::__construct — Construit un nouveau gestionnaire de flux

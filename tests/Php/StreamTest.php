@@ -1,6 +1,6 @@
 <?php
 
-namespace Stream;
+namespace Phpext\tests\Php;
 
 use PHPUnit\Framework\TestCase;
 

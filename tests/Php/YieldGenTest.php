@@ -1,6 +1,6 @@
 <?php
 
-namespace YieldGen;
+namespace Phpext\tests\Php;
 
 use \PHPUnit\Framework\TestCase;
 

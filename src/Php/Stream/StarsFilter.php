@@ -1,6 +1,6 @@
 <?php
 
-namespace Stream;
+namespace Phpext\Php\Stream;
 
 /*
  https://www.php.net/manual/fr/context.php

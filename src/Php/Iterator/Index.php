@@ -2,7 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Iterator;
+namespace Phpext\Php\Iterator;
+
+use Phpext\DisplayInterface;
 
 /*
 https://www.php.net/manual/fr/spl.interfaces.php
@@ -33,18 +35,22 @@ RegexIterator
 
 
 
- /*
-  *  iterator_apply ( Traversable $iterator , callable $function [, array $args = NULL ] ) : int
-  *  iterator_count ( Traversable $iterator ) : int
-  *  iterator_to_array ( Traversable $iterator [, bool $use_keys = TRUE ] ) : array
-  */
+/*
+*  iterator_apply ( Traversable $iterator , callable $function [, array $args = NULL ] ) : int
+*  iterator_count ( Traversable $iterator ) : int
+*  iterator_to_array ( Traversable $iterator [, bool $use_keys = TRUE ] ) : array
+*/
 
 
 
 
-class Index
+class Index implements DisplayInterface
 {
-  
+    function call()
+    {
+        // @todo
+    }
+
     /************************************* classiques */
 
     public function arrays(array $array = ['john','flush'])

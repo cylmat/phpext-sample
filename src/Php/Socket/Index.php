@@ -2,12 +2,19 @@
 
 declare(strict_types = 1);
 
-namespace Socket;
+namespace Phpext\Php\Socket;
+
+use Phpext\DisplayInterface;
 
 class CustomError extends \AssertionError {}
 
-class Index
+class Index implements DisplayInterface
 {
+    public function call()
+    {
+        // @todo
+    }
+
     /**
      * CLIENT
      * connect to server

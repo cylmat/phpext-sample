@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Iterator;
+namespace Phpext\Php\Iterator;
 
 /*
  * FilterIterator

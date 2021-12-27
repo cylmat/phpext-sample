@@ -2,12 +2,18 @@
 
 declare(strict_types=1);
 
-namespace YieldGen;
+namespace Phpext\Php\YieldGen;
 
-# keyword
+use Phpext\DisplayInterface;
 
-class Index
+class Index implements DisplayInterface
 {
+    public function call()
+    {
+        //@todo 
+        // $this->yielding();
+    }
+
     public function yielding()
     {
         echo implode(' ', (new YieldManager())->useGen(['first:0','second:1','third:2']));

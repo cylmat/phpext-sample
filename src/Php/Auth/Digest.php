@@ -27,7 +27,6 @@ class Digest
      */
     public function handleBasic()
     {
-        
         if (
             !isset($_SERVER['PHP_AUTH_USER']) || #pas authentifié
             ('user' != $_SERVER['PHP_AUTH_USER'] || #wrong user & pass
@@ -47,9 +46,6 @@ class Digest
         
         echo 'auth ok';
     }
-
-
-
 
     #https://fr.wikipedia.org/wiki/Authentification_HTTP
     #https://www.php.net/manual/fr/features.http-auth.php

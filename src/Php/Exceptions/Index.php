@@ -2,9 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Exceptions;
+namespace Phpext\Php\Exceptions;
 
-class Index
+use Phpext\DisplayInterface;
+
+class Index implements DisplayInterface
 {
     private static $e;
 
@@ -13,6 +15,11 @@ class Index
         // 'ex_handle' => true,
         // 'err_handle' => true
     ];
+
+    public function call()
+    {
+
+    }
 
     static function run()
     {

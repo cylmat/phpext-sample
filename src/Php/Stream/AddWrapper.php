@@ -1,6 +1,6 @@
 <?php
 
-namespace Stream;
+namespace Phpext\Php\Stream;
 
 class AddWrapper 
 {

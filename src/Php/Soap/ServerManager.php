@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Soap;
+namespace Phpext\Php\Soap;
 
 class ServerManager
 {

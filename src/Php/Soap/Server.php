@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Soap;
+namespace Phpext\Php\Soap;
 
 /**
  * ref: http://www.w3.org/2001/12/soap-envelope

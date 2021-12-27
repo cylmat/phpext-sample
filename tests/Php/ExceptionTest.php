@@ -1,6 +1,6 @@
 <?php
 
-namespace Exceptions;
+namespace Phpext\tests\Php;
 
 use \PHPUnit\Framework\TestCase;
 
@@ -24,8 +24,8 @@ class IndexTest extends TestCase
     /************************************classiques  */
     public function testExceptions()
     {
-         Index::run();
-         $this->expectOutputRegex('/FIN DU PROGRAMME/');
+        Index::run();
+        $this->expectOutputRegex('/FIN DU PROGRAMME/');
     }
 
 }

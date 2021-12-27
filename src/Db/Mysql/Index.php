@@ -2,10 +2,13 @@
 
 namespace Phpext\Db\Mysql;
 
-class Index
+use Phpext\DisplayInterface;
+
+class Index implements DisplayInterface
 {   
-    function index()
+    function call()
     {
-        include __DIR__ . '/pdo.php';
+        //  @todo
+        // include __DIR__ . '/pdo.php';
     }
 }

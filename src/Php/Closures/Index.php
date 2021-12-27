@@ -2,10 +2,15 @@
 
 namespace Phpext\Php\Closures;
 
-include_once __DIR__.'/classes.php';
+use Phpext\DisplayInterface;
 
-class Index
+class Index implements DisplayInterface
 {
+   public function call()
+   {
+      include_once __DIR__.'/classes.php';
+   }
+
    function pre_7()
    {
       // Define a closure Pre PHP 7 code

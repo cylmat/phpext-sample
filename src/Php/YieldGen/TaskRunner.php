@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace YieldGen;
+namespace Phpext\Php\YieldGen;
 
 class TaskRunner
 {

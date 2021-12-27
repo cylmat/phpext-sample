@@ -2,10 +2,17 @@
 
 declare(strict_types=1);
 
-namespace Spl;
+namespace Phpext\Php\Spl;
 
-class Index
+use Phpext\DisplayInterface;
+
+class Index implements DisplayInterface
 {
+    public function call()
+    {
+        
+    }
+
     public function arrayObject()
     {
         $array = [2,5,9,6];

@@ -1,6 +1,6 @@
 <?php
 
-namespace Socket;
+namespace Phpext\tests\Php;
 
 use RuntimeException;
 

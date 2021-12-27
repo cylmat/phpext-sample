@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Spl;
+namespace Phpext\Php\Spl;
 
  /**
   * INTERFACES SPL

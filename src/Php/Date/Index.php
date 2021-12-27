@@ -2,18 +2,21 @@
 
 declare(strict_types=1);
 
-namespace Date;
+namespace Phpext\Php\Date;
 
-class Index
+use Phpext\DisplayInterface;
+
+class Index implements DisplayInterface
 {
-    public function index()
+    public function call()
     {
         $dateStart = new \DateTime();
         $dateInterval = \DateInterval::createFromDateString('-1 day');
         $datePeriod = new \DatePeriod($dateStart, $dateInterval, 3);
 
         foreach($datePeriod as $date){
-            echo $date->format("Ymd") . "<br>";
+            // @todo
+            //echo $date->format("Ymd") . "<br>";
         }
     }
 }

@@ -1,4 +1,5 @@
 <?php
+
 class MyLib
 {
     private $mydata = [];

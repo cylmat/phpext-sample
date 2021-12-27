@@ -5,20 +5,12 @@ namespace Phpext;
 ini_set('display_errors', 'on');
 error_reporting(-1);
 
-define('SRC', __DIR__ . '/');
-
-spl_autoload_register(function(string $classname){
-    $base = __DIR__ . '/'; 
-    $recdirs = new \RecursiveIteratorIterator(
-        new \RecursiveDirectoryIterator($base), \RecursiveIteratorIterator::LEAVES_ONLY
-    );
-
+spl_autoload_register(function(string $classname) {
     $classfile = str_replace('\\', '/', $classname) . '.php';
-    foreach ($recdirs as $filesys) {
-        if ($filesys->getExtension() !== 'php' && $filesys->isFile()) continue;
-        if (false !== strpos($filesys->getRealpath(), $classfile)) {
-            include_once $filesys->getRealpath();
-        }
+    $classfile = __DIR__.str_replace(__NAMESPACE__, '', $classfile);
+
+    if (file_exists($classfile)) {
+        require_once $classfile;
     }
 });
 

@@ -2,7 +2,7 @@
 
 Php extensions samples
 ===
-Implémentation des extensions de Php-Pecl-Pear
+Implémentation des extensions de Php
 
 Php samples
 ---

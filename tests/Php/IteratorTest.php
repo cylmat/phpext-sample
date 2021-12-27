@@ -1,6 +1,6 @@
 <?php
 
-namespace Iterator;
+namespace Phpext\tests\Php;
 
 use \PHPUnit\Framework\TestCase;
 

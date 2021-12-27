@@ -1,6 +1,6 @@
 <?php
 
-namespace Db\Mysql;
+namespace Phpext\tests\Db\Mysql;
 
 /**
  * Generated 

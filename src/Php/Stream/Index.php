@@ -1,13 +1,18 @@
 <?php
 
-namespace Stream;
+namespace Phpext\Php\Stream;
 
+use Phpext\DisplayInterface;
 use Symfony\Component\Mime\Part\DataPart;
 
-class Index
+class Index implements DisplayInterface
 {
-    
-     /**
+    public function call()
+    {
+        // @todo
+    }
+
+    /**
      * Exemple #5 php://memory et php://temp ne sont pas réutilisables
      */
     function filter($data)

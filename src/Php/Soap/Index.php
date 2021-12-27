@@ -2,10 +2,17 @@
 
 declare(strict_types=1);
 
-namespace Soap;
+namespace Phpext\Php\Soap;
 
-class Index
+use Phpext\DisplayInterface;
+
+class Index implements DisplayInterface
 {
+    public function call()
+    {
+        // @todo
+    }
+
     public function client()
     {
         //echo 'Call SoapClient<br/>';
