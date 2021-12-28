@@ -16,9 +16,9 @@ class Index implements DisplayInterface
         // 'err_handle' => true
     ];
 
-    public function call()
+    public function call(): array
     {
-
+        return [];
     }
 
     static function run()

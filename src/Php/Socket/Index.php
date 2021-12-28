@@ -10,9 +10,11 @@ class CustomError extends \AssertionError {}
 
 class Index implements DisplayInterface
 {
-    public function call()
+    public function call(): array
     {
         // @todo
+
+        return [];
     }
 
     /**

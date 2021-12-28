@@ -8,7 +8,7 @@ use Phpext\DisplayInterface;
 
 class Index implements DisplayInterface
 {
-    public function call()
+    public function call(): array
     {
         $dateStart = new \DateTime();
         $dateInterval = \DateInterval::createFromDateString('-1 day');
@@ -18,5 +18,7 @@ class Index implements DisplayInterface
             // @todo
             //echo $date->format("Ymd") . "<br>";
         }
+
+        return [];
     }
 }

@@ -46,9 +46,11 @@ RegexIterator
 
 class Index implements DisplayInterface
 {
-    function call()
+    function call(): array
     {
         // @todo
+
+        return [];
     }
 
     /************************************* classiques */

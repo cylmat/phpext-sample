@@ -3,13 +3,14 @@
 namespace Phpext\Php\Stream;
 
 use Phpext\DisplayInterface;
-use Symfony\Component\Mime\Part\DataPart;
 
 class Index implements DisplayInterface
 {
-    public function call()
+    public function call(): array
     {
         // @todo
+
+        return [];
     }
 
     /**

@@ -4,5 +4,5 @@ namespace Phpext;
 
 interface DisplayInterface
 {
-    public function call();
+    public function call(): array;
 }

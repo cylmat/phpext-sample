@@ -8,9 +8,9 @@ use Phpext\DisplayInterface;
 
 class Index implements DisplayInterface
 {
-    public function call()
+    public function call(): array
     {
-        
+        return [];
     }
 
     public function arrayObject()

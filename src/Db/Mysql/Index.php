@@ -6,9 +6,11 @@ use Phpext\DisplayInterface;
 
 class Index implements DisplayInterface
 {   
-    function call()
+    function call(): array
     {
         //  @todo
         // include __DIR__ . '/pdo.php';
+
+        return [];
     }
 }

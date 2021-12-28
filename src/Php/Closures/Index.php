@@ -6,9 +6,11 @@ use Phpext\DisplayInterface;
 
 class Index implements DisplayInterface
 {
-   public function call()
+   public function call(): array
    {
       include_once __DIR__.'/classes.php';
+
+      return [];
    }
 
    function pre_7()
