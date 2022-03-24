@@ -14,11 +14,12 @@ class Index implements DisplayInterface
         $dateInterval = \DateInterval::createFromDateString('-1 day');
         $datePeriod = new \DatePeriod($dateStart, $dateInterval, 3);
 
-        foreach($datePeriod as $date){
+        $return = [];
+        foreach ($datePeriod as $date){
             // @todo
-            //echo $date->format("Ymd") . "<br>";
+            $return[] = $date->format("Ymd");
         }
 
-        return [];
+        return $return;
     }
 }

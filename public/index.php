@@ -19,10 +19,11 @@ foreach ($dirs as $file) {
 
     if ('Index.php' === $name) {
         preg_match('/\.\.\/src\/(.+).php$/', $file->getPathname(), $match);
-        
+
         if (key_exists(1, $match)) {
             $class = 'Phpext\\'.str_replace('/', '\\', $match[1]);
-            $results[str_replace(['Phpext\\', '\\Index'], ['', ''], $class)] = (new $class)->call();
+            $key = str_replace(['Phpext\\', '\\Index'], ['', ''], $class);
+            $results[$key] = (new $class)->call();
         }
     }
 }
@@ -36,7 +37,7 @@ echo '<html><body>
 <div style="text-align:left"><h2>Phpext</h2><h3>Playground with php extensions</h3></div>';
 foreach ($results as $class => $result) {
     echo '<fieldset style="display: block; text-align: left"><legend>'.$class.'</legend><div>' .
-            join("<br/>", $result) .
+            join(", ", $result) .
         "</div></fieldset>";
 }
 echo "</center>";
