@@ -1,7 +1,8 @@
 <?php
 
-namespace Phpext\tests\Php;
+namespace Phpext\Tests\Php;
 
+use Phpext\Php\Stream\Index;
 use PHPUnit\Framework\TestCase;
 
 /**
