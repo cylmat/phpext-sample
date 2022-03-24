@@ -1,6 +1,6 @@
 <?php
 
-namespace Phpext\tests\Php;
+namespace Phpext\Tests\Php;
 
 use Phpext\Php\YieldGen\Index;
 use PHPUnit\Framework\TestCase;
