@@ -4,12 +4,12 @@ namespace Phpext\Php\Closures;
 
 use Phpext\DisplayInterface;
 
+include_once __DIR__.'/classes.php';
+
 class Index implements DisplayInterface
 {
    public function call(): array
    {
-      include_once __DIR__.'/classes.php';
-
       return [];
    }
 
