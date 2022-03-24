@@ -18,7 +18,7 @@ class Index implements DisplayInterface
      */
     function filter($data)
     {
-        stream_filter_register('stars_filter', __NAMESPACE__.'\StarsFilter');
+        stream_filter_register('stars_filter', __NAMESPACE__ . '\StarsFilter');
 
         $temp = fopen("php://memory", 'rw');
         fputs($temp, $data);
