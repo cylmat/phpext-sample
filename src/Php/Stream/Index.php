@@ -18,7 +18,7 @@ class Index implements DisplayInterface
      */
     function filter($data)
     {
-        stream_filter_register('stars_filter', '\Stream\StarsFilter');
+        stream_filter_register('stars_filter', __NAMESPACE__.'\StarsFilter');
 
         $temp = fopen("php://memory", 'rw');
         fputs($temp, $data);
@@ -39,7 +39,7 @@ class Index implements DisplayInterface
     # https://www.php.net/manual/fr/context.php
     function wrapper(string $text, string $add)
     {
-        stream_wrapper_register ( 'add', "\Stream\AddWrapper", 0);
+        stream_wrapper_register ( 'add', __NAMESPACE__."\AddWrapper", 0);
         $handle = fopen("add://testing", 'w');
         fwrite($handle, $text);
         fwrite($handle, $add);
@@ -55,7 +55,7 @@ class Index implements DisplayInterface
 
     function wrapperTwo(int $one, int $two)
     {
-        stream_wrapper_register('var', '\Stream\VarStream') or die("Failed to register protocol");
+        stream_wrapper_register('var', __NAMESPACE__.'\VarStream') or die("Failed to register protocol");
 
         $fp = fopen("var://testing_point", 'r+');
         fwrite($fp, (string)$one);
