@@ -33,8 +33,9 @@ class DateTest extends TestCase
 
     public function testDate() 
     {
-       $this->index->call();
-       $this->expectOutputRegex('/'.date('Ymd', strtotime('-1 day')).'/'); //,'/20200701/');
+        $res = $this->index->call();
+
+        $this->assertEquals($res[0], date('Ymd'));
     }
 
 }

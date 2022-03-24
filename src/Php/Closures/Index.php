@@ -21,7 +21,7 @@ class Index implements DisplayInterface
       };
 
       // Bind a clousure
-      $value = $getValue->bindTo(new Alpha, 'Closures\Alpha'); 
+      $value = $getValue->bindTo(new Alpha, __NAMESPACE__.'\Alpha'); 
       print($value());
    }
 
@@ -53,7 +53,10 @@ class Index implements DisplayInterface
       $data = unserialize($serializedObj1 , ["allowed_classes" => true]);
 
       // converts all objects into __PHP_Incomplete_Class object except those of MyClass1 and MyClass2
-      $data2 = unserialize($serializedObj2 , ["allowed_classes" => ["Closures\MyClass1", "Closures\MyClass2"]]);
+      $data2 = unserialize($serializedObj2 , ["allowed_classes" => [
+         __NAMESPACE__."\MyClass1",
+         __NAMESPACE__."\MyClass2"
+      ]]);
 
       print($data->obj1prop);
       
