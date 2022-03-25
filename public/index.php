@@ -21,9 +21,15 @@ foreach ($dirs as $file) {
         preg_match('/\.\.\/src\/(.+).php$/', $file->getPathname(), $match);
 
         if (key_exists(1, $match)) {
-            $class = 'Phpext\\'.str_replace('/', '\\', $match[1]);
+            $classname = 'Phpext\\'.str_replace('/', '\\', $match[1]);
             $key = str_replace(['Phpext\\', '\\Index'], ['', ''], $class);
-            $results[$key] = (new $class)->call();
+            
+            try {
+                $class = new $classname;
+                $results[$key] = $class->call();
+            } catch (\E_USER_ERROR $error) {
+                $results[$key] = [$classs::EXT];
+            }
         }
     }
 
