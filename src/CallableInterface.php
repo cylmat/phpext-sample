@@ -2,7 +2,7 @@
 
 namespace Phpext;
 
-interface DisplayInterface
+interface CallableInterface
 {
     public function call(): array;
 }

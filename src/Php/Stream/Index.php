@@ -2,9 +2,9 @@
 
 namespace Phpext\Php\Stream;
 
-use Phpext\DisplayInterface;
+use Phpext\CallableInterface;
 
-class Index implements DisplayInterface
+class Index implements CallableInterface
 {
     public function call(): array
     {

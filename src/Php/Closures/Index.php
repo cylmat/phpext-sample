@@ -2,11 +2,11 @@
 
 namespace Phpext\Php\Closures;
 
-use Phpext\DisplayInterface;
+use Phpext\CallableInterface;
 
 include_once __DIR__.'/classes.php';
 
-class Index implements DisplayInterface
+class Index implements CallableInterface
 {
    public function call(): array
    {

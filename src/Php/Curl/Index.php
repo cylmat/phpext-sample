@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace Phpext\Php\Curl;
 
-use Phpext\DisplayInterface;
+use Phpext\CallableInterface;
 
 /**
  * curl --header "X-MyHeader: 123" www.google.com
  */
 
-class Index implements DisplayInterface
+class Index implements CallableInterface
 {
     public function call(): array
     {

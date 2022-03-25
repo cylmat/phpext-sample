@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Phpext\Php\YieldGen;
 
-use Phpext\DisplayInterface;
+use Phpext\CallableInterface;
 
-class Index implements DisplayInterface
+class Index implements CallableInterface
 {
     public function call(): array
     {

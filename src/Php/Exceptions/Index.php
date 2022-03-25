@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Phpext\Php\Exceptions;
 
-use Phpext\DisplayInterface;
+use Phpext\CallableInterface;
 
-class Index implements DisplayInterface
+class Index implements CallableInterface
 {
     private static $e;
 
