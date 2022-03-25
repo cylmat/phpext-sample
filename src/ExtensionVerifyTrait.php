@@ -4,13 +4,13 @@ namespace Phpext;
 
 trait ExtensionVerifyTrait
 {
-    public function verify(string $extension): bool
+    public function verify(): bool
     {
-        if (\extension_loaded($extension)) {
+        if (\extension_loaded(static::EXT)) {
             return true;
         }
         
-        \user_error("$extension not loaded", \E_USER_WARNING);
+        \user_error(static::EXT . " not loaded", \E_USER_ERROR);
         return false;
     }
 }
