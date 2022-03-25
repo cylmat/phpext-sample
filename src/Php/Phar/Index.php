@@ -9,6 +9,7 @@ class Index implements CallableInterface
 {
     use ExtensionVerifyTrait;
 
+    public const EXT = 'phar';
     private $mydata = [];
 
     function __construct(array $mydata=[])
@@ -18,7 +19,7 @@ class Index implements CallableInterface
 
     public function call(): array
     {
-        $this->verify('phar');
+        $this->verify();
 
         return [];
     }
