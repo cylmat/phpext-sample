@@ -9,7 +9,7 @@ class Index implements CallableInterface
 {
     use ExtensionVerifyTrait;
 
-    public const EXT = 'phar';
+    public const EXT = 'phard';
     private $mydata = [];
 
     function __construct(array $mydata=[])
@@ -24,22 +24,22 @@ class Index implements CallableInterface
         return [];
     }
 
-    function add(array $val)
+    public function add(array $val)
     {
         $this->mydata = array_merge($this->mydata, $val);
     }
 
-    function get()
+    public function get()
     {
         return $this->mydata;
     }
 
-    function addhandled()
+    public function addhandled()
     {
         $this->mydata = array_merge($this->mydata, Input::handle());
     }
 
-    function dump()
+    public function dump()
     {
         var_dump($this->get());
     }

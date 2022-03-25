@@ -8,6 +8,10 @@ $dirs = new \RecursiveIteratorIterator(
     new \RecursiveDirectoryIterator(__DIR__ . '/../src'), \RecursiveIteratorIterator::LEAVES_ONLY
 );
 
+set_error_handler(function($level, $message, $file, $line) {
+    throw new \ErrorException($message, $level, 1, $file, $line);
+});
+
 /*************************************
  * LOAD ALL DISPLAYABLE FILES 'INDEX'
  *************************************/
@@ -22,13 +26,13 @@ foreach ($dirs as $file) {
 
         if (key_exists(1, $match)) {
             $classname = 'Phpext\\'.str_replace('/', '\\', $match[1]);
-            $key = str_replace(['Phpext\\', '\\Index'], ['', ''], $class);
+            $key = str_replace(['Phpext\\', '\\Index'], ['', ''], $classname);
+            $class = new $classname();
             
             try {
-                $class = new $classname;
                 $results[$key] = $class->call();
-            } catch (\E_USER_ERROR $error) {
-                $results[$key] = [$classs::EXT];
+            } catch (\ErrorException $error) {
+                $results[$key] = ['<span style="color: red">Extension ' . $class::EXT . ' not loaded !</span>'];
             }
         }
     }
