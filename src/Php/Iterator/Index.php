@@ -32,17 +32,11 @@ ParentIterator
 RegexIterator
  */
 
-
-
-
 /*
 *  iterator_apply ( Traversable $iterator , callable $function [, array $args = NULL ] ) : int
 *  iterator_count ( Traversable $iterator ) : int
 *  iterator_to_array ( Traversable $iterator [, bool $use_keys = TRUE ] ) : array
 */
-
-
-
 
 class Index implements DisplayInterface
 {

@@ -7,8 +7,7 @@ services:
     # PHP-FPM #
     ###########
     php: 
-        image: phpext-sample_php
-        #build: .docker
+        build: .docker
         volumes:
             - ${DIRECTORY}:/var/www/
             - ${DIRECTORY}/.docker/php:/etc/php/7.4/cli
@@ -23,12 +22,14 @@ services:
             MYSQL_USER: user
             MYSQL_PASSWORD: pass
             MYSQL_DATABASE: mydb
-        # For Windows users
-        command: "--innodb_use_native_aio=0"
         volumes:
-           - ${DIRECTORY}/.docker/mysql/my.cnf:/etc/mysql/my.cnf:ro
+            - ${DIRECTORY}/.docker/mysql/my.cnf:/etc/mysql/my.cnf:ro
+            - mysql:/var/lib/mysql/
         networks: 
             - phpext
     
 networks: 
     phpext:
+    
+volumes:
+    mysql:
