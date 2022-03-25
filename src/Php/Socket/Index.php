@@ -13,7 +13,7 @@ class Index implements CallableInterface
     public function call(): array
     {
         // @todo
-
+        
         return [];
     }
 

@@ -26,6 +26,8 @@ foreach ($dirs as $file) {
             $results[$key] = (new $class)->call();
         }
     }
+
+    ksort($results);
 }
 
 /*******************
