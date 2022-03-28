@@ -32,7 +32,6 @@ function mb_conv()
     var_dump(mb_html_entity_decode('tch&#xFC;&#xDF;'));
 }
 
-
 if (!function_exists('mb_internal_encoding')) {
     function mb_internal_encoding($from_encoding = null, $encoding = null)
     {

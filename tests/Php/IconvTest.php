@@ -16,7 +16,17 @@ class IconvTest extends TestCase
 
     public function test() 
     {
-        $this->index->call();
+        $res = $this->index->call();
+
+        $this->assertArrayHasKey('intl', $res);
+        $this->assertArrayHasKey('gettext', $res);
     }
 
+    /**
+     * @group display
+     */
+    public function testDisplay()
+    {
+        var_dump($this->index->call());
+    }
 }

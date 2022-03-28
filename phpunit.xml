@@ -4,9 +4,9 @@
          bootstrap="./src/bootstrap.php"
          cacheTokens="false"
          colors="true"
-         convertErrorsToExceptions="true"
-         convertNoticesToExceptions="true"
+         convertNoticesToExceptions="false"
          convertWarningsToExceptions="true"
+         convertErrorsToExceptions="true"
          stopOnError="false"
          stopOnFailure="false"
          stopOnIncomplete="false"
@@ -24,5 +24,10 @@
             <exclude>./tests/Php/SocketTest.php</exclude>
         </testsuite>
     </testsuites>
-  <!-- ... -->
+
+    <groups>
+      <exclude>
+        <group>display</group>
+      </exclude>
+    </groups>
 </phpunit>

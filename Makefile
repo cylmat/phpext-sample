@@ -1,7 +1,4 @@
 SHELL := /bin/bash
-
-tests:
-	./phpunit -c ./phpunit.xml
 .PHONY: tests serve stop
 
 #######
@@ -26,3 +23,13 @@ serve:
 #kill $$(ps | grep php | awk '{print $$1}')
 stop:
 	kill $$(netstat -pl | grep -oE [0-9]+\/php[^-] | cut -d'/' -f 1)
+
+#########
+# TESTS #
+#########
+
+test:
+	./phpunit -c ./phpunit.xml
+
+display:
+	./phpunit -c ./phpunit.xml
