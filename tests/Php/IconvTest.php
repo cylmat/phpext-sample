@@ -14,12 +14,9 @@ class IconvTest extends TestCase
         $this->index = new Index;
     }
 
-    public function test() 
+    public function testCall()
     {
-        $res = $this->index->call();
-
-        $this->assertArrayHasKey('intl', $res);
-        $this->assertArrayHasKey('gettext', $res);
+        $this->index->call();
     }
 
     /**

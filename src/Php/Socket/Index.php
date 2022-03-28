@@ -4,11 +4,11 @@ declare(strict_types = 1);
 
 namespace Phpext\Php\Socket;
 
-use Phpext\CallableInterface;
+use Phpext\AbstractCallable;
 
 class CustomError extends \AssertionError {}
 
-class Index implements CallableInterface
+class Index extends AbstractCallable
 {
     public function call(): array
     {

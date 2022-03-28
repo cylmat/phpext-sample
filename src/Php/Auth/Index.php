@@ -4,14 +4,16 @@ declare(strict_types=1);
 
 namespace Phpext\Php\Auth;
 
-use Phpext\CallableInterface;
+use Phpext\AbstractCallable;
 
-class Index implements CallableInterface
+class Index extends AbstractCallable
 {
     public function call(): array
     {
-        // @todo
-        return [];
+        return [
+            $this->basic(),
+            $this->digest(),
+        ];
     }
 
     public function basic()

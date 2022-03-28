@@ -2,9 +2,9 @@
 
 namespace Phpext\Db\Mysql;
 
-use Phpext\CallableInterface;
+use Phpext\AbstractCallable;
 
-class Index implements CallableInterface
+class Index extends AbstractCallable
 {   
     function call(): array
     {

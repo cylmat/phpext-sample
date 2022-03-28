@@ -2,13 +2,11 @@
 
 namespace Phpext\Php\Phar;
 
-use Phpext\CallableInterface;
+use Phpext\AbstractCallable;
 use Phpext\ExtensionVerifyTrait;
 
-class Index implements CallableInterface
+class Index extends AbstractCallable
 {
-    use ExtensionVerifyTrait;
-
     public const EXT = 'phard';
     private $mydata = [];
 

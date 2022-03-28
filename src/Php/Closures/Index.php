@@ -2,15 +2,21 @@
 
 namespace Phpext\Php\Closures;
 
-use Phpext\CallableInterface;
+use Phpext\AbstractCallable;
 
-include_once __DIR__.'/classes.php';
+class Alpha { private $x = 1; }
+class MyClass1 { public $obj1prop; }
+class MyClass2 { public $obj2prop; }
 
-class Index implements CallableInterface
+class Index extends AbstractCallable
 {
    public function call(): array
    {
-      return [];
+      return [
+         $this->pre_7(),
+         $this->post_7(),
+         $this->test(),
+      ];
    }
 
    function pre_7()
@@ -59,7 +65,6 @@ class Index implements CallableInterface
       ]]);
 
       print($data->obj1prop);
-      
       print($data2->obj2prop);
    }
 }

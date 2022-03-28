@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Phpext\Php\Iterator;
 
-use Phpext\CallableInterface;
+use Phpext\AbstractCallable;
 
 /*
 https://www.php.net/manual/fr/spl.interfaces.php
@@ -38,7 +38,7 @@ RegexIterator
 *  iterator_to_array ( Traversable $iterator [, bool $use_keys = TRUE ] ) : array
 */
 
-class Index implements CallableInterface
+class Index extends AbstractCallable
 {
     function call(): array
     {

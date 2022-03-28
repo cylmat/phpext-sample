@@ -7,7 +7,7 @@ error_reporting(-1);
 
 spl_autoload_register(function(string $classname) {
     $classfile = str_replace('\\', '/', $classname) . '.php';
-    $classfile = __DIR__.str_replace(__NAMESPACE__, '', $classfile);
+    $classfile = __DIR__ . str_replace(__NAMESPACE__, '', $classfile);
 
     if (file_exists($classfile)) {
         require_once $classfile;
