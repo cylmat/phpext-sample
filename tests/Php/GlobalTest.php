@@ -2,6 +2,7 @@
 
 namespace Phpext\Tests\Php;
 
+use Phpext\AbstractCallable;
 use Phpext\Php\Closures\Closures;
 use Phpext\Php\Curl\CurlExt;
 use Phpext\Php\Date\Dates;
@@ -27,4 +28,9 @@ class GlobalTest extends TestCase
     }
 
     public function testPhar() {}
+
+    public static function tearDownAfterClass()
+    {
+        echo " \033[0;31m" . AbstractCallable::getUnloaded() . "\033[0m ";
+    }
 }

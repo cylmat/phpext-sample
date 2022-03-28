@@ -4,6 +4,8 @@ namespace Phpext;
 
 abstract class AbstractCallable
 {
+    private static $errors = [];
+
     abstract public function call(): ?array;
 
     public function verify(): bool
@@ -12,7 +14,12 @@ abstract class AbstractCallable
             return true;
         }
         
-        \user_error(static::EXT . " not loaded", \E_USER_NOTICE);
+        self::$errors[] = static::EXT;
         return false;
+    }
+
+    public static function getUnloaded(): string
+    {
+        return join(', ', static::$errors) . " not loaded...";
     }
 }
