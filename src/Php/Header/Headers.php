@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Phpext\Php\Iconv;
+namespace Phpext\Php\Header;
 
 use Phpext\AbstractCallable;
 
-class Index extends AbstractCallable
+class Headers extends AbstractCallable
 {
     public function call(): array
     {

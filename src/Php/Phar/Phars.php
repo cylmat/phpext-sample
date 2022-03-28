@@ -3,11 +3,10 @@
 namespace Phpext\Php\Phar;
 
 use Phpext\AbstractCallable;
-use Phpext\ExtensionVerifyTrait;
 
-class Index extends AbstractCallable
+class Phars extends AbstractCallable
 {
-    public const EXT = 'phard';
+    public const EXT = 'phar';
     private $mydata = [];
 
     function __construct(array $mydata=[])

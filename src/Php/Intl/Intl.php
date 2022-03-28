@@ -6,7 +6,7 @@ namespace Phpext\Php\Intl;
 
 use Phpext\AbstractCallable;
 
-class Index extends AbstractCallable
+class Intl extends AbstractCallable
 {
     public function call(): array
     {

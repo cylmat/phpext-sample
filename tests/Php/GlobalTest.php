@@ -2,24 +2,27 @@
 
 namespace Phpext\Tests\Php;
 
-use Phpext\Php\Closures\Index as ClosuresIndex;
-use Phpext\Php\GetText\Index as GetTextIndex;
-use Phpext\DisplayableTestCase;
+use Phpext\Php\Closures\Closures;
+use Phpext\Php\Curl\CurlExt;
+use Phpext\Php\Date\Dates;
+use Phpext\Php\Exceptions\Exceptions;
+use Phpext\Php\GetText\GetTextExt;
+use Phpext\Php\Iconv\IconvExt;
+use Phpext\Php\YieldGen\YieldGen;
+use PHPUnit\Framework\TestCase;
 
-class GlobalTest extends DisplayableTestCase
+class GlobalTest extends TestCase
 {
-    protected ClosuresIndex $closures;
-    protected GetTextIndex $getText;
-
-    protected function setUp(): void
-    {
-        $this->closures = new ClosuresIndex;
-        $this->getText = new GetTextIndex;
-    }
-
     public function tests()
     {
-        $this->closures->call();
-        $this->getText->call();
+        (new Closures)->call();
+        (new CurlExt)->call();
+        (new Dates)->call();
+        (new GetTextExt)->call();
+        (new Exceptions)->call();
+        (new IconvExt)->call();
+        (new YieldGen)->call();
     }
+
+    public function testPhar() {}
 }

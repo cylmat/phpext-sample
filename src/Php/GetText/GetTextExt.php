@@ -6,7 +6,7 @@ namespace Phpext\Php\GetText;
 
 use Phpext\AbstractCallable;
 
-class Index extends AbstractCallable
+class GetTextExt extends AbstractCallable
 {
     public const EXT = 'gettext';
 

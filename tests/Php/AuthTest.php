@@ -2,16 +2,16 @@
 
 namespace Phpext\Tests\Php;
 
-use Phpext\Php\Auth\Index;
+use Phpext\Php\Auth\Auth;
 use PHPUnit\Framework\TestCase;
 
 class AuthTest extends TestCase
 {
-    protected Index $index;
+    protected Auth $index;
 
     protected function setUp(): void
     {
-        $this->index = new Index;
+        $this->index = new Auth;
     }
 
     public function testBasic() 
