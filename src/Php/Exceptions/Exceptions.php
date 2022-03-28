@@ -34,12 +34,14 @@ class Exceptions extends AbstractCallable
         self::process();
     }
 
-    static function process()
+    static function process(): string
     {
+        $res = '';
+
         try {
             self::$e->throwException();
         } catch (\Exception $e) {
-            echo 'Exception attrapée par try/catch<br/>';
+            $res .= 'Exception attrapée par try/catch<br/>';
         }
 
         //php
@@ -55,7 +57,8 @@ class Exceptions extends AbstractCallable
         /*self::$e->triggerError(2); #error
         self::$e->throwError();*/
 
-        echo 'FIN DU PROGRAMME';
+        $res .= 'FIN DU PROGRAMME';
+        return $res;
     }
 }
 

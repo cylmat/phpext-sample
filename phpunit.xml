@@ -22,4 +22,10 @@
         </testsuite>
     </testsuites>
 
+    <groups>
+        <exclude>
+            <group>display</group>
+        </exclude>
+    </groups>
+
 </phpunit>

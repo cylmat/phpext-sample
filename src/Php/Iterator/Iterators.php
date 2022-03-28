@@ -209,7 +209,7 @@ class Iterators extends AbstractCallable
          */
     public function recursiveDirectoryIterators()
     {
-        $dirs = new \RecursiveIteratorIterator(new \RecursiveDirectoryIterator(SRC));
+        $dirs = new \RecursiveIteratorIterator(new \RecursiveDirectoryIterator(__DIR__));
         
         $dirs->rewind();
         while ($dirs->valid()) {

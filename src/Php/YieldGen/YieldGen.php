@@ -17,18 +17,18 @@ class YieldGen extends AbstractCallable
         ];
     }
 
-    public function yielding()
+    public function yielding(): string
     {
-        echo implode(' ', (new YieldManager())->useGen(['first:0','second:1','third:2']));
+        return implode(' ', (new YieldManager())->useGen(['first:0','second:1','third:2']));
     }
 
-    public function yielding2()
+    public function yielding2(): string
     {
-        echo (new YieldManager())->useNewGen(['first:0','second:1','third:2']);
+        return (new YieldManager())->useNewGen(['first:0','second:1','third:2']);
     }
 
     public function tasks()
     {
-        (new TaskRunner())->run();
+        return (new TaskRunner())->run();
     }
 }

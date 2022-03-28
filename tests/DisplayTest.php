@@ -29,7 +29,7 @@ class DisplayTest extends TestCase
 
     private function display(string $class): void
     {
-        echo "\n\n";
+        echo "\n\n** " . ucfirst($class) . " **\n\n";
         $call = (new $class)->call();
 
         foreach ($call as $key => $result) {

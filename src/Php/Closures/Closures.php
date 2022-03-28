@@ -19,7 +19,7 @@ class Closures extends AbstractCallable
       ];
    }
 
-   function pre_7()
+   function pre_7(): string
    {
       // Define a closure Pre PHP 7 code
       $getValue = function() {
@@ -28,17 +28,17 @@ class Closures extends AbstractCallable
 
       // Bind a clousure
       $value = $getValue->bindTo(new Alpha, __NAMESPACE__.'\Alpha'); 
-      print($value());
+      return $value();
    }
 
-   function post_7()
+   function post_7(): string
    {
       // PHP 7+ code, Define
       $value = function() {
          return $this->x;
       };
 
-      print($value->call(new Alpha));
+      return ($value->call(new Alpha));
    }
 
    function test()
@@ -64,7 +64,6 @@ class Closures extends AbstractCallable
          __NAMESPACE__."\MyClass2"
       ]]);
 
-      print($data->obj1prop);
-      print($data2->obj2prop);
+      return ($data->obj1prop) . ($data2->obj2prop);
    }
 }
