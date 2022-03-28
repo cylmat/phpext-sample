@@ -37,6 +37,6 @@ class DisplayTest extends TestCase
             var_dump($result);
         }
 
-        $this->assertNull(null);
+        $this->assertNull(null); // make it green
     }
 }

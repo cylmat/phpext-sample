@@ -2,22 +2,11 @@
 
 namespace Phpext\tests\Php;
 
-use Phpext\Php\Socket\Index;
+use Phpext\Php\Socket\Sockets;
 use PHPUnit\Framework\TestCase;
 
 class SocketTest extends TestCase
 {
-    protected Index $index;
-
-    /**
-     * Sets up the fixture, for example, opens a network connection.
-     * This method is called before a test is executed.
-     */
-    protected function setUp(): void
-    {
-        $this->index = new Index;
-    }
-
     public function testServer()
     {
         $this->assertTrue(true);
