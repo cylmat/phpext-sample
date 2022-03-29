@@ -106,10 +106,14 @@ class IconvExt extends AbstractCallable
 
     public function convert(): string
     {
+        // declare(encoding='UTF-8');
+        $php = "🐘";
+
         return "bin(ă):" . bin2hex("ă")
             . " - hex(c483):" . hex2bin("c483") 
             . " - \\xc4\\x83: \xc4\x83"
-            . " - bin(Žlť)" . bin2hex("Ž l ť")
+            . " - emo \\u{1F601}:\u{1F601}" . "\xF0\x9F\x98\x81"
+            . " - php[0]:" . ord(substr($php, 0)) //first byte of (240 159 144 152)
         ;
     }
 }
