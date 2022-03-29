@@ -14,6 +14,12 @@ ps:
 netstat:
 	apt install -y net-tools
 
+##############
+# DEPENDENCY #
+##############
+stubs:
+	git clone https://github.com/JetBrains/phpstorm-stubs.git
+
 ##########
 # SERVER #
 ##########

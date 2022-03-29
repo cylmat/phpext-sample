@@ -27,8 +27,46 @@ use Phpext\AbstractCallable;
  */
 class IconvExt extends AbstractCallable
 {
+    protected const EXT = 'iconv';
+
     public function call(): array
     {
-        return [];
+        return [
+            'iconv_get_encoding' => $this->encode(),
+            'iconv-strlen' => $this->length(),
+            'convert' => $this->convert(),
+        ];
+    }
+
+    public function encode(): string
+    {
+        $encoding = iconv_get_encoding('all');
+
+        //  ISO 8859-1 is a single-byte encoding that can represent the first 256 Unicode characters
+        ini_set('default_charset', 'ISO-8859-1');
+        $encoding = iconv_get_encoding('all');
+
+        ini_set('default_charset', 'UTF-8');
+
+        return join(',', $encoding);
+    }
+
+    public function length(): string
+    {
+        $str = "I?t?rn?ti?n\xe9?liz?ti?n"; // wrong char
+        $null = iconv_strlen($str);
+        
+        $a = "0xc4 0x83"; //ă
+        $str = "ѣ𝔠ծềſģȟᎥ𝒋ǩľḿꞑȯ𝘱𝑞𝗋𝘴ȶ𝞄^&$a";
+
+        return "length: " . iconv_strlen($str) 
+            .  " pos: " . iconv_strrpos($str, "ȯ", ini_get('iconv.internal_encoding'));
+    }
+
+    public function convert(): string
+    {
+        return "bin(ă):" . bin2hex("ă")
+            .  " hex(c483):" . hex2bin("c483") 
+        ;
     }
 }

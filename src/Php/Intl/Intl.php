@@ -39,6 +39,8 @@ IntlException, IntlIterator, intl_error_name, intl_get_error_code, intl_get_erro
  */
 class Intl extends AbstractCallable
 {
+    protected const EXT = 'intl';
+
     public function call(): array
     {
         return [

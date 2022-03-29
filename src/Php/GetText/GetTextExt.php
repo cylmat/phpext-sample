@@ -8,7 +8,7 @@ use Phpext\AbstractCallable;
 
 class GetTextExt extends AbstractCallable
 {
-    public const EXT = 'gettext';
+    protected const EXT = 'gettext';
 
     public function call(): ?array
     {
