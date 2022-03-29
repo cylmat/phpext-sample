@@ -21,8 +21,9 @@ foreach ($dirs as $file) {
     /** @var \SplFileInfo $file */
     $name = $file->getFilename();
 
-    if ('Index.php' === $name) {
+    if ($file->isFile() && preg_match("/extends AbstractCallable/", file_get_contents($file->getPathname()))) {
         preg_match('/\.\.\/src\/(.+).php$/', $file->getPathname(), $match);
+        if ('Auth.php' === $name) continue;
 
         if (key_exists(1, $match)) {
             $classname = 'Phpext\\'.str_replace('/', '\\', $match[1]);
@@ -32,7 +33,8 @@ foreach ($dirs as $file) {
             try {
                 $results[$key] = $class->call();
             } catch (\ErrorException $error) {
-                $results[$key] = ['<span style="color: red">Extension ' . $class::EXT . ' not loaded !</span>'];
+                echo $error->getMessage();
+                //$results[$key] = ['<span style="color: red">Extension ' . $class::EXT . ' not loaded !</span>'];
             }
         }
     }
@@ -48,9 +50,13 @@ echo '<html><body>
 <center style="width:70%; margin:auto">
 <div style="text-align:left"><h2>Phpext</h2><h3>Playground with php extensions</h3></div>';
 foreach ($results as $class => $result) {
-    echo '<fieldset style="display: block; text-align: left"><legend>'.$class.'</legend><div>' .
-            join(", ", $result) .
-        "</div></fieldset>";
+    try {
+        echo '<fieldset style="display: block; text-align: left"><legend>'.$class.'</legend><div>';
+            foreach ($result as $res) {
+                var_dump($res);
+            }
+        echo "</div></fieldset>";
+    } catch (\Exception $e) { echo $e->getMessage(); }
 }
 echo "</center>";
 echo "</body></html>";

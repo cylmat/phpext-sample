@@ -41,7 +41,7 @@ class Exceptions extends AbstractCallable
         try {
             self::$e->throwException();
         } catch (\Exception $e) {
-            $res .= 'Exception attrapée par try/catch<br/>';
+            $res .= 'Exception attrapée par try/catch';
         }
 
         //php
