@@ -85,6 +85,9 @@ class IconvExt extends AbstractCallable
         return $ob;
     }
 
+    /**
+     * e.g. orig: '€'. TRANSLIT: 'EUR'. IGNORE: ''.
+     */
     public function iconv(): string
     {
         setlocale(LC_CTYPE, 'POSIX'); //translit depends of local
