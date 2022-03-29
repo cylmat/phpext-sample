@@ -34,6 +34,8 @@ class IconvExt extends AbstractCallable
         return [
             'iconv_get_encoding' => $this->encode(),
             'iconv-strlen' => $this->length(),
+            'iconv' => $this->iconv(),
+            'buffer' => $this->buffer(),
             'convert' => $this->convert(),
         ];
     }
@@ -53,20 +55,58 @@ class IconvExt extends AbstractCallable
 
     public function length(): string
     {
+        //$error = error_reporting(E_ALL & ~E_NOTICE);        
+        ini_set('default_charset', 'UTF-8');
+        ini_set('internal_encoding', 'ISO-8859-1');
+
         $str = "I?t?rn?ti?n\xe9?liz?ti?n"; // wrong char
-        $null = iconv_strlen($str);
+        $e = error_reporting(E_ALL & ~E_NOTICE);
+        iconv_strlen($str); //NULL
         
         $a = "0xc4 0x83"; //ă
         $str = "ѣ𝔠ծềſģȟᎥ𝒋ǩľḿꞑȯ𝘱𝑞𝗋𝘴ȶ𝞄^&$a";
 
-        return "length: " . iconv_strlen($str) 
+        $ret = "length: " . iconv_strlen($str) 
             .  " pos: " . iconv_strrpos($str, "ȯ", ini_get('iconv.internal_encoding'));
+        error_reporting($e);
+        
+        return $ret;
+    }
+
+    public function buffer(): string
+    {
+        //iconv_set_encoding("internal_encoding", "UTF-8");
+        //iconv_set_encoding("output_encoding", "ISO-8859-1");
+
+        ob_start("ob_iconv_handler"); // start output buffering
+        echo "𝒋ǩľḿꞑȯ𝘱𝑞𝗋";
+        $ob = ob_get_clean();
+
+        return $ob;
+    }
+
+    public function iconv(): string
+    {
+        setlocale(LC_CTYPE, 'POSIX'); //translit depends of local
+        $iconv = "POSIX:" . iconv('UTF-8', 'ASCII//TRANSLIT', "Žluťoučký");
+
+        setlocale(LC_CTYPE, 'cs_CZ');
+        $iconv .= " - CZ TRANS:" . iconv('UTF-8', 'ASCII//TRANSLIT', "Žluťoučký");
+
+        setlocale(LC_CTYPE, 'en_EN');
+        $iconv .= " - EN IGNORE:" . iconv('UTF-8', 'ASCII//IGNORE', "Žluťoučký");
+
+        $iconv .= " - UTF8:" . iconv('UTF-8', 'UTF-8//IGNORE', "Žluťoučký");
+
+        return $iconv;
     }
 
     public function convert(): string
     {
         return "bin(ă):" . bin2hex("ă")
-            .  " hex(c483):" . hex2bin("c483") 
+            . " - hex(c483):" . hex2bin("c483") 
+            . " - \\xc4\\x83: \xc4\x83"
+            . " - bin(Žlť)" . bin2hex("Ž l ť")
         ;
     }
 }
