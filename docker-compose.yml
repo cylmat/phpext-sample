@@ -1,18 +1,11 @@
-version: '3'
-# ref: 
-# https://docs.docker.com/compose/compose-file/
+version: '3.4'
 
 services: 
-    ###########
-    # PHP-FPM #
-    ###########
     php: 
         build: .docker
         volumes:
+            - ${DIRECTORY}/.docker/extensions.ini:/etc/php/7.4/cli/conf.d/extensions.ini:ro
             - ${DIRECTORY}:/var/www/
-            - ${DIRECTORY}/.docker/php:/etc/php/7.4/cli
-        networks: 
-            - phpext
 
     mysql:
         image: mysql:5.7
@@ -25,11 +18,6 @@ services:
         volumes:
             - ${DIRECTORY}/.docker/my.cnf:/etc/mysql/my.cnf:ro
             - mysql:/var/lib/mysql
-        networks: 
-            - phpext
-    
-networks: 
-    phpext:
     
 volumes:
     mysql:
