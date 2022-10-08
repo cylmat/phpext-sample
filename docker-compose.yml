@@ -23,8 +23,8 @@ services:
             MYSQL_PASSWORD: pass
             MYSQL_DATABASE: mydb
         volumes:
-            - ${DIRECTORY}/.docker/mysql/my.cnf:/etc/mysql/my.cnf:ro
-            - mysql:/var/lib/mysql/
+            - ${DIRECTORY}/.docker/my.cnf:/etc/mysql/my.cnf:ro
+            - mysql:/var/lib/mysql
         networks: 
             - phpext
     
