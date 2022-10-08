@@ -1,5 +1,0 @@
-#! /usr/bin/env bash
-
-# usage: 
-# ./show Function
-./phpunit -c ./phpunit.xml tests --group display --filter "test$1"
