@@ -2,16 +2,15 @@ name: PHPext
 
 on:
   push:
-    branches: [ main ]
+    branches: [main]
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
 
-     # Php ext
     - name: Setup PHP
       uses: shivammathur/setup-php@v2
       with:
@@ -20,6 +19,4 @@ jobs:
 
     - name: Run test suite
       run: |
-        sudo rm ./phpunit
-        sudo make phpunit-bin
-        sudo make tests
+        make tests

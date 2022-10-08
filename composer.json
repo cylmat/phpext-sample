@@ -1,0 +1,10 @@
+{
+    "name": "cylmat/phpext-sample",
+    "autoload": {
+        "psr-4": {
+            "Phpext\\": "src/"
+        }
+    },
+    "minimum-stability": "stable",
+    "require": {}
+}

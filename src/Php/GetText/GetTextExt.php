@@ -19,7 +19,7 @@ class GetTextExt extends AbstractCallable
         ];
     }
 
-    public function local()
+    private function local()
     {
         $locale = isset($_GET["locale"]) ? $_GET["locale"] : "en_UK";
         \putenv("LANG=" . $locale); 
