@@ -2,10 +2,10 @@ version: '3.4'
 
 services: 
     php: 
-        build: .docker
+        build: .
         volumes:
-            - ${DIRECTORY}/.docker/extensions.ini:/etc/php/7.4/cli/conf.d/extensions.ini:ro
-            - ${DIRECTORY}:/var/www/
+            - /WEBSERVER/phpext-sample/.docker/extensions.ini:/etc/php/7.4/cli/conf.d/extensions.ini:ro
+            - /WEBSERVER/phpext-sample:/var/www/
 
     mysql:
         image: mysql:5.7
@@ -16,7 +16,7 @@ services:
             MYSQL_PASSWORD: pass
             MYSQL_DATABASE: mydb
         volumes:
-            - ${DIRECTORY}/.docker/my.cnf:/etc/mysql/my.cnf:ro
+            - /WEBSERVER/phpext-sample/.docker/my.cnf:/etc/mysql/my.cnf:ro
             - mysql:/var/lib/mysql
     
 volumes:
