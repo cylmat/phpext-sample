@@ -4,7 +4,7 @@ services:
     php: 
         build: .
         volumes:
-            - /WEBSERVER/phpext-sample/.docker/extensions.ini:/etc/php/7.4/cli/conf.d/extensions.ini:ro
+            - /WEBSERVER/phpext-sample/extensions.ini:/etc/php/7.4/cli/conf.d/extensions.ini:ro
             - /WEBSERVER/phpext-sample:/var/www/
 
     mysql:
@@ -16,7 +16,7 @@ services:
             MYSQL_PASSWORD: pass
             MYSQL_DATABASE: mydb
         volumes:
-            - /WEBSERVER/phpext-sample/.docker/my.cnf:/etc/mysql/my.cnf:ro
+            - /WEBSERVER/phpext-sample/my.cnf:/etc/mysql/my.cnf:ro
             - mysql:/var/lib/mysql
     
 volumes:
