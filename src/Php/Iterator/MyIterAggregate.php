@@ -19,7 +19,8 @@ class MyIterAggregate implements \IteratorAggregate #Traversable
     
     private function generate($val) #Generator
     {
-        for ($i = 0; $i < $val; $i++) {
+        for ($i = 0; $i < $val; $i++)
+        {
             yield $i;
         }
     }

@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace Phpext\Php\Curl;
 
-use Phpext\AbstractCallable;
+use Phpext\CallableInterface;
 
 /**
  * curl --header "X-MyHeader: 123" www.google.com
  */
 
-class CurlExt extends AbstractCallable
+class CurlExt implements CallableInterface
 {
     public function call(): array
     {

@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Phpext\Php\Spl;
 
-use Phpext\AbstractCallable;
+use Phpext\CallableInterface;
 
-class SplExt extends AbstractCallable
+class SplExt implements CallableInterface
 {
     public function call(): array
     {

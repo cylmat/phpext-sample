@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Phpext\Php\Exceptions;
 
-use Phpext\AbstractCallable;
+use Phpext\CallableInterface;
 
-class Exceptions extends AbstractCallable
+class Exceptions implements CallableInterface
 {
     private static $e;
 

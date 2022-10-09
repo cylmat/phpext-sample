@@ -2,13 +2,13 @@
 
 namespace Phpext\Php\Closures;
 
-use Phpext\AbstractCallable;
+use Phpext\CallableInterface;
 
 class Alpha { private $x = 1; }
 class MyClass1 { public $obj1prop; }
 class MyClass2 { public $obj2prop; }
 
-class Closures extends AbstractCallable
+class Closures implements CallableInterface
 {
    public function call(): array
    {

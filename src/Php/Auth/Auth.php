@@ -4,9 +4,14 @@ declare(strict_types=1);
 
 namespace Phpext\Php\Auth;
 
-use Phpext\AbstractCallable;
+use Phpext\CallableInterface;
 
-class Auth extends AbstractCallable
+/**
+ * Create Htdigest
+ *   htdigest -c data/users.htdigest "Secure API" ralph
+ */
+
+class Auth implements CallableInterface
 {
     public function call(): array
     {
@@ -16,12 +21,12 @@ class Auth extends AbstractCallable
         ];
     }
 
-    public function basic()
+    private function basic()
     {
         (new Digest())->handleBasic();
     }
 
-    public function digest()
+    private function digest()
     {
         (new Digest())->handleDigest();
     }

@@ -4,16 +4,12 @@ declare(strict_types=1);
 
 namespace Phpext\Php\GetText;
 
-use Phpext\AbstractCallable;
+use Phpext\CallableInterface;
 
-class GetTextExt extends AbstractCallable
+class GetTextExt implements CallableInterface
 {
-    protected const EXT = 'gettext';
-
-    public function call(): ?array
+    public function call(): array
     {
-        if (!$this->verify()) return null;
-
         return [
             $this->local()
         ];

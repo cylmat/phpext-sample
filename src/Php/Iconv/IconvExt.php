@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Phpext\Php\Iconv;
 
-use Phpext\AbstractCallable;
+use Phpext\CallableInterface;
 
 /**
  * iconv est un utilitaire permettant de modifier l'encodage des fichiers texte
@@ -25,10 +25,8 @@ use Phpext\AbstractCallable;
     iconv — Convertit une chaîne dans un jeu de caractères
     ob_iconv_handler — Gestionnaire de sortie pour maîtriser le jeu de caractères de sortie
  */
-class IconvExt extends AbstractCallable
+class IconvExt implements CallableInterface
 {
-    protected const EXT = 'iconv';
-
     public function call(): array
     {
         return [

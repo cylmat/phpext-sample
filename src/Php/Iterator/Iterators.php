@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Phpext\Php\Iterator;
 
-use Phpext\AbstractCallable;
+use Phpext\CallableInterface;
 
 /*
 https://www.php.net/manual/fr/spl.interfaces.php
@@ -38,11 +38,11 @@ RegexIterator
 *  iterator_to_array ( Traversable $iterator [, bool $use_keys = TRUE ] ) : array
 */
 
-class Iterators extends AbstractCallable
+class Iterators implements CallableInterface
 {
     function call(): array
     {
-        // @todo
+        /** @todo */
 
         return [];
     }
@@ -291,7 +291,9 @@ class Iterators extends AbstractCallable
         $iter_arr = new \RecursiveArrayIterator([5789,56234,$arr23,5353,5326,$arr,597865]); #OK
 
         $iter_tree = new \RecursiveTreeIterator($iter_arr); #OK GOOD RecursiveIterator(array of array)
-        foreach ($iter_tree as $i => $v) {
+
+        foreach ($iter_tree as $i => $v)
+        {
             echo($v);
         }
     }

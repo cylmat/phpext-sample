@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Phpext\Php\Intl;
 
-use Phpext\AbstractCallable;
+use Phpext\CallableInterface;
 
 /**
  * L'extension d'Internationalization (qui est aussi appelée Intl) est une interface pour la bibliothèque » ICU
@@ -37,10 +37,8 @@ Fonctions IDN: Internationalized domain name
 IntlChar: access information about Unicode characters
 IntlException, IntlIterator, intl_error_name, intl_get_error_code, intl_get_error_message, intl_is_failure 
  */
-class Intl extends AbstractCallable
+class Intl implements CallableInterface
 {
-    protected const EXT = 'intl';
-
     public function call(): array
     {
         return [
@@ -48,7 +46,7 @@ class Intl extends AbstractCallable
         ];
     }
 
-    public function printed(): array
+    private function printed(): array
     {
         return [
             sprintf('%x', \IntlChar::CODEPOINT_MAX),

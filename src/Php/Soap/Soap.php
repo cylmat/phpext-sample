@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Phpext\Php\Soap;
 
-use Phpext\AbstractCallable;
+use Phpext\CallableInterface;
 
-class Soap extends AbstractCallable
+class Soap implements CallableInterface
 {
     public function call(): array
     {
@@ -15,7 +15,7 @@ class Soap extends AbstractCallable
         return [];
     }
 
-    public function client()
+    private function client()
     {
         //echo 'Call SoapClient<br/>';
         $c = new Client();

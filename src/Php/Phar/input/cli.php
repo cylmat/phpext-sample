@@ -1,6 +1,18 @@
 <?php
-include '../MyLib.php';
-echo 'cli'.PHP_EOL;
+
+class MyLib
+{
+    function addhandled()
+    {
+
+    }
+
+    function dump()
+    {
+
+    }
+}
+
 class Input
 {
     static function handle()
@@ -8,10 +20,11 @@ class Input
         global $argv;
         //php usephar.php -d=5 --dump=6
         $opt = getopt("d::", ["dump::"]);
+
         return $opt;
     }
 }
-$l = new MyLib;
+$l = new MyLib();
 $i = Input::handle();
 $l->addhandled($i);
 $l->dump();

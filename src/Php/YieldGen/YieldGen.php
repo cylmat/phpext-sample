@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Phpext\Php\YieldGen;
 
-use Phpext\AbstractCallable;
+use Phpext\CallableInterface;
 
-class YieldGen extends AbstractCallable
+class YieldGen implements CallableInterface
 {
     public function call(): array
     {

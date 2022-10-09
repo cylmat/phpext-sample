@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Phpext\Php\Date;
 
-use Phpext\AbstractCallable;
+use Phpext\CallableInterface;
 
-class Dates extends AbstractCallable
+class Dates implements CallableInterface
 {
     public function call(): array
     {

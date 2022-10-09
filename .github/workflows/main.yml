@@ -19,4 +19,4 @@ jobs:
 
     - name: Run test suite
       run: |
-        make tests
+        php src/test.php
