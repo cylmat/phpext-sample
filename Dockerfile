@@ -13,7 +13,7 @@ RUN apt-get update
 RUN apt-get install -y libzip4 libzip-dev lbzip2 libicu-dev libxml2-dev zlib1g-dev
 RUN apt-get install -y apt-utils bzip2 curl git php-pear vim wget zip
 
-# Php 7.4 ext
+# Php extensions
 # http://ppa.launchpad.net/ondrej/php/ubuntu
 RUN apt install -y \
     php7.4-dev \ 
