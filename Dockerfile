@@ -15,7 +15,7 @@ RUN apt-get install -y apt-utils bzip2 curl git php-pear vim wget zip
 
 # Php 7.4 ext
 # http://ppa.launchpad.net/ondrej/php/ubuntu
-RUN apt-get install -y \
+RUN apt install -y \
     php7.4-dev \ 
     php7.4-curl \
     php7.4-ds \
