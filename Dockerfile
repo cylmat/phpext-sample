@@ -34,6 +34,11 @@ RUN apt-get install -y \
 # Clean
 # RUN apt-get clean; rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /usr/share/doc/*
 
+# Composer
+# ENV COMPOSER_ALLOW_SUPERUSER=1
+# RUN wget https://raw.githubusercontent.com/composer/getcomposer.org/76a7060ccb93902cd7576b67264ad91c8a2700e2/web/installer -O - -q | php -- --quiet
+# RUN mv ./composer.phar /usr/local/bin/composer 
+
 WORKDIR /var/www
 
 # CMD ["/usr/sbin/php-fpm7.4", "-O"]
